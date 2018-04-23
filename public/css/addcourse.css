@@ -1,0 +1,110 @@
+body,html {
+	background-color: #fff
+}
+
+#product_detail_index {
+	margin-top: 50px;
+	padding-bottom: 150px
+}
+
+#product_detail_index .media-left {
+	padding-right: 50px
+}
+
+#detail_block_list .list-item>a {
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding: 5px 8px;
+	display: inline-block;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	border-radius: 4px;
+	color: #000
+}
+
+#detail_block_list .list-item>a.active,#detail_block_list .list-item>a:hover {
+	border-color: #009887;
+	color: #009887
+}
+
+#detail_block_list .list-detail h3 {
+	margin-top: 10px
+}
+
+@media(max-width:766px) {
+	#detail_block_list .media-body {
+		margin: 15px 0;
+		display: block
+	}
+}
+
+#detail_block_list .list-detail .detail-control {
+	margin-top: 20px
+}
+
+#detail_block_list .list-detail .detail-control .el-input-number {
+	margin-right: 10px
+}
+
+#detail_block_list .list-detail .detail-control .btn-list {
+	display: inline-block
+}
+
+#detail_block_list .list-detail .detail-control .btn-list .btn {
+	margin-right: 10px
+}
+
+#detail_block_shedule {
+	margin-top: 30px
+}
+
+#detail_block_shedule .row>div {
+	margin-bottom: 30px
+}
+
+#detail_block_shedule .shedule-item {
+	padding: 20px;
+	border: 1px solid #eee
+}
+
+#detail_block_shedule .shedule-item .item-body {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #eee
+}
+
+#detail_block_shedule .shedule-item .item-body h4 {
+	margin: 0
+}
+
+#detail_block_shedule .shedule-item .item-body h4>.el-tag {
+	margin-right: 10px;
+	padding: 5px 10px;
+	background: transparent;
+	font-size: 14px
+}
+
+#detail_block_shedule .shedule-item .item-body>div {
+	margin-bottom: 5px
+}
+
+#detail_block_shedule .el-button.el-button--text>span {
+	color: inherit
+}
+
+#detail_block_description h4 {
+	margin-top: 0;
+	padding-top: 5px
+}
+
+#detail_block_description ul {
+	padding-left: 15px
+}
+
+#detail_block_description ul li {
+	list-style-type: decimal
+}
+
+#detail_block_description>img {
+	width: 100%;
+	margin: 10px auto
+}

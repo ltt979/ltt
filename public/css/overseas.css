@@ -1,0 +1,663 @@
+#shared_block_register {
+	padding: 60px 0;
+	background-size: cover
+}
+
+#shared_block_register .register-wrapper>div {
+	margin-top: -20px
+}
+
+#shared_block_register .btn-default {
+	padding-left: 50px;
+	padding-right: 50px;
+	color: #fff;
+	background: transparent
+}
+
+#shared_block_register .btn-default:hover {
+	color: #009887!important;
+	background: rgba(255,255,255,.65)!important
+}
+
+.block-course {
+	position: relative;
+	padding-top: 120px
+}
+
+.block-course .course-content {
+	position: relative;
+	margin: 0 auto;
+	padding: 50px 75px;
+	max-width: 665px;
+	overflow: hidden;
+	background-size: contain;
+	background-repeat: no-repeat
+}
+
+.block-course.animated .course-content {
+	-webkit-animation: scalecoursefeature 7.4s linear;
+	animation: scalecoursefeature 7.4s linear;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards
+}
+
+.block-course .course-content .content-box {
+	position: relative;
+	left: 0;
+	top: -20px
+}
+
+.block-course .course-content .course-rotate-mask {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 16;
+	transition: all .5s ease-in-out 6.4s;
+	background-color: rgba(255,255,255,.3);
+	background-position: center
+}
+
+.block-course .course-content .course-item-rotate {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) rotate(0)
+}
+
+.block-course.animated .course-content .course-rotate-mask {
+	opacity: 0
+}
+
+.block-course.animated .course-content .course-item-rotate {
+	-webkit-animation: rotating 7.4s linear;
+	animation: rotating 7.4s linear;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards
+}
+
+.block-course .course-item {
+	position: absolute
+}
+
+.block-course img.course-item {
+	padding: 3px;
+	width: 64px;
+	height: 64px;
+	background-color: rgba(0,152,135,.2);
+	vertical-align: middle
+}
+
+.block-course div.course-item>h3 {
+	margin-top: 0;
+	margin-bottom: 5px
+}
+
+.course-item1 {
+	top: 1%;
+	left: 50%;
+	transition: all .5s ease-in-out 3.4s
+}
+
+.course-item1-icon {
+	top: 0;
+	left: 43%;
+	transition: all .5s ease-in-out 3.4s
+}
+
+.course-item2 {
+	top: 39%;
+	right: 88%;
+	transition: all .5s ease-in-out 3.2s
+}
+
+.course-item2-icon {
+	top: 38%;
+	right: 81%;
+	transition: all .5s ease-in-out 3.2s
+}
+
+.course-item3 {
+	top: 79%;
+	right: 88%;
+	transition: all .5s ease-in-out 3s
+}
+
+.course-item3-icon {
+	top: 78%;
+	right: 81%;
+	transition: all .5s ease-in-out 3s
+}
+
+.course-item4 {
+	top: 39%;
+	left: 88%;
+	transition: all .5s ease-in-out 3.6s
+}
+
+.course-item4-icon {
+	top: 38%;
+	left: 81%;
+	transition: all .5s ease-in-out 3.6s
+}
+
+.course-item5 {
+	top: 79%;
+	left: 88%;
+	transition: all .5s ease-in-out 4s
+}
+
+.course-item5-icon {
+	top: 78%;
+	left: 81%;
+	transition: all .5s ease-in-out 4s
+}
+
+.block-course.animated .course-item1-icon,.block-course.animated .course-item4-icon,.block-course.animated .course-item5-icon {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%)
+}
+
+.block-course.animated .course-item2-icon,.block-course.animated .course-item3-icon {
+	top: 50%;
+	right: 50%;
+	transform: translate(50%,-50%)
+}
+
+.block-course.animated .course-item {
+	opacity: 0
+}
+
+@keyframes scalecoursefeature {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		-webkit-transform-origin: center bottom;
+		transform-origin: center bottom;
+		z-index: 1023
+	}
+
+	30% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		-webkit-transform-origin: center bottom;
+		transform-origin: center bottom;
+		z-index: 1023
+	}
+
+	36% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		-webkit-transform-origin: center bottom;
+		transform-origin: center bottom;
+		z-index: 1023
+	}
+
+	80% {
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+		-webkit-transform-origin: center bottom;
+		transform-origin: center bottom;
+		z-index: 1023
+	}
+
+	100% {
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+		-webkit-transform-origin: center bottom;
+		transform-origin: center bottom;
+		z-index: 17
+	}
+}
+
+@keyframes rotating {
+	0% {
+		-webkit-transform: translate(-50%,-50%) rotate(0);
+		transform: translate(-50%,-50%) rotate(0)
+	}
+
+	30% {
+		-webkit-transform: translate(-50%,-50%) rotate(0);
+		transform: translate(-50%,-50%) rotate(0)
+	}
+
+	36% {
+		-webkit-transform: translate(-50%,-50%) rotate(0);
+		transform: translate(-50%,-50%) rotate(0)
+	}
+
+	80% {
+		-webkit-transform: translate(-50%,-50%) rotate(1800deg);
+		transform: translate(-50%,-50%) rotate(1800deg);
+		opacity: 1;
+		filter: alpha(opacity=1)
+	}
+
+	90% {
+		opacity: 0;
+		filter: alpha(opacity=0)
+	}
+
+	100% {
+		-webkit-transform: translate(-50%,-50%) rotate(1800deg);
+		transform: translate(-50%,-50%) rotate(1800deg);
+		opacity: 0;
+		filter: alpha(opacity=0)
+	}
+}
+
+@media screen and (max-width:375px) {
+	.block-course .course-content {
+		padding: 37px 41px
+	}
+
+	.block-course.animated .course-content {
+		animation-play-state: paused
+	}
+}
+
+@media screen and (min-width:414px) and (max-width:568px) {
+	.block-course .course-content {
+		padding: 37px 39px
+	}
+}
+
+@media screen and (min-width:569px) and (max-width:667px) {
+	.block-course .course-content {
+		padding: 42px 69px
+	}
+}
+
+.shadow:hover {
+	box-shadow: 0 8px 18px rgba(0,0,0,.06);
+	cursor: pointer
+}
+
+.shadow .img-wrapper {
+	overflow: hidden
+}
+
+.shadow .img-wrapper img {
+	border-radius: 4px 4px 0 0;
+	transition: .8s all
+}
+
+.shadow:hover .img-wrapper img {
+	transform: scale(1.2)
+}
+
+#overseas_home_block_courseSystem {
+	background-color: #fff;
+	padding: 125px 0 130px 0
+}
+
+#overseas_home_block_courseSystem .courseSystem-item1 {
+	margin-bottom: 35px
+}
+
+#overseas_home_block_courseSystem .courseSystem-item1>div {
+	margin-bottom: 30px
+}
+
+#overseas_home_block_courseSystem .courseSystem-item1>div>a {
+	display: inline-block
+}
+
+#overseas_home_block_courseSystem .courseSystem-item1 .courseSystem-item1-box {
+	background-color: #f8f8f8;
+	padding-top: 20px;
+	border-radius: 0 0 4px 4px
+}
+
+#overseas_home_block_courseSystem .courseSystem-item1 .courseSystem-item1-box>div {
+	padding: 15px
+}
+
+#overseas_home_block_courseSystem .row>div>img {
+	border-radius: 4px 4px 0 0;
+	width: 100%
+}
+
+#overseas_home_block_courseSystem .courseSystem-item2>div {
+	padding: 15px
+}
+
+#overseas_home_block_courseSystem .courseSystem-item2>div:hover .img-responsive>img {
+	transform: scale(1.2);
+	cursor: pointer
+}
+
+#overseas_home_block_courseSystem .courseSystem-item2>div .img-responsive>img {
+	transition: .5s all;
+	display: inline-block
+}
+
+#overseas_home_block_why {
+	padding: 125px 0 120px 0
+}
+
+#overseas_home_block_why .row>div {
+	text-align: center;
+	padding: 25px
+}
+
+#overseas_home_block_why .row>div>h4 {
+	margin-top: 20px
+}
+
+#overseas_home_block_why .row>div>.text-center>img {
+	display: inline-block
+}
+
+#overseas_home_block_why .row>div>div:last-child {
+	height: 96px
+}
+
+@media screen and (max-width:992px) {
+	#overseas_home_block_why .row>div>div:last-child {
+		height: 70px
+	}
+}
+
+@media screen and (max-width:768px) {
+	#overseas_home_block_why .row>div>div:last-child {
+		height: auto
+	}
+}
+
+#overseas_home_block_match {
+	padding: 125px 0 130px 0;
+	background-color: #fff
+}
+
+#overseas_home_block_solution {
+	padding: 125px 0 135px 0
+}
+
+#overseas_home_block_solution .row>div {
+	padding: 0 50px 15px 50px
+}
+
+#overseas_home_block_solution .row>div>.bg-white {
+	padding: 30px 0;
+	background-color: transparent
+}
+
+#overseas_home_block_solution .row>div>.bg-white>.text-center {
+	position: relative
+}
+
+#overseas_home_block_solution .row>div>.bg-white>.text-center>img {
+	display: inline-block
+}
+
+#overseas_home_block_solution .row>div>.bg-white>h4 {
+	margin: 20px 0
+}
+
+#overseas_home_block_solution .row>div>.bg-white>.margin-auto {
+	display: inline-block
+}
+
+#overseas_home_block_solution .row>div>.bg-white>.margin-auto .list-item {
+	margin-bottom: 10px
+}
+
+#overseas_home_block_solution .row>div>.bg-white>.margin-auto .list-item::before {
+	content: "";
+	display: inline-block;
+	margin-bottom: 2px;
+	margin-right: 10px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #ddd
+}
+
+#overseas_home_block_solution .dot-bg {
+	position: absolute;
+	right: -164px;
+	top: 85px;
+	z-index: -9
+}
+
+
+/*----------------------------------------------考试时间-----------------------------------------------*/
+
+
+#overseas_exam_tip {
+	position: fixed;
+	left: 1%;
+	top: 22%;
+	width: 120px;
+	z-index: 99;
+	background-color: #fff
+}
+
+#overseas_exam_tip .tip-title {
+	width: 100%;
+	height: 40px;
+	background-color: #009887;
+	line-height: 40px;
+	border-radius: 4px
+}
+
+#overseas_exam_tip .item-box {
+	width: 100%;
+	padding-top: 10px;
+	box-shadow: 0 0 10px #eee
+}
+
+#overseas_exam_tip .item-box>a {
+	display: inline-block;
+	width: 80%
+}
+
+#overseas_exam_block_act {
+	background-color: #fff;
+	padding-top: 150px
+}
+
+#overseas_exam_block_act h3.lks-main-title {
+	margin-bottom: 50px
+}
+
+#overseas_exam_block_act table {
+	width: 100%
+}
+
+#overseas_exam_block_act table tr th,#overseas_exam_block_act table tr td {
+	width: 33.3%;
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px
+}
+
+#overseas_exam_block_act table tr th {
+	background-color: #f8f8f8
+}
+
+#overseas_exam_block_act .hint {
+	margin-top: 20px
+}
+
+#overseas_exam_block_ap {
+	background-color: #fff;
+	padding: 150px 0
+}
+
+#overseas_exam_block_ap table {
+	width: 100%
+}
+
+#overseas_exam_block_ap table tr th,#overseas_exam_block_ap table tr td {
+	width: 33.3%;
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px;
+	overflow: hidden
+}
+
+#overseas_exam_block_ap table tr th {
+	background-color: #f8f8f8
+}
+
+#overseas_exam_block_ap .hint {
+	margin-top: 20px
+}
+
+#overseas_exam_block_ap table tr td>div {
+	position: relative
+}
+
+#overseas_exam_block_ap table tr td>div::after {
+	content: "";
+	position: absolute;
+	left: -20px;
+	bottom: 0;
+	height: 1px;
+	width: 150%;
+	background-color: #ddd
+}
+
+#overseas_exam_block_ap table tr td>div:last-child::after {
+	content: "";
+	height: 0;
+	width: 0
+}
+
+#overseas_exam_block_ap .hint {
+	margin-top: 20px
+}
+
+#overseas_exam_block_gre {
+	background-color: #fff;
+	padding-top: 150px
+}
+
+#overseas_exam_block_gre h3.lks-main-title {
+	margin-bottom: 50px
+}
+
+#overseas_exam_block_gre table {
+	width: 100%
+}
+
+#overseas_exam_block_gre table tr th,#overseas_exam_block_gre table tr td {
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px
+}
+
+#overseas_exam_block_gre table tr th:first-child,#overseas_exam_block_gre table tr td:first-child {
+	width: 15%
+}
+
+#overseas_exam_block_gre table tr th {
+	background-color: #f8f8f8
+}
+
+#overseas_exam_block_lelts {
+	padding-top: 150px;
+	background-color: #fff
+}
+
+#overseas_exam_block_lelts table {
+	width: 100%
+}
+
+#overseas_exam_block_lelts table tr th,#overseas_exam_block_lelts table tr td {
+	width: 25%;
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px
+}
+
+#overseas_exam_block_lelts table tr th {
+	background-color: #f8f8f8
+}
+
+#overseas_exam_block_lelts .btn-box {
+	margin-top: 30px
+}
+
+#overseas_exam_block_sat_a {
+	background-color: #fff;
+	padding-top: 150px
+}
+
+#overseas_exam_block_sat_a h3.lks-main-title {
+	margin-bottom: 50px
+}
+
+#overseas_exam_block_sat_a table {
+	width: 100%
+}
+
+#overseas_exam_block_sat_a table tr th,#overseas_exam_block_sat_a table tr td {
+	width: 50%;
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px
+}
+
+#overseas_exam_block_sat_a table tr th {
+	background-color: #f8f8f8
+}
+
+#overseas_exam_block_sat_i {
+	background-color: #fff;
+	padding-top: 150px
+}
+
+#overseas_exam_block_sat_i h3.lks-main-title {
+	margin-bottom: 50px
+}
+
+#overseas_exam_block_sat_i table {
+	width: 100%
+}
+
+#overseas_exam_block_sat_i table tr th,#overseas_exam_block_sat_i table tr td {
+	width: 50%;
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px
+}
+
+#overseas_exam_block_sat_i table tr th {
+	background-color: #f8f8f8
+}
+
+#overseas_exam_block_toefl {
+	background-color: #fff;
+	padding-top: 150px
+}
+
+#overseas_exam_block_toefl h3.lks-main-title {
+	margin-bottom: 50px
+}
+
+#overseas_exam_block_toefl table {
+	width: 100%
+}
+
+#overseas_exam_block_toefl table tr th,#overseas_exam_block_toefl table tr td {
+	width: 14.2%;
+	height: 50px;
+	border: 1px solid #ddd;
+	line-height: 50px;
+	padding-left: 20px
+}
+
+#overseas_exam_block_toefl table tr th {
+	background-color: #f8f8f8
+}
