@@ -2,7 +2,7 @@
 
 module.exports = function (app) {
   app.get('/reg', function (req, res) {
-    res.render('login', {title: '注册'});
+    res.render('register', {title: '注册'});
   });
   app.post('/reg', function (req, res) {
     var name = req.body.name,
