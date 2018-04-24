@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
 
-/* GET home page. */
+
 module.exports = function (app) {
+  app.get('/reg', function (req, res) {
+    res.render('login', {title: '注册'});
+  });
   app.post('/reg', function (req, res) {
     var name = req.body.name,
       password = req.body.password,
