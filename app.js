@@ -30,11 +30,13 @@ app.use(session({
   key: settings.db,//cookie name
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: new MongoStore({
-    url: 'mongodb://localhost[:27017]/blog',
+    url: 'mongodb://localhost:27017/blog',
     db: settings.db,
     host: settings.host,
     port: settings.port
-  })
+  }),
+  resave: true,
+  saveUninitialized: true
 }));
 
 module.exports = app;
