@@ -5,11 +5,13 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var settings = require('./settings');
+var flash = require('connect-flash');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-// app.set("view engine","ejs");
+app.set("view engine","ejs");
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
