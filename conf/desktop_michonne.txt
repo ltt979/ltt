@@ -1,0 +1,8 @@
+mongodb install path 
+D:\Program Files\MongoDB\Server\3.6\bin
+
+mongodb data location
+D:\Program Files\MongoDB\Server\3.6\data
+
+start command 
+D:\Program Files\MongoDB\Server\3.6\bin\mongod --dbpath "D:\Program Files\MongoDB\Server\3.6\data"

@@ -5,6 +5,12 @@ module.exports = function (app) {
   app.get('/reg', function (req, res) {
     res.render('register', {title: '注册'});
   });
+  app.get('/log', function (req, res) {
+    res.render('login', {title: '登录'});
+  });
+  app.get('/add', function (req, res) {
+    res.render('addcourse', {title: '添加课程'});
+  });
   app.post('/reg', function (req, res) {
     var email = req.body.email,
       name = req.body.username,
