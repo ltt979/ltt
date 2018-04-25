@@ -1,13 +1,16 @@
-
+var crypto = require('crypto');
+var User = require('../modules/user');
 
 module.exports = function (app) {
   app.get('/reg', function (req, res) {
     res.render('register', {title: '注册'});
   });
   app.post('/reg', function (req, res) {
-    var name = req.body.name,
+    var email = req.body.email,
+      name = req.body.username,
       password = req.body.password,
-      password_re = req.body['password-repeat'];
+      password_re = req.body['password_confirm'],
+      sex = req.body.sex;
     //检验用户两次输入的密码是否一致
     if (password_re != password) {
       req.flash('error', '两次输入的密码不一致!');
@@ -15,11 +18,12 @@ module.exports = function (app) {
     }
     //生成密码的 md5 值
     var md5 = crypto.createHash('md5'),
-      password = md5.update(req.body.password).digest('hex');
+      password = md5.update(password).digest('hex');
     var newUser = new User({
       name: name,
       password: password,
-      email: req.body.email
+      email: email,
+      sex: sex
     });
     //检查用户名是否已经存在 
     User.get(newUser.name, function (err, user) {

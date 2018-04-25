@@ -3,6 +3,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var route = require('./routes/index');
+var crypto = require('crypto');
+var User = require('./modules/user.js');
+
 
 // var indexRouter = require('./routes/index');
 var settings = require('./settings');

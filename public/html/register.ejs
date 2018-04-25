@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>注册</title>
-    <link rel="icon" href="../favicon.ico">
-
-    <link href="../css/login+register/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../css/login+register/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="../css/login+register/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <link href="../css/login+register/templatemo_style.css" rel="stylesheet" type="text/css"> 
-
+  <meta charset="UTF-8">
+  <title>注册</title>
+  <link rel="icon" href="../favicon.ico">
+  <link href="../css/login+register/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../css/login+register/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../css/login+register/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+  <link href="../css/login+register/templatemo_style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../lib/bootstrapValidator/dist/css/bootstrapValidator.css" />
 </head>
 
 <body>
-  <body class="templatemo-bg-gray"> 
-  <h1 class="margin-bottom-15">注册</h1> 
-  <div class="container"> 
-   <div class="col-md-12"> 
-    <form class="form-horizontal templatemo-create-account templatemo-container" role="form" action="#" method="post"> 
-     <div class="form-inner"> 
-      <div class="form-group"> 
-      <!--  <div class="col-md-6"> 
+
+  <body class="templatemo-bg-gray">
+    <h1 class="margin-bottom-15">注册</h1>
+    <div class="container">
+      <div class="col-md-12">
+        <form id="registerForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/reg"
+          method="post">
+          <div class="form-inner">
+            <div class="form-group">
+              <!--  <div class="col-md-6"> 
         <label for="first_name" class="control-label">First Name</label> 
         <input type="text" class="form-control" id="first_name" placeholder="" /> 
        </div> 
@@ -28,69 +30,154 @@
         <label for="last_name" class="control-label">Last Name</label> 
         <input type="text" class="form-control" id="last_name" placeholder="" /> 
        </div>  -->
-      </div> 
-      <div class="form-group"> 
-       <div class="col-md-12"> 
-        <label for="username" class="control-label">Email</label> 
-        <input type="email" class="form-control" id="email" placeholder="" /> 
-       </div> 
-      </div> 
-      <div class="form-group"> 
-       <div class="col-md-6"> 
-        <label for="username" class="control-label">Username</label> 
-        <input type="text" class="form-control" id="username" placeholder="" /> 
-       </div> 
-       <div class="col-md-6 templatemo-radio-group"> 
-        <label class="radio-inline"> <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" /> Male </label> 
-        <label class="radio-inline"> <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" /> Female </label> 
-       </div> 
-      </div> 
-      <div class="form-group"> 
-       <div class="col-md-6"> 
-        <label for="password" class="control-label">Password</label> 
-        <input type="password" class="form-control" id="password" placeholder="" /> 
-       </div> 
-       <div class="col-md-6"> 
-        <label for="password" class="control-label">Confirm Password</label> 
-        <input type="password" class="form-control" id="password_confirm" placeholder="" /> 
-       </div> 
-      </div> 
-      <div class="form-group"> 
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="email" class="control-label">Email</label>
+                <input name="email" type="email" class="form-control" id="email" placeholder="" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="username" class="control-label">Username</label>
+                <input name="username" type="text" class="form-control" id="username" placeholder="" />
+              </div>
+              <div class="col-md-6 templatemo-radio-group">
+                <label class="radio-inline">
+                  <input type="radio" name="sex" id="optionsRadios1" value="Male" /> Male </label>
+                <label class="radio-inline">
+                  <input type="radio" name="sex" id="optionsRadios2" value="Female" /> Female </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="password" class="control-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="" />
+              </div>
+              <div class="col-md-6">
+                <label for="password" class="control-label">Confirm Password</label>
+                <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="" />
+              </div>
+            </div>
+            <!--  <div class="form-group"> 
        <div class="col-md-12"> 
         <label><input type="checkbox" />I agree to the <a href="javascript:;" data-toggle="modal" data-target="#templatemo_modal">Terms of Service</a> and <a href="#">Privacy Policy.</a></label> 
        </div> 
-      </div> 
-      <div class="form-group"> 
-       <div class="col-md-12"> 
-        <input type="submit" value="Create account" class="btn btn-info" /> 
-        <a href="login-1.html" class="pull-right">Login</a> 
-       </div> 
-      </div> 
-     </div> 
-    </form> 
-   </div> 
-  </div> 
-  <!-- Modal --> 
-  <div class="modal fade" id="templatemo_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-   <div class="modal-dialog"> 
-    <div class="modal-content"> 
-     <div class="modal-header"> 
-      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> 
-      <h4 class="modal-title" id="myModalLabel">Terms of Service</h4> 
-     </div> 
-     <div class="modal-body"> 
-      <p>This form is provided by <a rel="nofollow" href="http://www.cssmoban.com/page/1">Free HTML5 Templates</a> that can be used for your websites. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> 
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p> 
-      <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p> 
-     </div> 
-     <div class="modal-footer"> 
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
-     </div> 
-    </div> 
-   </div> 
-  </div> 
-  <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script> 
-  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+      </div>  -->
+            <div class="form-group">
+              <div class="col-md-12">
+                <input type="submit" value="Create account" class="btn btn-info" />
+                <a href="/login" class="pull-right">Login</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="templatemo_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Terms of Service</h4>
+          </div>
+          <div class="modal-body">
+            <p>This form is provided by
+              <a rel="nofollow" href="http://www.cssmoban.com/page/1">Free HTML5 Templates</a> that can be used for your websites. Cras mattis consectetur purus sit amet fermentum.
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum
+              at eros.</p>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
+              rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna,
+              vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque
+              nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#defaultForm').bootstrapValidator({
+          message: 'This value is not valid',
+          container: '#errors',
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+            username: {
+              message: 'The username is not valid',
+              validators: {
+                notEmpty: {
+                  message: 'The username is required and cannot be empty'
+                },
+                stringLength: {
+                  min: 6,
+                  max: 30,
+                  message: 'The username must be more than 6 and less than 30 characters long'
+                },
+                regexp: {
+                  regexp: /^[a-zA-Z0-9_\.]+$/,
+                  message: 'The username can only consist of alphabetical, number, dot and underscore'
+                },
+                different: {
+                  field: 'password',
+                  message: 'The username and password cannot be the same as each other'
+                }
+              }
+            },
+            email: {
+              validators: {
+                emailAddress: {
+                  message: 'The input is not a valid email address'
+                }
+              }
+            },
+            password: {
+              validators: {
+                notEmpty: {
+                  message: 'The password is required and cannot be empty'
+                },
+                different: {
+                  field: 'username',
+                  message: 'The password cannot be the same as username'
+                },
+                stringLength: {
+                  min: 6,
+                  max: 30,
+                  message: 'The password must be more than 6 and less than 30 characters long'
+                }
+              }
+            },
+            identical: {
+              validators: {
+                field: 'confirmpassword',
+                message: 'The password must be the same'
+              }
+            },
+            sex: {
+              validators: {
+                notEmpty: {
+                  message: 'The gender is required'
+                }
+              }
+            }
+          }
+        });
+      });
+    </script>
   </body>
- 
+
 </html>
