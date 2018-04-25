@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
   <body class="templatemo-bg-gray">
     <h1 class="margin-bottom-15">注册</h1>
     <div class="container">
@@ -21,16 +20,6 @@
         <form id="registerForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/reg"
           method="post">
           <div class="form-inner">
-            <div class="form-group">
-              <!--  <div class="col-md-6"> 
-        <label for="first_name" class="control-label">First Name</label> 
-        <input type="text" class="form-control" id="first_name" placeholder="" /> 
-       </div> 
-       <div class="col-md-6"> 
-        <label for="last_name" class="control-label">Last Name</label> 
-        <input type="text" class="form-control" id="last_name" placeholder="" /> 
-       </div>  -->
-            </div>
             <div class="form-group">
               <div class="col-md-12">
                 <label for="email" class="control-label">Email</label>
@@ -64,6 +53,12 @@
         <label><input type="checkbox" />I agree to the <a href="javascript:;" data-toggle="modal" data-target="#templatemo_modal">Terms of Service</a> and <a href="#">Privacy Policy.</a></label> 
        </div> 
       </div>  -->
+
+            <div class="form-group">
+              <div class="col-lg-9 col-lg-offset-3">
+                <div id="errors"></div>
+              </div>
+            </div>
             <div class="form-group">
               <div class="col-md-12">
                 <input type="submit" value="Create account" class="btn btn-info" />
@@ -103,9 +98,9 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('#registerForm').bootstrapValidator({
@@ -117,6 +112,16 @@
             validating: 'glyphicon glyphicon-refresh'
           },
           fields: {
+            email: {
+              validators: {
+                notEmpty: {
+                  message: 'The email is required and cannot be empty'
+                },
+                emailAddress: {
+                  message: 'The input is not a valid email address'
+                }
+              }
+            },
             username: {
               message: 'The username is not valid',
               validators: {
@@ -138,13 +143,7 @@
                 }
               }
             },
-            email: {
-              validators: {
-                emailAddress: {
-                  message: 'The input is not a valid email address'
-                }
-              }
-            },
+
             password: {
               validators: {
                 notEmpty: {
@@ -158,13 +157,22 @@
                   min: 6,
                   max: 30,
                   message: 'The password must be more than 6 and less than 30 characters long'
+                },
+                identical: {
+                  field: 'password_confirm',
+                  message: 'The password and its confirm are not the same'
                 }
               }
             },
-            identical: {
+            password_confirm: {
               validators: {
-                field: 'confirmpassword',
-                message: 'The password must be the same'
+                notEmpty: {
+                  message: 'The confirm password is required and cannot be empty'
+                },
+                identical: {
+                  field: 'password',
+                  message: 'The password and its confirm are not the same'
+                }
               }
             },
             sex: {

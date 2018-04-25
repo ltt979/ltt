@@ -1,5 +1,5 @@
-var mongodb = require('./db');
-var mongodbNew = require("./mongodb");
+// var mongodb = require('./db');
+var mongodbNew = require("./mongodbUtil");
 function User(user) {
   this.name = user.name;
   this.password = user.password;

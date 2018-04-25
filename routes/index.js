@@ -5,6 +5,10 @@ module.exports = function (app) {
   app.get('/reg', function (req, res) {
     res.render('register', {title: '注册'});
   });
+
+  app.get('/test', function (req, res) {
+    res.render('test', {title: '注册'});
+  });
   app.get('/log', function (req, res) {
     res.render('login', {title: '登录'});
   });
