@@ -2,10 +2,21 @@ var crypto = require('crypto');
 var User = require('../modules/user');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
+// let ejs = require('ejs'),
+//   people = ['geddy', 'neil', 'alex'],
+//   html = ejs.render('<%= people.join(", "); %>', {people: people});
+//   console.log(html);
+
 
 module.exports = function (app) {
   app.get('/reg', function (req, res) {
     res.render('register', {title: '注册'});
+  });
+  app.get('/', function (req, res) {
+    res.render('index', {
+      user: req.session.user
+    });
+    // console.log(JSON.stringify(req.session.user));
   });
   app.get('/test', function (req, res) {
     res.render('test', {title: '注册'});
@@ -16,9 +27,18 @@ module.exports = function (app) {
   app.get('/add', function (req, res) {
     res.render('addcourse', {title: '添加课程'});
   });
-  app.post('/ajax_username_check',urlencodedParser,function(req,res) {
-    console.log(req.body);
-    res.json({valid:true});
+  app.post('/ajax_username_check', urlencodedParser, function (req, res) {
+    User.get(req.body.username, function (err, user) {
+      if (err) {
+        res.json({valid: false});
+      } else {
+        if (null == user) {
+          res.json({valid: true});
+        } else {
+          res.json({valid: false});
+        }
+      }
+    })
   });
 
   app.post('/reg', function (req, res) {
