@@ -1,1 +1,2 @@
 mongod --dbpath "D:\software\mongodb-win32-x86_64-enterprise-windows-64-3.4.1\data\blog"
+md5 : ref http://pajhome.org.uk/crypt/md5/instructions.html
