@@ -140,6 +140,15 @@
                 different: {
                   field: 'password',
                   message: 'The username and password cannot be the same as each other'
+                },
+                remote : {
+                  message: 'usename exists please apply another one',
+                  // name: 'username validation',
+                  type: 'post',
+                  url: '/ajax_username_check',
+                  data: {username : function(){return $("#username").val()}}
+                  ,
+                  delay: '1000'
                 }
               }
             },

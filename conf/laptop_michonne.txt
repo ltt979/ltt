@@ -1,0 +1,1 @@
+mongod --dbpath "D:\software\mongodb-win32-x86_64-enterprise-windows-64-3.4.1\data\blog"

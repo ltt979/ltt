@@ -1,11 +1,12 @@
 var crypto = require('crypto');
 var User = require('../modules/user');
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function (app) {
   app.get('/reg', function (req, res) {
     res.render('register', {title: '注册'});
   });
-
   app.get('/test', function (req, res) {
     res.render('test', {title: '注册'});
   });
@@ -15,6 +16,11 @@ module.exports = function (app) {
   app.get('/add', function (req, res) {
     res.render('addcourse', {title: '添加课程'});
   });
+  app.post('/ajax_username_check',urlencodedParser,function(req,res) {
+    console.log(req.body);
+    res.json({valid:true});
+  });
+
   app.post('/reg', function (req, res) {
     var email = req.body.email,
       name = req.body.username,

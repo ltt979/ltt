@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "bootstrap": "^4.1.0",
     "bootstrapvalidator": "^0.5.4",
     "connect-flash": "^0.1.1",
