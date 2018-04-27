@@ -13,57 +13,50 @@
 </head>
 
 <body>
+
   <body class="templatemo-bg-gray">
     <h1 class="margin-bottom-15">注册</h1>
     <div class="container">
       <div class="col-md-12">
-        <form id="registerForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/reg"
+        <form id="registerForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/regSubmit"
           method="post">
-          <div class="form-inner">
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="email" class="control-label">Email</label>
-                <input name="email" type="email" class="form-control" id="email" placeholder="" />
-              </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="email" class="control-label">Email</label>
+              <input name="email" type="email" class="form-control" id="email" placeholder="" />
             </div>
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="username" class="control-label">Username</label>
-                <input name="username" type="text" class="form-control" id="username" placeholder="" />
-              </div>
-              <div class="col-md-6 templatemo-radio-group">
-                <label class="radio-inline">
-                  <input type="radio" name="sex" id="optionsRadios1" value="Male" /> Male </label>
-                <label class="radio-inline">
-                  <input type="radio" name="sex" id="optionsRadios2" value="Female" /> Female </label>
-              </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-6">
+              <label for="username" class="control-label">Username</label>
+              <input name="username" type="text" class="form-control" id="username" placeholder="" />
             </div>
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="password" class="control-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="" />
-              </div>
-              <div class="col-md-6">
-                <label for="password" class="control-label">Confirm Password</label>
-                <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="" />
-              </div>
+            <div class="col-md-6 templatemo-radio-group">
+              <label class="radio-inline">
+                <input type="radio" name="sex" id="optionsRadios1" value="Male" /> Male </label>
+              <label class="radio-inline">
+                <input type="radio" name="sex" id="optionsRadios2" value="Female" /> Female </label>
             </div>
-            <!--  <div class="form-group"> 
-       <div class="col-md-12"> 
-        <label><input type="checkbox" />I agree to the <a href="javascript:;" data-toggle="modal" data-target="#templatemo_modal">Terms of Service</a> and <a href="#">Privacy Policy.</a></label> 
-       </div> 
-      </div>  -->
-
-            <div class="form-group">
-              <div class="col-lg-9 col-lg-offset-3">
-                <div id="errors"></div>
-              </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-6">
+              <label for="password" class="control-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="" />
             </div>
-            <div class="form-group">
-              <div class="col-md-12">
-                <input type="submit" value="Create account" class="btn btn-info" />
-                <a href="/login" class="pull-right">Login</a>
-              </div>
+            <div class="col-md-6">
+              <label for="password" class="control-label">Confirm Password</label>
+              <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3">
+              <div id="errors"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <input type="submit" value="Create account" class="btn btn-info" />
+              <a href="/log" class="pull-right">Login</a>
             </div>
           </div>
         </form>
@@ -88,7 +81,8 @@
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
               rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna,
               vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            </p>
             <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque
               nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
           </div>
@@ -101,98 +95,114 @@
     <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="/lib/md5-min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $('#registerForm').bootstrapValidator({
-          message: 'This value is not valid',
-          container: '#errors',
-          feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-          },
-          fields: {
-            email: {
-              validators: {
-                notEmpty: {
-                  message: 'The email is required and cannot be empty'
-                },
-                emailAddress: {
-                  message: 'The input is not a valid email address'
-                }
-              }
+        $('#registerForm')
+          .bootstrapValidator({
+            message: 'This value is not valid',
+            container: '#errors',
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
             },
-            username: {
-              message: 'The username is not valid',
-              validators: {
-                notEmpty: {
-                  message: 'The username is required and cannot be empty'
-                },
-                stringLength: {
-                  min: 6,
-                  max: 30,
-                  message: 'The username must be more than 6 and less than 30 characters long'
-                },
-                regexp: {
-                  regexp: /^[a-zA-Z0-9_\.]+$/,
-                  message: 'The username can only consist of alphabetical, number, dot and underscore'
-                },
-                different: {
-                  field: 'password',
-                  message: 'The username and password cannot be the same as each other'
-                },
-                remote : {
-                  message: 'usename exists please apply another one',
-                  // name: 'username validation',
-                  type: 'post',
-                  url: '/ajax_username_check',
-                  data: {username : function(){return $("#username").val()}}
-                  ,
-                  delay: '1000'
+            fields: {
+              email: {
+                validators: {
+                  notEmpty: {
+                    message: 'The email is required and cannot be empty'
+                  },
+                  emailAddress: {
+                    message: 'The input is not a valid email address'
+                  }
                 }
-              }
-            },
-
-            password: {
-              validators: {
-                notEmpty: {
-                  message: 'The password is required and cannot be empty'
-                },
-                different: {
-                  field: 'username',
-                  message: 'The password cannot be the same as username'
-                },
-                stringLength: {
-                  min: 6,
-                  max: 30,
-                  message: 'The password must be more than 6 and less than 30 characters long'
-                },
-                identical: {
-                  field: 'password_confirm',
-                  message: 'The password and its confirm are not the same'
+              },
+              username: {
+                message: 'The username is not valid',
+                validators: {
+                  notEmpty: {
+                    message: 'The username is required and cannot be empty'
+                  },
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: 'The username must be more than 6 and less than 30 characters long'
+                  },
+                  regexp: {
+                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                    message: 'The username can only consist of alphabetical, number, dot and underscore'
+                  },
+                  different: {
+                    field: 'password',
+                    message: 'The username and password cannot be the same as each other'
+                  },
+                  remote: {
+                    message: 'usename exists please apply another one',
+                    // name: 'username validation',
+                    type: 'post',
+                    url: '/ajax_username_check',
+                    data: {username: function () {return $("#username").val()}}
+                    ,
+                    delay: '1000'
+                  }
                 }
-              }
-            },
-            password_confirm: {
-              validators: {
-                notEmpty: {
-                  message: 'The confirm password is required and cannot be empty'
-                },
-                identical: {
-                  field: 'password',
-                  message: 'The password and its confirm are not the same'
+              },
+              password: {
+                validators: {
+                  notEmpty: {
+                    message: 'The password is required and cannot be empty'
+                  },
+                  different: {
+                    field: 'username',
+                    message: 'The password cannot be the same as username'
+                  },
+                  stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: 'The password must be more than 6 and less than 30 characters long'
+                  },
+                  identical: {
+                    field: 'password_confirm',
+                    message: 'The password and its confirm are not the same'
+                  }
                 }
-              }
-            },
-            sex: {
-              validators: {
-                notEmpty: {
-                  message: 'The gender is required'
+              },
+              password_confirm: {
+                validators: {
+                  notEmpty: {
+                    message: 'The confirm password is required and cannot be empty'
+                  },
+                  identical: {
+                    field: 'password',
+                    message: 'The password and its confirm are not the same'
+                  }
+                }
+              },
+              sex: {
+                validators: {
+                  notEmpty: {
+                    message: 'The gender is required'
+                  }
                 }
               }
             }
-          }
-        });
+          })
+          .on('success.form.bv', function (e) {
+
+            // Prevent form submission
+            // e.preventDefault();
+            // Get the form instance
+            var $form = $(e.target);
+            $form.find("#password").val(hex_md5($form.find("#password").val()));
+            $form.find("#password_confirm").val(hex_md5($form.find("#password_confirm").val()));
+            // Get the BootstrapValidator instance
+            // var bv = $form.data('bootstrapValidator');
+            // Use Ajax to submit form data
+            // $.post($form.attr('action'), $form.serialize(), function (result) {
+            //   console.log(result);
+            // }, 'json');
+          });
       });
     </script>
   </body>
