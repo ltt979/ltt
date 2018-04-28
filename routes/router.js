@@ -1,5 +1,5 @@
 var commonrouter = require('./commonrouter');
-var userrouter = require('./usersrouter');
+var userrouter = require('./userrouter');
 var adminrouter = require('./adminrouter');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -17,4 +17,5 @@ module.exports = function (app) {
     //admin
     app.get('/admin/login',adminrouter.login);
     app.post('/admin/loginSubmit', adminrouter.loginSubmit);
+    app.get('/user/pcenter',userrouter.pcenter);
 }

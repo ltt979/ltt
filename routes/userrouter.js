@@ -1,4 +1,3 @@
-
 var crypto = require('crypto');
 var User = require('../modules/user');
 
@@ -65,7 +64,8 @@ var regSubmit = function (req, res) {
       }
       req.session.user = newUser;//用户信息存入 session
       req.flash('success', '注册成功!');
-      res.redirect('/');//注册成功后返回主页
+      // res.redirect('/');//注册成功后返回主页
+      pcenter(req, res);
     });
   });
 }
@@ -89,9 +89,22 @@ var loginSubmit = function (req, res) {
   });
 }
 
+var pcenter = function (req, res) {
+  checkLogin(req, res);
+  res.render('user/personal_center', {});
+}
+
+var checkLogin = function (req, res) {
+  var user = req.session.user;
+  if (!user) {
+    login(req, res);
+  }
+}
+
 exports.reg = reg;
 exports.regSubmit = regSubmit
 exports.ajax_username_check = ajax_username_check;
 exports.login = login;
 exports.loginSubmit = loginSubmit;
 exports.addcourse = addcourse;
+exports.pcenter = pcenter;
