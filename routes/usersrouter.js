@@ -83,7 +83,7 @@ var loginSubmit = function (req, res) {
         res.redirect('/');//登录成功后返回主页
       }
     } else {
-      req.flash('error', '用户名或这密码错误!');
+      req.flash('error', '用户名或密码错误!');
       res.redirect('/login');//登录失败停留login页面
     }
   });

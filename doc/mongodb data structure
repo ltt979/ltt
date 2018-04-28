@@ -1,0 +1,10 @@
+user : {
+    "username" : "xxx",
+    "email" : "947671554@qq.com"
+    "sex"  : "FEALE",
+    "password" : "some md5 hex encode"
+}
+
+admin extends user {
+    "role" : "admin"
+}
