@@ -39,8 +39,8 @@ var regSubmit = function (req, res) {
     return res.redirect('/reg');//返回注册页
   }
   //生成密码的 md5 值
-  var md5 = crypto.createHash('md5'),
-    password = md5.update(password).digest('hex');
+  // var md5 = crypto.createHash('md5'),
+  //   password = md5.update(password).digest('hex');
   var newUser = new User({
     name: name,
     password: password,
@@ -71,37 +71,21 @@ var regSubmit = function (req, res) {
 }
 
 var loginSubmit = function (req, res) {
-  var name = req.body.username,
-    password = req.body.password;
-  //生成密码的 md5 值
-  var md5 = crypto.createHash('md5'),
-    password = md5.update(password).digest('hex');
-  var newUser = new User({
-    name: name,
-    password: password,
-    email: email,
-    sex: sex
-  });
-  //检查用户名是否已经存在 
-  User.get(newUser.name, function (err, user) {
+  User.get(req.body.username, function (err, user) {
     if (err) {
       req.flash('error', err);
       return res.redirect('/');
     }
     if (user) {
-      req.flash('error', '用户已存在!');
-      return res.redirect('/reg');//返回注册页
-    }
-    //如果不存在则新增用户
-    newUser.save(function (err, user) {
-      if (err) {
-        req.flash('error', err);
-        return res.redirect('/reg');//注册失败返回主册页
+      if (user.password == req.body.password) {
+        req.session.user = user;
+        req.flash('success', '登录成功!');
+        res.redirect('/');//登录成功后返回主页
       }
-      req.session.user = newUser;//用户信息存入 session
-      req.flash('success', '注册成功!');
-      res.redirect('/');//注册成功后返回主页
-    });
+    } else {
+      req.flash('error', '用户名或这密码错误!');
+      res.redirect('/login');//登录失败停留login页面
+    }
   });
 }
 
@@ -109,5 +93,5 @@ exports.reg = reg;
 exports.regSubmit = regSubmit
 exports.ajax_username_check = ajax_username_check;
 exports.login = login;
-
-exports.addcourse  = addcourse;
+exports.loginSubmit = loginSubmit;
+exports.addcourse = addcourse;
