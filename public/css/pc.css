@@ -2,9 +2,10 @@
     width: 1170px;
     padding-top: 10px;
     background-color: white;
-    margin: 0px auto;
-    
+    margin: 0px auto; 
+    margin-top: 10px;
  }
+
 
  .boxtx{
     width: 1170px;
@@ -25,3 +26,9 @@
     height: 200px;
 
  }
+
+ .lianjie{
+    font-size: 20px;
+    padding-top: 20px;
+ }
+ 
