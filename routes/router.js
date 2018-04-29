@@ -11,6 +11,7 @@ module.exports = function (app) {
     app.post('/regSubmit', userrouter.regSubmit);
     app.get('/login', userrouter.login);
     app.post('/loginSubmit',userrouter.loginSubmit);
+    app.get('/logout',userrouter.logout);
     app.get('addcourse', userrouter.addcourse);
     app.post('/ajax_username_check', urlencodedParser, userrouter.ajax_username_check);
 

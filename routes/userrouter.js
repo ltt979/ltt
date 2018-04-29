@@ -101,6 +101,15 @@ var checkLogin = function (req, res) {
   }
 }
 
+var logout = function (req, res) {
+  if (req.session && req.session.user) {
+    var name = req.session.user.name || '';
+    req.session.user = null;
+    req.flash("msg","你好，"+name+"已经退出");
+  }
+  res.redirect("/");
+}
+
 exports.reg = reg;
 exports.regSubmit = regSubmit
 exports.ajax_username_check = ajax_username_check;
@@ -108,3 +117,4 @@ exports.login = login;
 exports.loginSubmit = loginSubmit;
 exports.addcourse = addcourse;
 exports.pcenter = pcenter;
+exports.logout = logout;

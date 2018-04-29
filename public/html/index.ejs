@@ -44,16 +44,17 @@
     <nav class="clearfix layout-header1">
       <div class="container clearfix">
         <div id="shared_signin" class="pull-right">
-          <% if(user.name) { %>
+          <% if(user && user.name) { %>
             <div>
               <a href="/pc">欢迎：
                 <%= user.name%>
               </a>
+              <a href="/logout">退出</a>
             </div>
             <% }else { %>
               <div>
                 <a href="/reg" class="btn btn-sm btn-primary">注册</a>
-                <a href="/log" class="btn btn-sm btn-default">登录</a>
+                <a href="/login" class="btn btn-sm btn-default">登录</a>
               </div>
               <% } %>
         </div>
@@ -785,6 +786,10 @@
       </div>
     </div>
   </div>
+  <script>
+    $(document).ready(function(){
+    });
+  </script>
 </foot>
 
 </html>
