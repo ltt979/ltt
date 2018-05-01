@@ -19,4 +19,6 @@ module.exports = function (app) {
     app.get('/admin/login',adminrouter.login);
     app.post('/admin/loginSubmit', adminrouter.loginSubmit);
     app.get('/user/pcenter',userrouter.pcenter);
+    app.get('/admin/administrator_coursetoadd',adminrouter.administrator_coursetoadd);
+    app.post('/admin/addCourseSubmit',adminrouter.addCourseSubmit);
 }

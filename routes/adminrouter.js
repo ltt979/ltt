@@ -1,9 +1,21 @@
 var crypto = require('crypto');
 var User = require('../modules/user');
+var Admin = require('../modules/admin');
+
+var getAdmin = function (req, res) {
+    // 如果不存在登录的管理用户，则跳到管理员登录页
+    var user = req.session.user;
+    if (user == null || user.role != "admin") {
+        res.writeHead(302, {'Location': "/admin/login"});
+        res.end();
+        return;
+    }
+    return user;
+}
 
 var login = function (req, res) {
     var error = req.flash("error");
-    res.render('admin/ad-login', {title: '登录',error: error});
+    res.render('admin/ad-login', {title: '登录', error: error});
 }
 
 var loginSubmit = function (req, res) {
@@ -13,7 +25,7 @@ var loginSubmit = function (req, res) {
             return res.redirect('/');
         }
         if (user) {
-            if (user.password == req.body.password && user.role ==="admin"){
+            if (user.password == req.body.password && user.role === "admin") {
                 req.session.user = user;
                 req.flash('success', '管理员登录成功!');
                 res.redirect('/');//登录成功后返回主页
@@ -26,5 +38,39 @@ var loginSubmit = function (req, res) {
 }
 
 
+var administrator_coursetoadd = function (req, res) {
+    var admin = getAdmin(req, res);
+    if(admin == null){
+        return; 
+    }
+    res.render("admin/administrator-coursetoadd", {
+        user: admin
+    });
+}
+
+var addCourseSubmit = function (req, res) {
+    var admin = getAdmin(req, res);
+    if(admin == null){
+        return ;
+    }
+    var resource = {
+        count: req.body.count,
+        time: req.body.time,
+        level: req.body.level,
+        bundle: req.body.bundle
+    }
+    Admin.addCourse(resource, function (error, resource) {
+        if (error) {
+            res.json({"error": "添加课程出错"});
+        } else {
+            res.json({"success" : resource});
+        }
+    });
+}
+
+
+
 exports.login = login;
 exports.loginSubmit = loginSubmit;
+exports.administrator_coursetoadd = administrator_coursetoadd;
+exports.addCourseSubmit = addCourseSubmit;

@@ -1,5 +1,4 @@
-// var mongodb = require('./db');
-var mongodbNew = require("./mongodbUtil");
+var mongodb = require("./mongodbUtil");
 function User(user) {
   this.name = user.name;
   this.password = user.password;
@@ -19,7 +18,7 @@ User.prototype.save = function(callback) {
       sex : this.sex
   };
   //打开数据库
-    var db = mongodbNew.getMongoDB();
+    var db = mongodb.getMongoDB();
     //读取 users 集合
     db.collection('users', function (err, collection) {
       if (err) {
@@ -28,11 +27,11 @@ User.prototype.save = function(callback) {
       //将用户数据插入 users 集合
       collection.insert(user, {
         safe: true
-      }, function (err, user) {
+      }, function (err, result) {
         if (err) {
           return callback(err);//错误，返回 err 信息
         }
-        callback(null, user[0]);//成功！err 为 null，并返回存储后的用户文档
+        callback(null, result.ops[0]);//成功！err 为 null，并返回存储后的用户文档
       });
     });
 };
@@ -40,7 +39,7 @@ User.prototype.save = function(callback) {
 //读取用户信息
 User.get = function(name, callback) {
   //打开数据库
-  var db = mongodbNew.getMongoDB();
+  var db = mongodb.getMongoDB();
     //读取 users 集合
     db.collection('users', function (err, collection) {
       if (err) {

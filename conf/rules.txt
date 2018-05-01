@@ -4,3 +4,5 @@
 3.文件名不要超过10个字符。
 4.文件名不应该有减号,要替换成下划线。
 5.抄代码的时候要把标签成对的抄 <div></div> 要有关闭标签。
+6.  <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" />
+7. 这种没有编译过的文件不要引入到你的项目中。
