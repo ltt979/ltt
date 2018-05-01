@@ -21,4 +21,6 @@ module.exports = function (app) {
     app.get('/user/pcenter',userrouter.pcenter);
     app.get('/admin/administrator_coursetoadd',adminrouter.administrator_coursetoadd);
     app.post('/admin/addCourseSubmit',adminrouter.addCourseSubmit);
+    app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
+    app.post('/admin/getProductPage', adminrouter.getProductPage);
 }

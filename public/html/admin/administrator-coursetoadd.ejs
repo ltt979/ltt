@@ -13,6 +13,8 @@
   <link href="/css/index/homeindex.css" rel="stylesheet" />
   <link href="/css/index/layout.css" rel="stylesheet" />
   <link href="/css/pc.css" rel="stylesheet" />
+  <!--   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+ -->
 </head>
 <style>
   .modal-dialog {
@@ -138,39 +140,54 @@
                   <input name="bundle" type="text" class="form-control" id="bundle" placeholder="赠送16U币 / 学习指导 / 英语胶囊" />
                 </div>
               </div>
+
+
               <div class="form-group">
                 <div class="col-md-12">
-                  <div id="errors"></div>
+                  <label for="type" class="control-label">类型</label>
+                  <select class="form-control" name="type" data-bv-notempty data-bv-notempty-message="类型必须选择">
+                    <option value="">-- 请选择类型 --</option>
+                    <option value="成人英语">成人英语</option>
+                    <option value="青少英语">青少英语</option>
+                    <option value="商务英语">商务英语</option>
+                    <option value="海外考试">海外考试</option>
+                  </select>
                 </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-              </button>
-              <button type="submit" class="btn btn-primary">
-                新增课程
-              </button>
-            </div>
+
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <div id="errors"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  新增课程
+                </button>
+              </div>
           </form>
+          </div>
         </div>
       </div>
+      <button type="button" class="el-button el-button--primary el-button--small">
+        <span>添加新闻</span>
+      </button>
+      <button type="button" class="el-button el-button--primary el-button--small">
+        <span>意见箱</span>
+      </button>
     </div>
-    <button type="button" class="el-button el-button--primary el-button--small">
-      <span>添加新闻</span>
-    </button>
-    <button type="button" class="el-button el-button--primary el-button--small">
-      <span>意见箱</span>
-    </button>
-  </div>
 
 
-  <!-- 已有课程 -->
-  <div class="boxkc">
-
-    <div class="el-tabs__content">
-      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-        <div id="detail_block_list" class="panel-loading">
-          <div class="media">
+    <!-- 已有课程 -->
+    <div class="boxkc">
+      <div class="el-tabs__content">
+        <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+          <div id="detail_block_list_real" class="panel-loading">
+            <!--  <div class="media">
             <div class="media-left">
               <img src="/images/cr.jpg" />
             </div>
@@ -192,1300 +209,175 @@
                 <div class="detail-control">
                   <div class="btn-list">
                     <button type="button" class="el-button el-button--primary el-button--small">
-                      <!---->
-                      <!---->
                       <span>立即添加</span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-            <div class="el-loading-spinner">
-              <svg viewbox="25 25 50 50" class="circular">
-                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-              </svg>
-              <!---->
-            </div>
-          </div>
-        </div>
-        <div class="el-tabs__content">
-          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-            <div id="detail_block_list" class="panel-loading">
-              <div class="media">
-                <div class="media-left">
-                  <img src="/images/cr.jpg" />
-                </div>
-                <div class="media-body">
-                  <div class="list-detail">
-                    <h3 class="text-red"> &yen;0 </h3>
-                    <div>
-                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                    </div>
-                    <div>
-                      <span class="text-666">服务期限：</span>&times;30天
-                    </div>
-                    <div>
-                      <span class="text-666">适用级别：</span>L1-L12
-                    </div>
-                    <div>
-                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                    </div>
-                    <div class="detail-control">
-                      <div class="btn-list">
-                        <button type="button" class="el-button el-button--primary el-button--small">
-                          <!---->
-                          <!---->
-                          <span>立即添加</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                <div class="el-loading-spinner">
-                  <svg viewbox="25 25 50 50" class="circular">
-                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                  </svg>
-                  <!---->
-                </div>
-              </div>
-            </div>
-            <div class="el-tabs__content">
-              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                <div id="detail_block_list" class="panel-loading">
-                  <div class="media">
-                    <div class="media-left">
-                      <img src="/images/cr.jpg" />
-                    </div>
-                    <div class="media-body">
-                      <div class="list-detail">
-                        <h3 class="text-red"> &yen;0 </h3>
-                        <div>
-                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                        </div>
-                        <div>
-                          <span class="text-666">服务期限：</span>&times;30天
-                        </div>
-                        <div>
-                          <span class="text-666">适用级别：</span>L1-L12
-                        </div>
-                        <div>
-                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                        </div>
-                        <div class="detail-control">
-                          <div class="btn-list">
-                            <button type="button" class="el-button el-button--primary el-button--small">
-                              <!---->
-                              <!---->
-                              <span>立即添加</span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                    <div class="el-loading-spinner">
-                      <svg viewbox="25 25 50 50" class="circular">
-                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                      </svg>
-                      <!---->
-                    </div>
-                  </div>
-                </div>
-                <!-- 成人口语 -->
-                <div class="el-tabs__content">
-                  <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                    <div id="detail_block_list" class="panel-loading">
-                      <div class="media">
-                        <div class="media-left">
-                          <img src="/images/ljc.jpg" />
-                        </div>
-                        <div class="media-body">
-                          <div class="list-detail">
-                            <h3 class="text-red"> &yen;0 </h3>
-                            <div>
-                              <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                            </div>
-                            <div>
-                              <span class="text-666">服务期限：</span>&times;30天
-                            </div>
-                            <div>
-                              <span class="text-666">适用级别：</span>L1-L12
-                            </div>
-                            <div>
-                              <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                            </div>
-                            <div class="detail-control">
-                              <div class="btn-list">
-                                <button type="button" class="el-button el-button--primary el-button--small">
-                                  <!---->
-                                  <!---->
-                                  <span>立即添加</span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                        <div class="el-loading-spinner">
-                          <svg viewbox="25 25 50 50" class="circular">
-                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                          </svg>
-                          <!---->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="el-tabs__content">
-                      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                        <div id="detail_block_list" class="panel-loading">
-                          <div class="media">
-                            <div class="media-left">
-                              <img src="/images/ljc.jpg" />
-                            </div>
-                            <div class="media-body">
-                              <div class="list-detail">
-                                <h3 class="text-red"> &yen;0 </h3>
-                                <div>
-                                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                </div>
-                                <div>
-                                  <span class="text-666">服务期限：</span>&times;30天
-                                </div>
-                                <div>
-                                  <span class="text-666">适用级别：</span>L1-L12
-                                </div>
-                                <div>
-                                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                </div>
-                                <div class="detail-control">
-                                  <div class="btn-list">
-                                    <button type="button" class="el-button el-button--primary el-button--small">
-                                      <!---->
-                                      <!---->
-                                      <span>立即添加</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                            <div class="el-loading-spinner">
-                              <svg viewbox="25 25 50 50" class="circular">
-                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                              </svg>
-                              <!---->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="el-tabs__content">
-                          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                            <div id="detail_block_list" class="panel-loading">
-                              <div class="media">
-                                <div class="media-left">
-                                  <img src="/images/ljc.jpg" />
-                                </div>
-                                <div class="media-body">
-                                  <div class="list-detail">
-                                    <h3 class="text-red"> &yen;0 </h3>
-                                    <div>
-                                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                    </div>
-                                    <div>
-                                      <span class="text-666">服务期限：</span>&times;30天
-                                    </div>
-                                    <div>
-                                      <span class="text-666">适用级别：</span>L1-L12
-                                    </div>
-                                    <div>
-                                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                    </div>
-                                    <div class="detail-control">
-                                      <div class="btn-list">
-                                        <button type="button" class="el-button el-button--primary el-button--small">
-                                          <!---->
-                                          <!---->
-                                          <span>立即添加</span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                <div class="el-loading-spinner">
-                                  <svg viewbox="25 25 50 50" class="circular">
-                                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                  </svg>
-                                  <!---->
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div> -->
+
           </div>
         </div>
       </div>
     </div>
-    <div class="el-tabs__content">
-      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-        <div id="detail_block_list" class="panel-loading">
-          <div class="media">
-            <div class="media-left">
-              <img src="/images/ckk.jpg" />
-            </div>
-            <div class="media-body">
-              <div class="list-detail">
-                <h3 class="text-red"> &yen;0 </h3>
-                <div>
-                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                </div>
-                <div>
-                  <span class="text-666">服务期限：</span>&times;30天
-                </div>
-                <div>
-                  <span class="text-666">适用级别：</span>L1-L12
-                </div>
-                <div>
-                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                </div>
-                <div class="detail-control">
-                  <div class="btn-list">
-                    <button type="button" class="el-button el-button--primary el-button--small">
-                      <!---->
-                      <!---->
-                      <span>立即添加</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-            <div class="el-loading-spinner">
-              <svg viewbox="25 25 50 50" class="circular">
-                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-              </svg>
-              <!---->
-            </div>
-          </div>
-        </div>
-        <div class="el-tabs__content">
-          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-            <div id="detail_block_list" class="panel-loading">
-              <div class="media">
-                <div class="media-left">
-                  <img src="/images/ckk.jpg" />
-                </div>
-                <div class="media-body">
-                  <div class="list-detail">
-                    <h3 class="text-red"> &yen;0 </h3>
-                    <div>
-                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                    </div>
-                    <div>
-                      <span class="text-666">服务期限：</span>&times;30天
-                    </div>
-                    <div>
-                      <span class="text-666">适用级别：</span>L1-L12
-                    </div>
-                    <div>
-                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                    </div>
-                    <div class="detail-control">
-                      <div class="btn-list">
-                        <button type="button" class="el-button el-button--primary el-button--small">
-                          <!---->
-                          <!---->
-                          <span>立即添加</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                <div class="el-loading-spinner">
-                  <svg viewbox="25 25 50 50" class="circular">
-                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                  </svg>
-                  <!---->
-                </div>
-              </div>
-            </div>
-            <div class="el-tabs__content">
-              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                <div id="detail_block_list" class="panel-loading">
-                  <div class="media">
-                    <div class="media-left">
-                      <img src="/images/ckk.jpg" />
-                    </div>
-                    <div class="media-body">
-                      <div class="list-detail">
-                        <h3 class="text-red"> &yen;0 </h3>
-                        <div>
-                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                        </div>
-                        <div>
-                          <span class="text-666">服务期限：</span>&times;30天
-                        </div>
-                        <div>
-                          <span class="text-666">适用级别：</span>L1-L12
-                        </div>
-                        <div>
-                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                        </div>
-                        <div class="detail-control">
-                          <div class="btn-list">
-                            <button type="button" class="el-button el-button--primary el-button--small">
-                              <!---->
-                              <!---->
-                              <span>立即添加</span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                    <div class="el-loading-spinner">
-                      <svg viewbox="25 25 50 50" class="circular">
-                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                      </svg>
-                      <!---->
-                    </div>
-                  </div>
-                </div>
-                <div class="el-tabs__content">
-                  <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                    <div id="detail_block_list" class="panel-loading">
-                      <div class="media">
-                        <div class="media-left">
-                          <img src="/images/ly.jpg" />
-                        </div>
-                        <div class="media-body">
-                          <div class="list-detail">
-                            <h3 class="text-red"> &yen;0 </h3>
-                            <div>
-                              <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                            </div>
-                            <div>
-                              <span class="text-666">服务期限：</span>&times;30天
-                            </div>
-                            <div>
-                              <span class="text-666">适用级别：</span>L1-L12
-                            </div>
-                            <div>
-                              <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                            </div>
-                            <div class="detail-control">
-                              <div class="btn-list">
-                                <button type="button" class="el-button el-button--primary el-button--small">
-                                  <!---->
-                                  <!---->
-                                  <span>立即添加</span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                        <div class="el-loading-spinner">
-                          <svg viewbox="25 25 50 50" class="circular">
-                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                          </svg>
-                          <!---->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="el-tabs__content">
-                      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                        <div id="detail_block_list" class="panel-loading">
-                          <div class="media">
-                            <div class="media-left">
-                              <img src="/images/ly.jpg" />
-                            </div>
-                            <div class="media-body">
-                              <div class="list-detail">
-                                <h3 class="text-red"> &yen;0 </h3>
-                                <div>
-                                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                </div>
-                                <div>
-                                  <span class="text-666">服务期限：</span>&times;30天
-                                </div>
-                                <div>
-                                  <span class="text-666">适用级别：</span>L1-L12
-                                </div>
-                                <div>
-                                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                </div>
-                                <div class="detail-control">
-                                  <div class="btn-list">
-                                    <button type="button" class="el-button el-button--primary el-button--small">
-                                      <!---->
-                                      <!---->
-                                      <span>立即添加</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                            <div class="el-loading-spinner">
-                              <svg viewbox="25 25 50 50" class="circular">
-                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                              </svg>
-                              <!---->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="el-tabs__content">
-                          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                            <div id="detail_block_list" class="panel-loading">
-                              <div class="media">
-                                <div class="media-left">
-                                  <img src="/images/ly.jpg" />
-                                </div>
-                                <div class="media-body">
-                                  <div class="list-detail">
-                                    <h3 class="text-red"> &yen;0 </h3>
-                                    <div>
-                                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                    </div>
-                                    <div>
-                                      <span class="text-666">服务期限：</span>&times;30天
-                                    </div>
-                                    <div>
-                                      <span class="text-666">适用级别：</span>L1-L12
-                                    </div>
-                                    <div>
-                                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                    </div>
-                                    <div class="detail-control">
-                                      <div class="btn-list">
-                                        <button type="button" class="el-button el-button--primary el-button--small">
-                                          <!---->
-                                          <!---->
-                                          <span>立即添加</span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                <div class="el-loading-spinner">
-                                  <svg viewbox="25 25 50 50" class="circular">
-                                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                  </svg>
-                                  <!---->
-                                </div>
-                              </div>
-                            </div>
-                            <div class="el-tabs__content">
-                              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                <div id="detail_block_list" class="panel-loading">
-                                  <div class="media">
-                                    <div class="media-left">
-                                      <img src="/images/ms.jpg" />
-                                    </div>
-                                    <div class="media-body">
-                                      <div class="list-detail">
-                                        <h3 class="text-red"> &yen;0 </h3>
-                                        <div>
-                                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                        </div>
-                                        <div>
-                                          <span class="text-666">服务期限：</span>&times;30天
-                                        </div>
-                                        <div>
-                                          <span class="text-666">适用级别：</span>L1-L12
-                                        </div>
-                                        <div>
-                                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                        </div>
-                                        <div class="detail-control">
-                                          <div class="btn-list">
-                                            <button type="button" class="el-button el-button--primary el-button--small">
-                                              <!---->
-                                              <!---->
-                                              <span>立即添加</span>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                    <div class="el-loading-spinner">
-                                      <svg viewbox="25 25 50 50" class="circular">
-                                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                      </svg>
-                                      <!---->
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="el-tabs__content">
-                                  <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                    <div id="detail_block_list" class="panel-loading">
-                                      <div class="media">
-                                        <div class="media-left">
-                                          <img src="/images/ms.jpg" />
-                                        </div>
-                                        <div class="media-body">
-                                          <div class="list-detail">
-                                            <h3 class="text-red"> &yen;0 </h3>
-                                            <div>
-                                              <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times;
-                                              15节
-                                            </div>
-                                            <div>
-                                              <span class="text-666">服务期限：</span>&times;30天
-                                            </div>
-                                            <div>
-                                              <span class="text-666">适用级别：</span>L1-L12
-                                            </div>
-                                            <div>
-                                              <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                            </div>
-                                            <div class="detail-control">
-                                              <div class="btn-list">
-                                                <button type="button" class="el-button el-button--primary el-button--small">
-                                                  <!---->
-                                                  <!---->
-                                                  <span>立即添加</span>
-                                                </button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                        <div class="el-loading-spinner">
-                                          <svg viewbox="25 25 50 50" class="circular">
-                                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                          </svg>
-                                          <!---->
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="el-tabs__content">
-                                      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                        <div id="detail_block_list" class="panel-loading">
-                                          <div class="media">
-                                            <div class="media-left">
-                                              <img src="/images/ms.jpg" />
-                                            </div>
-                                            <div class="media-body">
-                                              <div class="list-detail">
-                                                <h3 class="text-red"> &yen;0 </h3>
-                                                <div>
-                                                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times;
-                                                  15节
-                                                </div>
-                                                <div>
-                                                  <span class="text-666">服务期限：</span>&times;30天
-                                                </div>
-                                                <div>
-                                                  <span class="text-666">适用级别：</span>L1-L12
-                                                </div>
-                                                <div>
-                                                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                                </div>
-                                                <div class="detail-control">
-                                                  <div class="btn-list">
-                                                    <button type="button" class="el-button el-button--primary el-button--small">
-                                                      <!---->
-                                                      <!---->
-                                                      <span>立即添加</span>
-                                                    </button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                            <div class="el-loading-spinner">
-                                              <svg viewbox="25 25 50 50" class="circular">
-                                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                              </svg>
-                                              <!---->
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="el-tabs__content">
-                                          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                            <div id="detail_block_list" class="panel-loading">
-                                              <div class="media">
-                                                <div class="media-left">
-                                                  <img src="/images/zrpd.jpg" />
-                                                </div>
-                                                <div class="media-body">
-                                                  <div class="list-detail">
-                                                    <h3 class="text-red"> &yen;0 </h3>
-                                                    <div>
-                                                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟)
-                                                      &times; 15节
-                                                    </div>
-                                                    <div>
-                                                      <span class="text-666">服务期限：</span>&times;30天
-                                                    </div>
-                                                    <div>
-                                                      <span class="text-666">适用级别：</span>L1-L12
-                                                    </div>
-                                                    <div>
-                                                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                                    </div>
-                                                    <div class="detail-control">
-                                                      <div class="btn-list">
-                                                        <button type="button" class="el-button el-button--primary el-button--small">
-                                                          <!---->
-                                                          <!---->
-                                                          <span>立即添加</span>
-                                                        </button>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                                <div class="el-loading-spinner">
-                                                  <svg viewbox="25 25 50 50" class="circular">
-                                                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                                  </svg>
-                                                  <!---->
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="el-tabs__content">
-                                              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                                <div id="detail_block_list" class="panel-loading">
-                                                  <div class="media">
-                                                    <div class="media-left">
-                                                      <img src="/images/zrpd.jpg" />
-                                                    </div>
-                                                    <div class="media-body">
-                                                      <div class="list-detail">
-                                                        <h3 class="text-red"> &yen;0 </h3>
-                                                        <div>
-                                                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟)
-                                                          &times; 15节
-                                                        </div>
-                                                        <div>
-                                                          <span class="text-666">服务期限：</span>&times;30天
-                                                        </div>
-                                                        <div>
-                                                          <span class="text-666">适用级别：</span>L1-L12
-                                                        </div>
-                                                        <div>
-                                                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                                        </div>
-                                                        <div class="detail-control">
-                                                          <div class="btn-list">
-                                                            <button type="button" class="el-button el-button--primary el-button--small">
-                                                              <!---->
-                                                              <!---->
-                                                              <span>立即添加</span>
-                                                            </button>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                                    <div class="el-loading-spinner">
-                                                      <svg viewbox="25 25 50 50" class="circular">
-                                                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                                      </svg>
-                                                      <!---->
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <div class="el-tabs__content">
-                                                  <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                                    <div id="detail_block_list" class="panel-loading">
-                                                      <div class="media">
-                                                        <div class="media-left">
-                                                          <img src="/images/zrpd.jpg" />
-                                                        </div>
-                                                        <div class="media-body">
-                                                          <div class="list-detail">
-                                                            <h3 class="text-red"> &yen;0 </h3>
-                                                            <div>
-                                                              <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟)
-                                                              &times; 15节
-                                                            </div>
-                                                            <div>
-                                                              <span class="text-666">服务期限：</span>&times;30天
-                                                            </div>
-                                                            <div>
-                                                              <span class="text-666">适用级别：</span>L1-L12
-                                                            </div>
-                                                            <div>
-                                                              <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                                            </div>
-                                                            <div class="detail-control">
-                                                              <div class="btn-list">
-                                                                <button type="button" class="el-button el-button--primary el-button--small">
-                                                                  <!---->
-                                                                  <!---->
-                                                                  <span>立即添加</span>
-                                                                </button>
-                                                              </div>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                                        <div class="el-loading-spinner">
-                                                          <svg viewbox="25 25 50 50" class="circular">
-                                                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                                          </svg>
-                                                          <!---->
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+    <!-- message -->
+    <div style="position: absolute;width: 100%; top: 241px;">
+      <div id="addCourseAlert" class="alert" style="display : none ;text-align: center;">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong></strong>
       </div>
     </div>
-    <!-- 青少英语 -->
-    <div class="el-tabs__content">
-      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-        <div id="detail_block_list" class="panel-loading">
-          <div class="media">
-            <div class="media-left">
-              <img src="/images/qs.jpg" />
-            </div>
-            <div class="media-body">
-              <div class="list-detail">
-                <h3 class="text-red"> &yen;0 </h3>
-                <div>
-                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                </div>
-                <div>
-                  <span class="text-666">服务期限：</span>&times;30天
-                </div>
-                <div>
-                  <span class="text-666">适用级别：</span>L1-L12
-                </div>
-                <div>
-                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                </div>
-                <div class="detail-control">
-                  <div class="btn-list">
-                    <button type="button" class="el-button el-button--primary el-button--small">
-                      <!---->
-                      <!---->
-                      <span>立即添加</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-            <div class="el-loading-spinner">
-              <svg viewbox="25 25 50 50" class="circular">
-                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-              </svg>
-              <!---->
-            </div>
-          </div>
-        </div>
+    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" scr="/node_modules/ejs/ejs.js"></script>
+    <!--   <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+ -->
+    <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
 
-
-        <div class="el-tabs__content">
-          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-            <div id="detail_block_list" class="panel-loading">
-              <div class="media">
-                <div class="media-left">
-                  <img src="/images/qs.jpg" />
-                </div>
-                <div class="media-body">
-                  <div class="list-detail">
-                    <h3 class="text-red"> &yen;0 </h3>
-                    <div>
-                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                    </div>
-                    <div>
-                      <span class="text-666">服务期限：</span>&times;30天
-                    </div>
-                    <div>
-                      <span class="text-666">适用级别：</span>L1-L12
-                    </div>
-                    <div>
-                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                    </div>
-                    <div class="detail-control">
-                      <div class="btn-list">
-                        <button type="button" class="el-button el-button--primary el-button--small">
-                          <!---->
-                          <!---->
-                          <span>立即添加</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                <div class="el-loading-spinner">
-                  <svg viewbox="25 25 50 50" class="circular">
-                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                  </svg>
-                  <!---->
-                </div>
-              </div>
-            </div>
-
-
-            <div class="el-tabs__content">
-              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                <div id="detail_block_list" class="panel-loading">
-                  <div class="media">
-                    <div class="media-left">
-                      <img src="/images/qs.jpg" />
-                    </div>
-                    <div class="media-body">
-                      <div class="list-detail">
-                        <h3 class="text-red"> &yen;0 </h3>
-                        <div>
-                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                        </div>
-                        <div>
-                          <span class="text-666">服务期限：</span>&times;30天
-                        </div>
-                        <div>
-                          <span class="text-666">适用级别：</span>L1-L12
-                        </div>
-                        <div>
-                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                        </div>
-                        <div class="detail-control">
-                          <div class="btn-list">
-                            <button type="button" class="el-button el-button--primary el-button--small">
-                              <!---->
-                              <!---->
-                              <span>立即添加</span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                    <div class="el-loading-spinner">
-                      <svg viewbox="25 25 50 50" class="circular">
-                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                      </svg>
-                      <!---->
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 海外英语 -->
-                <div class="el-tabs__content">
-                  <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                    <div id="detail_block_list" class="panel-loading">
-                      <div class="media">
-                        <div class="media-left">
-                          <img src="/images/tf.jpg" />
-                        </div>
-                        <div class="media-body">
-                          <div class="list-detail">
-                            <h3 class="text-red"> &yen;0 </h3>
-                            <div>
-                              <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                            </div>
-                            <div>
-                              <span class="text-666">服务期限：</span>&times;30天
-                            </div>
-                            <div>
-                              <span class="text-666">适用级别：</span>L1-L12
-                            </div>
-                            <div>
-                              <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                            </div>
-                            <div class="detail-control">
-                              <div class="btn-list">
-                                <button type="button" class="el-button el-button--primary el-button--small">
-                                  <!---->
-                                  <!---->
-                                  <span>立即添加</span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                        <div class="el-loading-spinner">
-                          <svg viewbox="25 25 50 50" class="circular">
-                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                          </svg>
-                          <!---->
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="el-tabs__content">
-                      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                        <div id="detail_block_list" class="panel-loading">
-                          <div class="media">
-                            <div class="media-left">
-                              <img src="/images/tf.jpg" />
-                            </div>
-                            <div class="media-body">
-                              <div class="list-detail">
-                                <h3 class="text-red"> &yen;0 </h3>
-                                <div>
-                                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                </div>
-                                <div>
-                                  <span class="text-666">服务期限：</span>&times;30天
-                                </div>
-                                <div>
-                                  <span class="text-666">适用级别：</span>L1-L12
-                                </div>
-                                <div>
-                                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                </div>
-                                <div class="detail-control">
-                                  <div class="btn-list">
-                                    <button type="button" class="el-button el-button--primary el-button--small">
-                                      <!---->
-                                      <!---->
-                                      <span>立即添加</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                            <div class="el-loading-spinner">
-                              <svg viewbox="25 25 50 50" class="circular">
-                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                              </svg>
-                              <!---->
-                            </div>
-                          </div>
-                        </div>
-
-
-                        <div class="el-tabs__content">
-                          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                            <div id="detail_block_list" class="panel-loading">
-                              <div class="media">
-                                <div class="media-left">
-                                  <img src="/images/tf.jpg" />
-                                </div>
-                                <div class="media-body">
-                                  <div class="list-detail">
-                                    <h3 class="text-red"> &yen;0 </h3>
-                                    <div>
-                                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                    </div>
-                                    <div>
-                                      <span class="text-666">服务期限：</span>&times;30天
-                                    </div>
-                                    <div>
-                                      <span class="text-666">适用级别：</span>L1-L12
-                                    </div>
-                                    <div>
-                                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                    </div>
-                                    <div class="detail-control">
-                                      <div class="btn-list">
-                                        <button type="button" class="el-button el-button--primary el-button--small">
-                                          <!---->
-                                          <!---->
-                                          <span>立即添加</span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                <div class="el-loading-spinner">
-                                  <svg viewbox="25 25 50 50" class="circular">
-                                    <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                  </svg>
-                                  <!---->
-                                </div>
-                              </div>
-                            </div>
-
-                            <!-- 商务英语 -->
-                            <div class="el-tabs__content">
-                              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                <div id="detail_block_list" class="panel-loading">
-                                  <div class="media">
-                                    <div class="media-left">
-                                      <img src="/images/sw.jpg" />
-                                    </div>
-                                    <div class="media-body">
-                                      <div class="list-detail">
-                                        <h3 class="text-red"> &yen;0 </h3>
-                                        <div>
-                                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                                        </div>
-                                        <div>
-                                          <span class="text-666">服务期限：</span>&times;30天
-                                        </div>
-                                        <div>
-                                          <span class="text-666">适用级别：</span>L1-L12
-                                        </div>
-                                        <div>
-                                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                        </div>
-                                        <div class="detail-control">
-                                          <div class="btn-list">
-                                            <button type="button" class="el-button el-button--primary el-button--small">
-                                              <!---->
-                                              <!---->
-                                              <span>立即添加</span>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                    <div class="el-loading-spinner">
-                                      <svg viewbox="25 25 50 50" class="circular">
-                                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                      </svg>
-                                      <!---->
-                                    </div>
-                                  </div>
-                                </div>
-
-
-                                <div class="el-tabs__content">
-                                  <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                    <div id="detail_block_list" class="panel-loading">
-                                      <div class="media">
-                                        <div class="media-left">
-                                          <img src="/images/sw.jpg" />
-                                        </div>
-                                        <div class="media-body">
-                                          <div class="list-detail">
-                                            <h3 class="text-red"> &yen;0 </h3>
-                                            <div>
-                                              <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times;
-                                              15节
-                                            </div>
-                                            <div>
-                                              <span class="text-666">服务期限：</span>&times;30天
-                                            </div>
-                                            <div>
-                                              <span class="text-666">适用级别：</span>L1-L12
-                                            </div>
-                                            <div>
-                                              <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                            </div>
-                                            <div class="detail-control">
-                                              <div class="btn-list">
-                                                <button type="button" class="el-button el-button--primary el-button--small">
-                                                  <!---->
-                                                  <!---->
-                                                  <span>立即添加</span>
-                                                </button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                        <div class="el-loading-spinner">
-                                          <svg viewbox="25 25 50 50" class="circular">
-                                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                          </svg>
-                                          <!---->
-                                        </div>
-                                      </div>
-                                    </div>
-
-
-                                    <div class="el-tabs__content">
-                                      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                                        <div id="detail_block_list" class="panel-loading">
-                                          <div class="media">
-                                            <div class="media-left">
-                                              <img src="/images/sw.jpg" />
-                                            </div>
-                                            <div class="media-body">
-                                              <div class="list-detail">
-                                                <h3 class="text-red"> &yen;0 </h3>
-                                                <div>
-                                                  <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times;
-                                                  15节
-                                                </div>
-                                                <div>
-                                                  <span class="text-666">服务期限：</span>&times;30天
-                                                </div>
-                                                <div>
-                                                  <span class="text-666">适用级别：</span>L1-L12
-                                                </div>
-                                                <div>
-                                                  <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                                                </div>
-                                                <div class="detail-control">
-                                                  <div class="btn-list">
-                                                    <button type="button" class="el-button el-button--primary el-button--small">
-                                                      <!---->
-                                                      <!---->
-                                                      <span>立即添加</span>
-                                                    </button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                                            <div class="el-loading-spinner">
-                                              <svg viewbox="25 25 50 50" class="circular">
-                                                <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                                              </svg>
-                                              <!---->
-                                            </div>
-                                          </div>
-                                        </div>
-
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-*-12" style="text-align: center;">
+        <ul id="pager"></ul>
       </div>
     </div>
-  </div>
+    <script type='text/javascript'>
 
-  <!-- message -->
-  <div style="position: absolute;width: 100%; top: 241px;">
-    <div id="addCourseAlert" class="alert" style="display : none ;text-align: center;">
-      <a href="#" class="close" data-dismiss="alert">&times;</a>
-      <strong></strong>
-    </div>
-  </div>
-  <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
-
-  <script>
-
-    $(document).ready(function () {
-      $('#addCourseForm')
-        .bootstrapValidator({
-          message: 'This value is not valid',
-          container: '#errors',
-          feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-          },
-          fields: {
-            count: {
-              validators: {
-                notEmpty: {
-                  message: 'The count is required and cannot be empty'
+      $.ajax({
+        url: "/admin/getProductTotalCount",
+        type: 'post',
+        dataType: 'json',
+        data: {pageSize: 10},
+        success: function (data) {
+          var totalPages = data.pageCount;
+          var options = {
+            bootstrapMajorVersion: 3,
+            currentPage: 1,
+            totalPages: totalPages || 10,
+            onPageClicked: function (e, originalEvent, type, page) {
+              $.ajax({
+                url: "/admin/getProductPage",
+                data: {currentPage: page, pageSize: 10},
+                dataType: 'json',
+                type: "post",
+                success: function (data) {
+                  console.log(data.resources);
+                  $('#detail_block_list_real').empty();
+                  $("#resource_detai_tmpl").tmpl(data.resources).appendTo('#detail_block_list_real');
                 }
-              }
-            },
-            time: {
-              message: 'The time is not valid',
-              validators: {
-                notEmpty: {
-                  message: 'The time is required and cannot be empty'
-                }
-              }
-            },
-            level: {
-              message: 'The level is not valid',
-              validators: {
-                notEmpty: {
-                  message: 'The level is required and cannot be empty'
-                }
-              }
+              })
             }
           }
-        })
-        .on('success.form.bv', function (e) {
+          $('#pager').bootstrapPaginator(options);
+          $("#pager li a:first-child").click();
+        }
+      });
 
-          // Prevent form submission
-          e.preventDefault();
-          // Get the form instance
-          var $form = $(e.target);
-          // Get the BootstrapValidator instance
-          // var bv = $form.data('bootstrapValidator');
-          // Use Ajax to submit form data
-          $.post($form.attr('action'), $form.serialize(), function (result) {
-            $("button[data-dismiss='modal']").click();
-            debugger;
-            if (result.error) {
-              $("#addCourseAlert").addClass("alert-danger").show();
-              $("#addCourseAlert > strong").html("添加课程失败");
-            } else {
-              $("#addCourseAlert").addClass("alert-success").show();
-              $("#addCourseAlert > strong").html("添加课程成功");
+    </script>
+
+
+    <script id="resource_detai_tmpl" type="text/x-jquery-tmpl">
+   <div class="media">
+            <div class="media-left">
+              <img src="/images/cr.jpg" />
+            </div>
+            <div class="media-body">
+              <div class="list-detail">
+                <h3 class="text-red"> &yen;0 </h3>
+                <div>
+                  <span class="text-666">课程数量：</span> ${count}
+                </div>
+                <div>
+                  <span class="text-666">服务期限：</span>${times}
+                </div>
+                <div>
+                  <span class="text-666">适用级别：</span>${level}
+                </div>
+                <div>
+                  <span class="text-666">额外赠送：</span>${bundle}
+                </div>
+                <div class="detail-control">
+                  <div class="btn-list">
+                    <button type="button" class="el-button el-button--primary el-button--small">
+                      <span>立即添加</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</script>
+    <script type="text/javascript">
+/*     var data = [{count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'},
+    {count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'}
+    ];
+    $("#resource_detai_tmpl").tmpl(data).appendTo('#detail_block_list_real'); */
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('#addCourseForm')
+          .bootstrapValidator({
+            message: 'This value is not valid',
+            container: '#errors',
+            feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              count: {
+                validators: {
+                  notEmpty: {
+                    message: 'The count is required and cannot be empty'
+                  }
+                }
+              },
+              time: {
+                message: 'The time is not valid',
+                validators: {
+                  notEmpty: {
+                    message: 'The time is required and cannot be empty'
+                  }
+                }
+              },
+              level: {
+                message: 'The level is not valid',
+                validators: {
+                  notEmpty: {
+                    message: 'The level is required and cannot be empty'
+                  }
+                }
+              }
             }
-            setTimeout(() => {
-              $("#addCourseAlert").hide();
-            }, 2000);
-          }, 'json');
-        });
-    });
-  </script>
+          })
+          .on('success.form.bv', function (e) {
+
+            // Prevent form submission
+            e.preventDefault();
+            // Get the form instance
+            var $form = $(e.target);
+            // Get the BootstrapValidator instance
+            // var bv = $form.data('bootstrapValidator');
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function (result) {
+              $("button[data-dismiss='modal']").click(); //关闭模态弹窗
+              if (result.error) {
+                $("#addCourseAlert").addClass("alert-danger").show();
+                $("#addCourseAlert > strong").html("添加课程失败");
+              } else {
+                $("#addCourseAlert").addClass("alert-success").show();
+                $("#addCourseAlert > strong").html("添加课程成功");
+              }
+              setTimeout(() => {
+                $("#addCourseAlert").hide();
+              }, 2000);
+            }, 'json');
+          });
+      });
+    </script>
 </body>
 
 </html>

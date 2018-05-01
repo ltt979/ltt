@@ -1,7 +1,7 @@
 var mongodb = require("./mongodbUtil");
 function Admin(user) {
   this.name = user.name;
-  this.id = user.id;
+  this.id = user._id;
 };
 
 module.exports = Admin;
@@ -13,7 +13,7 @@ Admin.addCourse = function (resource, callback) {
     if (err) {
       return callback(err);//错误，返回 err 信息
     }
-    resource.operator = this.id; //资源操作者id
+    resource.createTime = new Date();
     collection.insert(resource, {
       safe: true
     }, function (err, result) {

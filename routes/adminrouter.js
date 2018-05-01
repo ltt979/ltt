@@ -1,7 +1,7 @@
 var crypto = require('crypto');
 var User = require('../modules/user');
 var Admin = require('../modules/admin');
-
+var Resource = require("../modules/resource");
 var getAdmin = function (req, res) {
     // 如果不存在登录的管理用户，则跳到管理员登录页
     var user = req.session.user;
@@ -40,8 +40,8 @@ var loginSubmit = function (req, res) {
 
 var administrator_coursetoadd = function (req, res) {
     var admin = getAdmin(req, res);
-    if(admin == null){
-        return; 
+    if (admin == null) {
+        return;
     }
     res.render("admin/administrator-coursetoadd", {
         user: admin
@@ -50,23 +50,45 @@ var administrator_coursetoadd = function (req, res) {
 
 var addCourseSubmit = function (req, res) {
     var admin = getAdmin(req, res);
-    if(admin == null){
-        return ;
+    if (admin == null) {
+        return;
     }
     var resource = {
         count: req.body.count,
         time: req.body.time,
         level: req.body.level,
-        bundle: req.body.bundle
+        bundle: req.body.bundle,
+        type : req.body.type,
+        operator : admin._id
     }
     Admin.addCourse(resource, function (error, resource) {
         if (error) {
             res.json({"error": "添加课程出错"});
         } else {
-            res.json({"success" : resource});
+            res.json({"success": resource});
         }
     });
 }
+
+
+var getProductTotalCount = function (req, res) {
+    var pageSize = req.body.pageSize;
+    Resource.getPageCount(pageSize).then(function (pageCount) {
+        res.json({"pageCount": pageCount});
+    }).catch(function (error) {
+        console.error(error);
+        res.json({"pageCount": 10});
+    });
+}
+
+var getProductPage = function (req, res) {
+    var pageSize = req.body.pageSize;
+    var currentPage = req.body.currentPage;
+    Resource.getPaginator(currentPage, pageSize,function(docs){
+        res.json({"resources": docs});
+    });
+}
+
 
 
 
@@ -74,3 +96,5 @@ exports.login = login;
 exports.loginSubmit = loginSubmit;
 exports.administrator_coursetoadd = administrator_coursetoadd;
 exports.addCourseSubmit = addCourseSubmit;
+exports.getProductTotalCount = getProductTotalCount;
+exports.getProductPage = getProductPage;
