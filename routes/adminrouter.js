@@ -2,6 +2,8 @@ var crypto = require('crypto');
 var User = require('../modules/user');
 var Admin = require('../modules/admin');
 var Resource = require("../modules/resource");
+var path = require("path");
+
 var getAdmin = function (req, res) {
     // 如果不存在登录的管理用户，则跳到管理员登录页
     var user = req.session.user;
@@ -53,13 +55,17 @@ var addCourseSubmit = function (req, res) {
     if (admin == null) {
         return;
     }
+    var filePath = req.file.path; 
+    var visitPath = filePath.slice(filePath.indexOf("public") + 6).replace("/\\/g", "/")
+
     var resource = {
         count: req.body.count,
         time: req.body.time,
         level: req.body.level,
         bundle: req.body.bundle,
         type : req.body.type,
-        operator : admin._id
+        operator : admin._id,
+        visitPath: visitPath
     }
     Admin.addCourse(resource, function (error, resource) {
         if (error) {

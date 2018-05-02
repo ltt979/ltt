@@ -3,7 +3,12 @@ var userrouter = require('./userrouter');
 var adminrouter = require('./adminrouter');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
+var upload = require("../modules/upload");
 var util = require('util');
+
+var multer = require("multer");
+// var upload = multer({dest: '/public/uploads/'})
+
 
 module.exports = function (app) {
     app.get('/', commonrouter.index);
@@ -20,7 +25,7 @@ module.exports = function (app) {
     app.post('/admin/loginSubmit', adminrouter.loginSubmit);
     app.get('/user/pcenter',userrouter.pcenter);
     app.get('/admin/administrator_coursetoadd',adminrouter.administrator_coursetoadd);
-    app.post('/admin/addCourseSubmit',adminrouter.addCourseSubmit);
+    app.post('/admin/addCourseSubmit', upload.single('imageFile'),adminrouter.addCourseSubmit);
     app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
     app.post('/admin/getProductPage', adminrouter.getProductPage);
 }

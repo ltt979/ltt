@@ -112,9 +112,20 @@
               添加课程
             </h4>
           </div>
-          <form id="addCourseForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/admin/addCourseSubmit"
-            method="post">
+          <form id="addCourseForm" enctype='multipart/form-data' class="form-horizontal templatemo-create-account templatemo-container"
+            role="form" action="/admin/addCourseSubmit" method="post">
             <div class="modal-body">
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="imageFile" class="control-label">上传图片</label>
+                  <input name="imageFile" type="file" class="form-control" id="imageFile" placeholder="上传图片" />
+                </div>
+              </div>
+
+
+
+
               <div class="form-group">
                 <div class="col-md-12">
                   <label for="count" class="control-label">课程数量</label>
@@ -156,38 +167,38 @@
               </div>
 
 
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <div id="errors"></div>
-                  </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div id="errors"></div>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="submit" class="btn btn-primary">
-                  新增课程
-                </button>
-              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+              </button>
+              <button type="submit" class="btn btn-primary">
+                新增课程
+              </button>
+            </div>
           </form>
-          </div>
         </div>
       </div>
-      <button type="button" class="el-button el-button--primary el-button--small">
-        <span>添加新闻</span>
-      </button>
-      <button type="button" class="el-button el-button--primary el-button--small">
-        <span>意见箱</span>
-      </button>
     </div>
+    <button type="button" class="el-button el-button--primary el-button--small">
+      <span>添加新闻</span>
+    </button>
+    <button type="button" class="el-button el-button--primary el-button--small">
+      <span>意见箱</span>
+    </button>
+  </div>
 
 
-    <!-- 已有课程 -->
-    <div class="boxkc">
-      <div class="el-tabs__content">
-        <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-          <div id="detail_block_list_real" class="panel-loading">
-            <!--  <div class="media">
+  <!-- 已有课程 -->
+  <div class="boxkc">
+    <div class="el-tabs__content">
+      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+        <div id="detail_block_list_real" class="panel-loading">
+          <!--  <div class="media">
             <div class="media-left">
               <img src="/images/cr.jpg" />
             </div>
@@ -217,34 +228,34 @@
             </div>
           </div> -->
 
-          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- message -->
-    <div style="position: absolute;width: 100%; top: 241px;">
-      <div id="addCourseAlert" class="alert" style="display : none ;text-align: center;">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong></strong>
-      </div>
+  <!-- message -->
+  <div style="position: absolute;width: 100%; top: 241px;">
+    <div id="addCourseAlert" class="alert" style="display : none ;text-align: center;">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <strong></strong>
     </div>
-    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
-    <script type="text/javascript" scr="/node_modules/ejs/ejs.js"></script>
-    <!--   <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+  </div>
+  <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+  <script type="text/javascript" scr="/node_modules/ejs/ejs.js"></script>
+  <!--   <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
  -->
-    <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+  <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+  <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
 
-    <div class="row">
-      <div class="col-*-12" style="text-align: center;">
-        <ul id="pager"></ul>
-      </div>
+  <div class="row">
+    <div class="col-*-12" style="text-align: center;">
+      <ul id="pager"></ul>
     </div>
-    <script type='text/javascript'>
-
+  </div>
+  <script type='text/javascript'>
+    function initPage() {
       $.ajax({
         url: "/admin/getProductTotalCount",
         type: 'post',
@@ -274,14 +285,18 @@
           $("#pager li a:first-child").click();
         }
       });
+    }
+  </script>
 
-    </script>
 
-
-    <script id="resource_detai_tmpl" type="text/x-jquery-tmpl">
+  <script id="resource_detai_tmpl" type="text/x-jquery-tmpl">
    <div class="media">
             <div class="media-left">
-              <img src="/images/cr.jpg" />
+              {{if visitPath }}
+                <img src="${visitPath}" width=300px height:189px />
+              {{else}} 
+                <img src="\images\cr.jpg" width=300px height:189px />
+              {{/if}}
             </div>
             <div class="media-body">
               <div class="list-detail">
@@ -290,7 +305,7 @@
                   <span class="text-666">课程数量：</span> ${count}
                 </div>
                 <div>
-                  <span class="text-666">服务期限：</span>${times}
+                  <span class="text-666">服务期限：</span>${time}
                 </div>
                 <div>
                   <span class="text-666">适用级别：</span>${level}
@@ -309,60 +324,73 @@
             </div>
           </div>
 </script>
-    <script type="text/javascript">
+  <script type="text/javascript">
 /*     var data = [{count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'},
     {count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'}
     ];
     $("#resource_detai_tmpl").tmpl(data).appendTo('#detail_block_list_real'); */
-    </script>
+  </script>
 
-    <script>
-      $(document).ready(function () {
-        $('#addCourseForm')
-          .bootstrapValidator({
-            message: 'This value is not valid',
-            container: '#errors',
-            feedbackIcons: {
-              valid: 'glyphicon glyphicon-ok',
-              invalid: 'glyphicon glyphicon-remove',
-              validating: 'glyphicon glyphicon-refresh'
+  <script>
+    $(document).ready(function () {
+      initPage();
+      $('#addCourseForm')
+        .bootstrapValidator({
+          message: 'This value is not valid',
+          container: '#errors',
+          feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+            count: {
+              validators: {
+                notEmpty: {
+                  message: 'The count is required and cannot be empty'
+                }
+              }
             },
-            fields: {
-              count: {
-                validators: {
-                  notEmpty: {
-                    message: 'The count is required and cannot be empty'
-                  }
+            time: {
+              message: 'The time is not valid',
+              validators: {
+                notEmpty: {
+                  message: 'The time is required and cannot be empty'
                 }
-              },
-              time: {
-                message: 'The time is not valid',
-                validators: {
-                  notEmpty: {
-                    message: 'The time is required and cannot be empty'
-                  }
-                }
-              },
-              level: {
-                message: 'The level is not valid',
-                validators: {
-                  notEmpty: {
-                    message: 'The level is required and cannot be empty'
-                  }
+              }
+            },
+            level: {
+              message: 'The level is not valid',
+              validators: {
+                notEmpty: {
+                  message: 'The level is required and cannot be empty'
                 }
               }
             }
-          })
-          .on('success.form.bv', function (e) {
+          }
+        })
+        .on('success.form.bv', function (e) {
 
-            // Prevent form submission
-            e.preventDefault();
-            // Get the form instance
-            var $form = $(e.target);
-            // Get the BootstrapValidator instance
-            // var bv = $form.data('bootstrapValidator');
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function (result) {
+          // Prevent form submission
+          e.preventDefault();
+          // Get the form instance
+          var $form = $(e.target);
+          var formData = new FormData($("#addCourseForm")[0]);
+          // console.log("origin form data" + formData);
+          $.ajax({
+            url: $form.attr('action'),
+            dataType: 'json',
+            method: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function () {
+              var file = $("#imageFile")[0].files[0];
+              formData.append('imageFile', $(file));
+              console.log("before send " + formData);
+            },
+            success: function (result) {
               $("button[data-dismiss='modal']").click(); //关闭模态弹窗
               if (result.error) {
                 $("#addCourseAlert").addClass("alert-danger").show();
@@ -370,14 +398,17 @@
               } else {
                 $("#addCourseAlert").addClass("alert-success").show();
                 $("#addCourseAlert > strong").html("添加课程成功");
+                initPage();
               }
               setTimeout(() => {
                 $("#addCourseAlert").hide();
               }, 2000);
-            }, 'json');
+            }
           });
-      });
-    </script>
+
+        });
+    });
+  </script>
 </body>
 
 </html>

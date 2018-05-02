@@ -1,6 +1,6 @@
 var mongodb = require("./mongodbUtil");
 var pageSize = 10;
-function Resource(count, time, level, bundle, operator,type,createTime) {
+function Resource(count, time, level, bundle, operator,type,createTime,filePath) {
   this.count = count;
   this.time = time;
   this.level = level;
@@ -8,13 +8,14 @@ function Resource(count, time, level, bundle, operator,type,createTime) {
   this.type = type
   this.operator = operator;
   this.createTime = createTime;
+  this.filePath = filePath;
 };
 
 module.exports = Resource;
 
 Resource.getPaginator = function (currentPage,pageSize,callback) {
   var db = mongodb.getMongoDB();
-  db.collection('resources').find({}).skip((currentPage - 1) * pageSize).limit(+pageSize).toArray(function (err, docs) {
+  db.collection('resources').find({}).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id":-1}).toArray(function (err, docs) {
     if (err) {
       console.log(error);
       return;
