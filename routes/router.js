@@ -28,4 +28,8 @@ module.exports = function (app) {
     app.post('/admin/addCourseSubmit', upload.single('imageFile'),adminrouter.addCourseSubmit);
     app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
     app.post('/admin/getProductPage', adminrouter.getProductPage);
+
+
+    //adult 
+    app.get('/pc/adult',userrouter.adult);
 }

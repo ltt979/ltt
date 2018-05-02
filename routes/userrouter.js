@@ -90,7 +90,7 @@ var loginSubmit = function (req, res) {
 }
 
 var pcenter = function (req, res) {
-  checkLogin(req, res);
+  var user = checkLogin(req, res);
   res.render('user/personal_center', {});
 }
 
@@ -98,6 +98,8 @@ var checkLogin = function (req, res) {
   var user = req.session.user;
   if (!user) {
     login(req, res);
+  }else{
+    return user;
   }
 }
 
@@ -110,6 +112,12 @@ var logout = function (req, res) {
   res.redirect("/");
 }
 
+
+var adult = function(req,res){
+  var user = checkLogin(req, res);
+  res.render("user/addcourse-adult1.ejs",{});
+}
+
 exports.reg = reg;
 exports.regSubmit = regSubmit
 exports.ajax_username_check = ajax_username_check;
@@ -118,3 +126,4 @@ exports.loginSubmit = loginSubmit;
 exports.addcourse = addcourse;
 exports.pcenter = pcenter;
 exports.logout = logout;
+exports.adult = adult;
