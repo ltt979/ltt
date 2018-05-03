@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var User = require('../modules/user');
+var Resource = require('../modules/resource');
 
 
 var reg = function (req, res) {
@@ -98,7 +99,7 @@ var checkLogin = function (req, res) {
   var user = req.session.user;
   if (!user) {
     login(req, res);
-  }else{
+  } else {
     return user;
   }
 }
@@ -107,16 +108,50 @@ var logout = function (req, res) {
   if (req.session && req.session.user) {
     var name = req.session.user.name || '';
     req.session.user = null;
-    req.flash("msg","你好，"+name+"已经退出");
+    req.flash("msg", "你好，" + name + "已经退出");
   }
   res.redirect("/");
 }
 
 
-var adult = function(req,res){
+var adult = function (req, res) {
   var user = checkLogin(req, res);
-  res.render("user/addcourse-adult1.ejs",{});
+  res.render("user/addcourse-adult1.ejs", {});
 }
+
+
+var getProductTotalCount = function (req, res) {
+  var pageSize = req.body.pageSize;
+  var type_one = req.body.type_one;
+  var type_two = req.body.type_two;
+  var query = {
+    type_one: type_one,
+    type_two: type_two
+  }
+  Resource.getPageCount(pageSize, query).then(function (pageCount) {
+    res.json({"pageCount": pageCount});
+  }).catch(function (error) {
+    console.error(error);
+    res.json({"pageCount": 10});
+  });
+}
+
+var getProductPage = function (req, res) {
+  var pageSize = req.body.pageSize;
+  var currentPage = req.body.currentPage;
+  var query = {
+    type_one: req.body.type_one,
+    type_two: req.body.type_two
+  }
+  Resource.getPaginator(currentPage, pageSize, query, function (docs) {
+    res.json({"resources": docs});
+  });
+}
+
+
+
+
+
 
 exports.reg = reg;
 exports.regSubmit = regSubmit
@@ -127,3 +162,5 @@ exports.addcourse = addcourse;
 exports.pcenter = pcenter;
 exports.logout = logout;
 exports.adult = adult;
+exports.getProductTotalCount = getProductTotalCount;
+exports.getProductPage = getProductPage;

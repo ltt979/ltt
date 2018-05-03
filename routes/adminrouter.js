@@ -63,7 +63,8 @@ var addCourseSubmit = function (req, res) {
         time: req.body.time,
         level: req.body.level,
         bundle: req.body.bundle,
-        type : req.body.type,
+        type_one: req.body.type_one,
+        type_two: req.body.type_two,
         operator : admin._id,
         visitPath: visitPath
     }
@@ -90,7 +91,7 @@ var getProductTotalCount = function (req, res) {
 var getProductPage = function (req, res) {
     var pageSize = req.body.pageSize;
     var currentPage = req.body.currentPage;
-    Resource.getPaginator(currentPage, pageSize,function(docs){
+    Resource.getPaginator(currentPage, pageSize,null,function(docs){
         res.json({"resources": docs});
     });
 }

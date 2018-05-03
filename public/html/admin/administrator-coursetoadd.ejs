@@ -115,17 +115,30 @@
           <form id="addCourseForm" enctype='multipart/form-data' class="form-horizontal templatemo-create-account templatemo-container"
             role="form" action="/admin/addCourseSubmit" method="post">
             <div class="modal-body">
-
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="type_one" class="control-label">类型</label>
+                  <select class="form-control" name="type_one" data-bv-notempty data-bv-notempty-message="类型必须选择">
+                    <option value="">-- 请选择类型 --</option>
+                    <option value="成人英语">成人英语</option>
+                    <option value="青少英语">青少英语</option>
+                    <option value="商务英语">商务英语</option>
+                    <option value="海外考试">海外考试</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="type_two" class="control-label">类型</label>
+                  <select class="form-control" name="type_two" data-bv-notempty data-bv-notempty-message="类型必须选择">
+                    <option value="">-- 请选择类型 --</option>
+                  </select>
+                </div>
+              </div>
               <div class="form-group">
                 <div class="col-md-12">
                   <label for="imageFile" class="control-label">上传图片</label>
                   <input name="imageFile" type="file" class="form-control" id="imageFile" placeholder="上传图片" />
                 </div>
               </div>
-
-
-
-
               <div class="form-group">
                 <div class="col-md-12">
                   <label for="count" class="control-label">课程数量</label>
@@ -153,18 +166,7 @@
               </div>
 
 
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="type" class="control-label">类型</label>
-                  <select class="form-control" name="type" data-bv-notempty data-bv-notempty-message="类型必须选择">
-                    <option value="">-- 请选择类型 --</option>
-                    <option value="成人英语">成人英语</option>
-                    <option value="青少英语">青少英语</option>
-                    <option value="商务英语">商务英语</option>
-                    <option value="海外考试">海外考试</option>
-                  </select>
-                </div>
-              </div>
+
 
 
               <div class="form-group">
@@ -243,8 +245,6 @@
   <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
-  <!--   <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
- -->
   <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
   <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
 
@@ -254,6 +254,27 @@
     </div>
   </div>
   <script type='text/javascript'>
+    var type_dic = {
+      "成人英语": ["成人口语", "零基础", "蹭课卡", "旅游英语", "面试英语", "自然拼读"],
+      "青少英语": ["分类1", "分类2"],
+      "商务英语": ["商务1", "商务2"],
+      "海外考试": ["海外考试01", "海外考试01"]
+    };
+
+    function createOptionByType(type_dic, type_one) {
+      var type_twovalue = type_dic[type_one];
+      var result = '"<option value="">-- 请选择类型 --</option>"';
+      for (var i in type_twovalue) {
+        result += "<option value=" + type_twovalue[i] + ">" + type_twovalue[i] + "</option>";
+      }
+      return result;
+    }
+    $(function () {
+      $("[name=type_one]").change(function () {
+        $("[name=type_two]").empty().append(createOptionByType(type_dic, $(this).val()));
+      });
+    });
+
     function initPage() {
       $.ajax({
         url: "/admin/getProductTotalCount",
@@ -265,7 +286,7 @@
           var options = {
             bootstrapMajorVersion: 3,
             currentPage: 1,
-            totalPages: totalPages || 10,
+            totalPages: totalPages || 0,
             onPageClicked: function (e, originalEvent, type, page) {
               $.ajax({
                 url: "/admin/getProductPage",
@@ -309,15 +330,13 @@
                 <div>
                   <span class="text-666">适用级别：</span>${level}
                 </div>
+                {{if bundle}}
                 <div>
                   <span class="text-666">额外赠送：</span>${bundle}
                 </div>
-                <div class="detail-control">
-                  <div class="btn-list">
-                    <button type="button" class="el-button el-button--primary el-button--small">
-                      <span>立即添加</span>
-                    </button>
-                  </div>
+                {{/if}}
+                <div>
+                  <span class="text-666">类别：</span>${type_one} =>  ${type_two}
                 </div>
               </div>
             </div>

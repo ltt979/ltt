@@ -32,4 +32,7 @@ module.exports = function (app) {
 
     //adult 
     app.get('/pc/adult',userrouter.adult);
+    app.post('/pc/getProductTotalCount', userrouter.getProductTotalCount);
+    app.post('/pc/getProductPage', userrouter.getProductPage);
+
 }
