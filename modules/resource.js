@@ -22,8 +22,9 @@ Resource.getPaginator = function (currentPage, pageSize, query, callback) {
       return;
     }
     callback(docs);
-  });;
+  });
 }
+
 
 var getTotalCount = function (query) {
   return new Promise(function (reslove, reject) {

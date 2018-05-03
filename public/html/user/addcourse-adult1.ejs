@@ -97,7 +97,6 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                添加课程成功
               </div>
             </div>
           </div>
@@ -112,8 +111,8 @@
       <div class="media">
           <div class="media-left">
               {{if visitPath }}
-              <img src="${visitPath}" width=300px height:189px /> {{else}}
-              <img src="\images\cr.jpg" width=300px height:189px /> {{/if}}
+              <img src="${visitPath}" width=300px height=189px /> {{else}}
+              <img src="\images\cr.jpg" width=300px height=189px /> {{/if}}
           </div>
           <div class="media-body">
               <div class="list-detail">
@@ -132,9 +131,16 @@
                   </div>
                   <div class="detail-control">
                       <div class="btn-list">
+                         {{if !owned}}
                           <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small">
-                              <span>立即添加</span>
+                              立即添加
                           </button>
+                          {{/if}}
+                          {{if owned}}
+                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small">
+                              去查看
+                          </button>
+                          {{/if}}
                       </div>
                   </div>
               </div>
@@ -163,7 +169,7 @@
               url: "/pc/getProductTotalCount",
               type: 'post',
               dataType: 'json',
-              data: {pageSize: 10, type_one: type_one, type_two: type_two},
+              data: { pageSize: 10, type_one: type_one, type_two: type_two },
               success: function (data) {
                 var totalPages = data.pageCount;
                 var options = {
@@ -173,11 +179,11 @@
                   onPageClicked: function (e, originalEvent, type, page) {
                     $.ajax({
                       url: "/pc/getProductPage",
-                      data: {currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two},
+                      data: { currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two },
                       dataType: 'json',
                       type: "post",
                       success: function (data) {
-                        // console.log(data.resources);
+                        console.log(data.resources);
                         $container.empty();
                         $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
                       }
@@ -199,19 +205,22 @@
           });
 
           $(document).on('click', ".detail-control button", function (e) {
-            var courseID = $(e.target).data('id');
-            $.ajax({
-              url: '/pc/addcourse',
-              data: {courseID: courseID},
-              dataType: 'json',
-              type: "post",
-              success: function (data) {
-                if (data.error) {
-
-                }
-                $("#myModal").modal();
-              }
-            });
+          debugger;
+          var courseID = $(e.target).data('id');
+          if (!courseID) {
+            alert("請選擇需要添加的課程");
+            return false;
+          }
+          $.ajax({
+            url: '/pc/addcourse',
+            data: { courseID: courseID },
+            dataType: 'json',
+            type: "post",
+            success: function (data) {
+              $("#myModal .modal-body").html(data.msg);
+              $("#myModal").modal();
+            }
+          });
           });
 
         </script>

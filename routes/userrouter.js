@@ -4,20 +4,25 @@ var Resource = require('../modules/resource');
 
 
 var reg = function (req, res) {
-  res.render('register', {title: '注册'});
+  res.render('register', { title: '注册' });
 }
 var login = function (req, res) {
-  res.render('login', {title: '登录'});
+  res.render('login', { title: '登录' });
 }
 var addcourse = function (req, res) {
   var user = checkLogin(req, res);
   var courseID = req.body.courseID;
+  if(!courseID){
+    res.json({ "msg": "请选择需要添加的课程" });
+  }
   User.addCourse(user._id, courseID, function (err, updateUser) {
     if (err) {
-      res.json({"msg": "添加课程出错"});
+      res.json({ "msg": "添加课程出错" });
     }
-    req.session.user = updateUser;
-    res.json({"msg": "添加成功"});
+    if (updateUser != null) {
+      req.session.user = updateUser;
+      res.json({ "msg": "添加成功" });
+    }
   });
 
 }
@@ -25,12 +30,12 @@ var addcourse = function (req, res) {
 var ajax_username_check = function (req, res) {
   User.get(req.body.username, function (err, user) {
     if (err) {
-      res.json({valid: false});
+      res.json({ valid: false });
     } else {
       if (null == user) {
-        res.json({valid: true});
+        res.json({ valid: true });
       } else {
-        res.json({valid: false});
+        res.json({ valid: false });
       }
     }
   })
@@ -102,7 +107,7 @@ var loginSubmit = function (req, res) {
 
 var pcenter = function (req, res) {
   var user = checkLogin(req, res);
-  res.render('user/personal_center', {user: user});
+  res.render('user/personal_center', { user: user });
 }
 
 var checkLogin = function (req, res) {
@@ -126,7 +131,7 @@ var logout = function (req, res) {
 
 var adult = function (req, res) {
   var user = checkLogin(req, res);
-  res.render("user/addcourse-adult1.ejs", {user: user});
+  res.render("user/addcourse-adult1.ejs", { user: user });
 }
 
 
@@ -139,14 +144,15 @@ var getProductTotalCount = function (req, res) {
     type_two: type_two
   }
   Resource.getPageCount(pageSize, query).then(function (pageCount) {
-    res.json({"pageCount": pageCount});
+    res.json({ "pageCount": pageCount });
   }).catch(function (error) {
     console.error(error);
-    res.json({"pageCount": 10});
+    res.json({ "pageCount": 10 });
   });
 }
 
 var getProductPage = function (req, res) {
+  var user = checkLogin(req, res);
   var pageSize = req.body.pageSize;
   var currentPage = req.body.currentPage;
   var query = {
@@ -154,7 +160,14 @@ var getProductPage = function (req, res) {
     type_two: req.body.type_two
   }
   Resource.getPaginator(currentPage, pageSize, query, function (docs) {
-    res.json({"resources": docs});
+    for(var i in docs){
+      if(user.own && user.own.indexOf(docs[i]["_id"].toHexString())>-1){
+        docs[i].owned = true;
+      }else{
+        docs[i].owned = false;
+      }
+    }
+    res.json({ "resources": docs });
   });
 }
 

@@ -25,9 +25,9 @@
 
 <body>
   <!-- 顶部导航 -->
-  <%- include top %>
+  <%- include ../user/top %>
     <!-- 头部导航 -->
-  <%- include nav%>
+  <%- include ../user/nav%>
       <!-- 头像   -->
       <div class="boxtx">
         <div style="margin: 20px;display: inline-block">
@@ -251,9 +251,9 @@
    <div class="media">
             <div class="media-left">
               {{if visitPath }}
-                <img src="${visitPath}" width=300px height:189px />
+                <img src="${visitPath}" width=300px height=189px />
               {{else}} 
-                <img src="\images\cr.jpg" width=300px height:189px />
+                <img src="\images\cr.jpg" width=300px height=189px />
               {{/if}}
             </div>
             <div class="media-body">

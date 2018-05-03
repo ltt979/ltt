@@ -1,4 +1,5 @@
 var mongodb = require("./mongodbUtil");
+var ObjectId = require("bson").ObjectID;
 function User(user) {
   this.name = user.name;
   this.password = user.password;
@@ -67,17 +68,17 @@ User.addCourse = function (userID, courseID, callback) {
     }
     //查找用户名（name键）值为 name 一个文档
     collection.findOneAndUpdate({
-      _id: userID
+      _id: ObjectId(userID)
     },
-      {$push: {own: courseID}},
-      {
+      {$addToSet: {own: courseID}},
+      { projection :{name:1,_id:1,own:1,email:1,sex:1},
         returnOriginal: false
         , upsert: true
-      }, function (err, user) {
-        if (err || user == null) {
+      }, function (err, result) {
+        if (err || result.ok != 1 ) {
           return callback(err);//失败！返回 err 信息
         }
-        callback(null, user);//成功！返回查询的用户信息
+        callback(null, result.value);//成功！返回查询的用户信息
       });
   });
 }
