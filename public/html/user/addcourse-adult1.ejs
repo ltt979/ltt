@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>添加课程</title>
+  <title>成人英语</title>
   <link rel="icon" href="/favicon.ico">
   <!-- 	<link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet"/>
  -->
@@ -16,144 +16,99 @@
   <link href="/css/index/homeindex.css" rel="stylesheet" />
   <link href="/css/index/layout.css" rel="stylesheet" />
   <link rel="stylesheet" href="/css/addcourse.css">
+  <style>
+    .modal-dialog {
+      z-index: 1040;
+    }
+  </style>
 
-  <script type="text/javascript" src="/js/course.js"></script>
 
 </head>
 
 <body>
   <!-- 顶部导航 -->
-  <div id="shared_layout_toper" class="clearfix">
-    <div class="container">
-      <span class="text-666">客服热线</span>
-      <span class="text-blue">&nbsp;400-777-8828</span>
-      <ul class="pull-right list-inline">
-        <li>
-          <a href="#" target="_blank">个人中心</a>
-        </li>
-        <li>
-          <a href="#" target="_blank">新闻动态</a>
-        </li>
-        <li>
-          <a href="#" target="_blank">意见箱</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <%- include top %>
+    <!-- 头部导航 -->
+    <%- include nav%>
 
-  <!-- 头部导航 -->
-  <div id="shared_layout_header" class="clearfix">
-    <nav class="clearfix layout-header1">
-      <div class="container clearfix">
-        <div id="shared_signin" class="pull-right">
-          <div>
-            <a href="https://passport.likeshuo.com" class="btn btn-sm btn-primary">注册</a>
-            <a href="https://passport.likeshuo.com/SignIn" class="btn btn-sm btn-default">登录</a>
+      <!-- 添加课程 -->
+
+      <div class="renderbody">
+        <div id="product_detail_index" class="container">
+          <div class="el-tabs el-tabs--top">
+            <div class="el-tabs__header is-top">
+              <div class="el-tabs__nav-wrap is-top">
+                <div class="el-tabs__nav-scroll">
+                  <div role="tablist" class="el-tabs__nav" style="transform: translateX(0px);">
+                    <div id="tab-1" aria-controls="pane-1" role="tab" aria-selected="true" tabindex="0" class="el-tabs__item is-top is-active">
+                      成人口语
+                    </div>
+                    <div id="tab-2" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-top">
+                      零基础
+                    </div>
+                    <div id="tab-6" aria-controls="pane-6" role="tab" tabindex="-1" class="el-tabs__item is-top">
+                      蹭课卡
+                    </div>
+                    <div id="tab-5" aria-controls="pane-5" role="tab" tabindex="-1" class="el-tabs__item is-top">
+                      旅游英语
+                    </div>
+                    <div id="tab-4" aria-controls="pane-4" role="tab" tabindex="-1" class="el-tabs__item is-top">
+                      面试英语
+                    </div>
+                    <div id="tab-3" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-top">
+                      自然拼读
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 成人口语 -->
+            <div class="el-tabs__content">
+              <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+                <div id="detail_block_list" class="panel-loading">
+                </div>
+                <div class="row">
+                  <div class="col-*-12" style="text-align: center;">
+                    <ul id="pager"></ul>
+                  </div>
+                </div>
+              </div>
+
+              <div role="tabpanel" id="pane-2" aria-labelledby="tab-2" class="el-tab-pane" style="display:none;">
+                <div id="detail_block_list" class="panel-loading">
+                </div>
+                <div class="row">
+                  <div class="col-*-12" style="text-align: center;">
+                    <ul id="pager"></ul>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
           </div>
         </div>
-        <a href="https://www.likeshuo.com" class="pull-left">
-          <img src="/images/logo.PNG" alt="" class="img-responsive" />
-        </a>
-        <span class="pull-left hidden-xs">天涯英语，与全球友人一起学习!</span>
-      </div>
-    </nav>
-    <nav class="clearfix navbar navbar-default layout-header2 layout-header2-general">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" class="navbar-toggle collapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="/general" class="text-overflow">
-                <span class="hidden-sm"></span>成人英语</a>
-            </li>
-            <li>
-              <a href="/general/philosophy" class="text-overflow">教学理念</a>
-            </li>
-            <li>
-              <a href="/general/teacher" class="text-overflow">教学师资</a>
-            </li>
-            <li>
-              <a href="/general/course" class="text-overflow">课程介绍</a>
-            </li>
 
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
 
-  <!-- 添加课程 -->
-
-  <div class="renderbody">
-    <div id="product_detail_index" class="container">
-      <div class="el-tabs el-tabs--top">
-        <div class="el-tabs__header is-top">
-          <div class="el-tabs__nav-wrap is-top">
-            <div class="el-tabs__nav-scroll">
-              <div role="tablist" class="el-tabs__nav" style="transform: translateX(0px);">
-                <div id="tab-1" aria-controls="pane-1" role="tab" aria-selected="true" tabindex="0" class="el-tabs__item is-top is-active">
-                  成人口语
-                </div>
-                <div id="tab-2" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-top">
-                  零基础
-                </div>
-                <div id="tab-6" aria-controls="pane-6" role="tab" tabindex="-1" class="el-tabs__item is-top">
-                  蹭课卡
-                </div>
-                <div id="tab-5" aria-controls="pane-5" role="tab" tabindex="-1" class="el-tabs__item is-top">
-                  旅游英语
-                </div>
-                <div id="tab-4" aria-controls="pane-4" role="tab" tabindex="-1" class="el-tabs__item is-top">
-                  面试英语
-                </div>
-                <div id="tab-3" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-top">
-                  自然拼读
-                </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                添加课程成功
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 成人口语 -->
-        <div class="el-tabs__content">
-          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-            <div id="detail_block_list" class="panel-loading">
-            </div>
-            <div class="row">
-              <div class="col-*-12" style="text-align: center;">
-                <ul id="pager"></ul>
-              </div>
-            </div>
-          </div>
+        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
 
-          <div role="tabpanel" id="pane-2" aria-labelledby="tab-2" class="el-tab-pane" style="display:none;">
-            <div id="detail_block_list" class="panel-loading">
-            </div>
-            <div class="row">
-              <div class="col-*-12" style="text-align: center;">
-                <ul id="pager"></ul>
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
-
-    <script id="resource_detail_tmpl" type="text/x-jquery-tmpl">
+        <script id="resource_detail_tmpl" type="text/x-jquery-tmpl">
       <div class="media">
           <div class="media-left">
               {{if visitPath }}
@@ -187,65 +142,79 @@
       </div>      
     </script>
 
-    <script>
-      $(function () {
-        //导航栏点击事件
-        $(".el-tabs__nav div").click(function () {
-          $(this).siblings().removeClass("is-active");
-          $(this).addClass("is-active");
-          $(".el-tabs__content").children().hide();
-          var showContentId = $(this).attr("aria-controls");
-          $("#" + showContentId).show();
-        });
+        <script>
+          $(function () {
+            //导航栏点击事件
+            $(".el-tabs__nav div").click(function () {
+              $(this).siblings().removeClass("is-active");
+              $(this).addClass("is-active");
+              $(".el-tabs__content").children().hide();
+              var showContentId = $(this).attr("aria-controls");
+              $("#" + showContentId).show();
+            });
 
 
 
 
-      });
+          });
 
-      function initPage(type_one, type_two, $container, $pager) {
-        $.ajax({
-          url: "/pc/getProductTotalCount",
-          type: 'post',
-          dataType: 'json',
-          data: {pageSize: 10, type_one: type_one, type_two: type_two},
-          success: function (data) {
-            var totalPages = data.pageCount;
-            var options = {
-              bootstrapMajorVersion: 3,
-              currentPage: 1,
-              totalPages: totalPages || 1,
-              onPageClicked: function (e, originalEvent, type, page) {
-                $.ajax({
-                  url: "/pc/getProductPage",
-                  data: {currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two},
-                  dataType: 'json',
-                  type: "post",
-                  success: function (data) {
-                    console.log(data.resources);
-                    $container.empty();
-                    $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
+          function initPage(type_one, type_two, $container, $pager) {
+            $.ajax({
+              url: "/pc/getProductTotalCount",
+              type: 'post',
+              dataType: 'json',
+              data: {pageSize: 10, type_one: type_one, type_two: type_two},
+              success: function (data) {
+                var totalPages = data.pageCount;
+                var options = {
+                  bootstrapMajorVersion: 3,
+                  currentPage: 1,
+                  totalPages: totalPages || 1,
+                  onPageClicked: function (e, originalEvent, type, page) {
+                    $.ajax({
+                      url: "/pc/getProductPage",
+                      data: {currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two},
+                      dataType: 'json',
+                      type: "post",
+                      success: function (data) {
+                        // console.log(data.resources);
+                        $container.empty();
+                        $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
+                      }
+                    })
                   }
-                })
+                }
+                // $('#pager').bootstrapPaginator(options);
+                // $("#pager li a:first-child").click();
+                $pager.bootstrapPaginator(options);
+                $pager.find("li a:first-child").click();
               }
-            }
-            // $('#pager').bootstrapPaginator(options);
-            // $("#pager li a:first-child").click();
-            $pager.bootstrapPaginator(options);
-            $pager.find("li a:first-child").click();
+            });
           }
-        });
-      }
 
-  $.each($(".el-tabs__nav div"),function(index,val){
-    debugger;
-    // initPage("成人英语", "成人口语", $("#pane-1").find("div#detail_block_list"), $("#pane-1").find("#pager"))
-    var pane = $(val).attr("aria-controls");
-    initPage("成人英语", $(val).html().trim(), $("#"+pane).find("div#detail_block_list"), $("#" + pane).find("#pager"))
-  });
-  
+          $.each($(".el-tabs__nav div"), function (index, val) {
+            // initPage("成人英语", "成人口语", $("#pane-1").find("div#detail_block_list"), $("#pane-1").find("#pager"))
+            var pane = $(val).attr("aria-controls");
+            initPage("成人英语", $(val).html().trim(), $("#" + pane).find("div#detail_block_list"), $("#" + pane).find("#pager"))
+          });
 
-    </script>
+          $(document).on('click', ".detail-control button", function (e) {
+            var courseID = $(e.target).data('id');
+            $.ajax({
+              url: '/pc/addcourse',
+              data: {courseID: courseID},
+              dataType: 'json',
+              type: "post",
+              success: function (data) {
+                if (data.error) {
+
+                }
+                $("#myModal").modal();
+              }
+            });
+          });
+
+        </script>
 </body>
 
 </html>

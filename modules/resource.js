@@ -1,22 +1,22 @@
 var mongodb = require("./mongodbUtil");
 var pageSize = 10;
-function Resource(count, time, level, bundle, operator,type_one,type_two,createTime,filePath) {
-  this.count = count;
-  this.time = time;
-  this.level = level;
-  this.bundle = bundle;
-  this.type_one = type_one,
-  this.type_two = type_two,
-  this.operator = operator;
-  this.createTime = createTime;
-  this.filePath = filePath;
+function Resource(resource) {
+  this.count = resource.count;
+  this.time = resource.time;
+  this.level = resource.level;
+  this.bundle = resource.bundle;
+  this.type_one = resource.type_one;
+  this.type_two = resource.type_two;
+  this.operator = resource.operator;
+  this.createTime = resource.createTime;
+  this.filePath = resource.filePath;
 };
 
 module.exports = Resource;
 
-Resource.getPaginator = function (currentPage,pageSize,query,callback) {
+Resource.getPaginator = function (currentPage, pageSize, query, callback) {
   var db = mongodb.getMongoDB();
-  db.collection('resources').find(query).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id":-1}).toArray(function (err, docs) {
+  db.collection('resources').find(query).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id": -1}).toArray(function (err, docs) {
     if (err) {
       console.log(error);
       return;
@@ -28,7 +28,7 @@ Resource.getPaginator = function (currentPage,pageSize,query,callback) {
 var getTotalCount = function (query) {
   return new Promise(function (reslove, reject) {
     var db = mongodb.getMongoDB();
-    db.collection('resources').count(query,function (err, count) {
+    db.collection('resources').count(query, function (err, count) {
       if (err) {
         reject(err);
       }
@@ -36,7 +36,7 @@ var getTotalCount = function (query) {
     });
   })
 }
-Resource.getPageCount = function (pageSize,query) {
+Resource.getPageCount = function (pageSize, query) {
   return new Promise(function (resolve, reject) {
     var promise = getTotalCount(query);
     promise.then(function (totalCount) {

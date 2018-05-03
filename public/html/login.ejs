@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-     <!-- <div class="form-group">
+          <!-- <div class="form-group">
       <div class="col-md-12">
         <div class="checkbox control-wrapper">
           <label>
@@ -69,6 +69,8 @@
     <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="/lib/md5-min.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function () {
         $('#loginForm').bootstrapValidator({
@@ -96,12 +98,14 @@
               validators: {
                 notEmpty: {
                   message: 'The password is wrong'
-                },
-
+                }
               }
-            },
+            }
           }
-        });
+        }).on('success.form.bv', function (e) {
+          var $form = $(e.target);
+          $form.find("#password").val(hex_md5($form.find("#password").val()));
+        });;
       });
     </script>
   </body>

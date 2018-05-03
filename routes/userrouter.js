@@ -10,7 +10,16 @@ var login = function (req, res) {
   res.render('login', {title: '登录'});
 }
 var addcourse = function (req, res) {
-  res.render('addcourse', {title: '添加课程'});
+  var user = checkLogin(req, res);
+  var courseID = req.body.courseID;
+  User.addCourse(user._id, courseID, function (err, updateUser) {
+    if (err) {
+      res.json({"msg": "添加课程出错"});
+    }
+    req.session.user = updateUser;
+    res.json({"msg": "添加成功"});
+  });
+
 }
 
 var ajax_username_check = function (req, res) {
@@ -75,29 +84,30 @@ var loginSubmit = function (req, res) {
   User.get(req.body.username, function (err, user) {
     if (err) {
       req.flash('error', err);
-      return res.redirect('/');
+      res.redirect('/');
+      return;
     }
-    if (user) {
-      if (user.password == req.body.password) {
-        req.session.user = user;
-        req.flash('success', '登录成功!');
-        res.redirect('/');//登录成功后返回主页
-      }
+    if (user && user.password == req.body.password) {
+      req.session.user = user;
+      req.flash('success', '登录成功!');
+      res.redirect('/');//登录成功后返回主页
+      return;
     } else {
       req.flash('error', '用户名或密码错误!');
       res.redirect('/login');//登录失败停留login页面
+      return;
     }
   });
 }
 
 var pcenter = function (req, res) {
   var user = checkLogin(req, res);
-  res.render('user/personal_center', {});
+  res.render('user/personal_center', {user: user});
 }
 
 var checkLogin = function (req, res) {
   var user = req.session.user;
-  if (!user) {
+  if (!user || !user.name) {
     login(req, res);
   } else {
     return user;
@@ -116,7 +126,7 @@ var logout = function (req, res) {
 
 var adult = function (req, res) {
   var user = checkLogin(req, res);
-  res.render("user/addcourse-adult1.ejs", {});
+  res.render("user/addcourse-adult1.ejs", {user: user});
 }
 
 

@@ -25,182 +25,120 @@
 
 <body>
   <!-- 顶部导航 -->
-  <div id="shared_layout_toper" class="clearfix">
-    <div class="container">
-      <span class="text-666">客服热线</span>
-      <span class="text-blue">&nbsp;400-777-8828</span>
-      <ul class="pull-right list-inline">
-        <li>
-          <a href="#" target="_blank">管理中心</a>
-        </li>
-        <li>
-          <a href="#" target="_blank">新闻动态</a>
-        </li>
-        <li>
-          <a href="#" target="_blank">意见箱</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- 头部导航 -->
-  <div id="shared_layout_header" class="clearfix">
-    <nav class="clearfix layout-header1">
-      <div class="container clearfix">
-        <div id="shared_signin" class="pull-right">
-        </div>
-        <a href="https://www.likeshuo.com" class="pull-left">
-          <img src="/images/logo.PNG" alt="" class="img-responsive" />
-        </a>
-        <span class="pull-left hidden-xs">天涯英语，与全球友人一起学习!</span>
-      </div>
-    </nav>
-    <nav class="clearfix navbar navbar-default layout-header2">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" class="navbar-toggle collapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="/" class="text-overflow">
-                <i class="glyphicon glyphicon-home"></i>&nbsp;
-                <span>首页</span>
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li>
-              <a href="/general" target="_blank" class="text-overflow">成人英语</a>
-            </li>
-            <li>
-              <a href="/junior" target="_blank" class="text-overflow">青少英语</a>
-            </li>
-            <li>
-              <a href="/professional" target="_blank" class="text-overflow">商务英语</a>
-            </li>
-            <li>
-              <a href="/overseas" target="_blank" class="text-overflow">海外考试</a>
-            </li>
-          </ul>
+  <%- include top %>
+    <!-- 头部导航 -->
+  <%- include nav%>
+      <!-- 头像   -->
+      <div class="boxtx">
+        <div style="margin: 20px;display: inline-block">
+          <img src="/images/ad.jpg" />
         </div>
       </div>
-    </nav>
-  </div>
-  <!-- 头像   -->
-  <div class="boxtx">
-    <div style="margin: 20px;display: inline-block">
-      <img src="/images/ad.jpg" />
-    </div>
-  </div>
-  <!-- 管理课程 -->
-  <div style="margin-left: 370px">
-    <button type="button" class="el-button el-button--primary el-button--small" data-toggle="modal" data-target="#addCourseModal">
-      <span>添加课程</span>
-    </button>
-    <div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              &times;
-            </button>
-            <h4 class="modal-title" id="addCourseModalLabel">
-              添加课程
-            </h4>
+      <!-- 管理课程 -->
+      <div style="margin-left: 370px">
+        <button type="button" class="el-button el-button--primary el-button--small" data-toggle="modal" data-target="#addCourseModal">
+          <span>添加课程</span>
+        </button>
+        <div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true" data-backdrop="false">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  &times;
+                </button>
+                <h4 class="modal-title" id="addCourseModalLabel">
+                  添加课程
+                </h4>
+              </div>
+              <form id="addCourseForm" enctype='multipart/form-data' class="form-horizontal templatemo-create-account templatemo-container"
+                role="form" action="/admin/addCourseSubmit" method="post">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <div class="col-md-6">
+                      <label for="type_one" class="control-label">类型</label>
+                      <select class="form-control" name="type_one" data-bv-notempty data-bv-notempty-message="类型必须选择">
+                        <option value="">-- 请选择类型 --</option>
+                        <option value="成人英语">成人英语</option>
+                        <option value="青少英语">青少英语</option>
+                        <option value="商务英语">商务英语</option>
+                        <option value="海外考试">海外考试</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="type_two" class="control-label">类型</label>
+                      <select class="form-control" name="type_two" data-bv-notempty data-bv-notempty-message="类型必须选择">
+                        <option value="">-- 请选择类型 --</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="imageFile" class="control-label">上传图片</label>
+                      <input name="imageFile" type="file" class="form-control" id="imageFile" placeholder="上传图片" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="count" class="control-label">课程数量</label>
+                      <input name="count" type="text" class="form-control" id="count" placeholder="私教课(45分钟) × 3节 / 小班课(45分钟) × 3节 / 讲堂课(45分钟) × 15节"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="time" class="control-label">服务期限：</label>
+                      <input name="time" type="text" class="form-control" id="time" placeholder="×30天" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="level" class="control-label">适用级别</label>
+                      <input name="level" type="text" class="form-control" id="level" placeholder="L1-L12" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="bundle" class="control-label">额外赠送</label>
+                      <input name="bundle" type="text" class="form-control" id="bundle" placeholder="赠送16U币 / 学习指导 / 英语胶囊" />
+                    </div>
+                  </div>
+
+
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <div id="errors"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    新增课程
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <form id="addCourseForm" enctype='multipart/form-data' class="form-horizontal templatemo-create-account templatemo-container"
-            role="form" action="/admin/addCourseSubmit" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <div class="col-md-6">
-                  <label for="type_one" class="control-label">类型</label>
-                  <select class="form-control" name="type_one" data-bv-notempty data-bv-notempty-message="类型必须选择">
-                    <option value="">-- 请选择类型 --</option>
-                    <option value="成人英语">成人英语</option>
-                    <option value="青少英语">青少英语</option>
-                    <option value="商务英语">商务英语</option>
-                    <option value="海外考试">海外考试</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="type_two" class="control-label">类型</label>
-                  <select class="form-control" name="type_two" data-bv-notempty data-bv-notempty-message="类型必须选择">
-                    <option value="">-- 请选择类型 --</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="imageFile" class="control-label">上传图片</label>
-                  <input name="imageFile" type="file" class="form-control" id="imageFile" placeholder="上传图片" />
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="count" class="control-label">课程数量</label>
-                  <input name="count" type="text" class="form-control" id="count" placeholder="私教课(45分钟) × 3节 / 小班课(45分钟) × 3节 / 讲堂课(45分钟) × 15节"
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="time" class="control-label">服务期限：</label>
-                  <input name="time" type="text" class="form-control" id="time" placeholder="×30天" />
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="level" class="control-label">适用级别</label>
-                  <input name="level" type="text" class="form-control" id="level" placeholder="L1-L12" />
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="bundle" class="control-label">额外赠送</label>
-                  <input name="bundle" type="text" class="form-control" id="bundle" placeholder="赠送16U币 / 学习指导 / 英语胶囊" />
-                </div>
-              </div>
-
-
-
-
-
-              <div class="form-group">
-                <div class="col-md-12">
-                  <div id="errors"></div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-              </button>
-              <button type="submit" class="btn btn-primary">
-                新增课程
-              </button>
-            </div>
-          </form>
         </div>
+        <button type="button" class="el-button el-button--primary el-button--small">
+          <span>添加新闻</span>
+        </button>
+        <button type="button" class="el-button el-button--primary el-button--small">
+          <span>意见箱</span>
+        </button>
       </div>
-    </div>
-    <button type="button" class="el-button el-button--primary el-button--small">
-      <span>添加新闻</span>
-    </button>
-    <button type="button" class="el-button el-button--primary el-button--small">
-      <span>意见箱</span>
-    </button>
-  </div>
 
 
-  <!-- 已有课程 -->
-  <div class="boxkc">
-    <div class="el-tabs__content">
-      <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-        <div id="detail_block_list_real" class="panel-loading">
-          <!--  <div class="media">
+      <!-- 已有课程 -->
+      <div class="boxkc">
+        <div class="el-tabs__content">
+          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+            <div id="detail_block_list_real" class="panel-loading">
+              <!--  <div class="media">
             <div class="media-left">
               <img src="/images/cr.jpg" />
             </div>
@@ -230,86 +168,86 @@
             </div>
           </div> -->
 
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- message -->
-  <div style="position: absolute;width: 100%; top: 241px;">
-    <div id="addCourseAlert" class="alert" style="display : none ;text-align: center;">
-      <a href="#" class="close" data-dismiss="alert">&times;</a>
-      <strong></strong>
-    </div>
-  </div>
-  <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
-  <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
-  <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+      <!-- message -->
+      <div style="position: absolute;width: 100%; top: 241px;">
+        <div id="addCourseAlert" class="alert" style="display : none ;text-align: center;">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+          <strong></strong>
+        </div>
+      </div>
+      <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+      <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
 
-  <div class="row">
-    <div class="col-*-12" style="text-align: center;">
-      <ul id="pager"></ul>
-    </div>
-  </div>
-  <script type='text/javascript'>
-    var type_dic = {
-      "成人英语": ["成人口语", "零基础", "蹭课卡", "旅游英语", "面试英语", "自然拼读"],
-      "青少英语": ["分类1", "分类2"],
-      "商务英语": ["商务1", "商务2"],
-      "海外考试": ["海外考试01", "海外考试01"]
-    };
+      <div class="row">
+        <div class="col-*-12" style="text-align: center;">
+          <ul id="pager"></ul>
+        </div>
+      </div>
+      <script type='text/javascript'>
+        var type_dic = {
+          "成人英语": ["成人口语", "零基础", "蹭课卡", "旅游英语", "面试英语", "自然拼读"],
+          "青少英语": ["分类1", "分类2"],
+          "商务英语": ["商务1", "商务2"],
+          "海外考试": ["海外考试01", "海外考试01"]
+        };
 
-    function createOptionByType(type_dic, type_one) {
-      var type_twovalue = type_dic[type_one];
-      var result = '"<option value="">-- 请选择类型 --</option>"';
-      for (var i in type_twovalue) {
-        result += "<option value=" + type_twovalue[i] + ">" + type_twovalue[i] + "</option>";
-      }
-      return result;
-    }
-    $(function () {
-      $("[name=type_one]").change(function () {
-        $("[name=type_two]").empty().append(createOptionByType(type_dic, $(this).val()));
-      });
-    });
-
-    function initPage() {
-      $.ajax({
-        url: "/admin/getProductTotalCount",
-        type: 'post',
-        dataType: 'json',
-        data: {pageSize: 10},
-        success: function (data) {
-          var totalPages = data.pageCount;
-          var options = {
-            bootstrapMajorVersion: 3,
-            currentPage: 1,
-            totalPages: totalPages || 0,
-            onPageClicked: function (e, originalEvent, type, page) {
-              $.ajax({
-                url: "/admin/getProductPage",
-                data: {currentPage: page, pageSize: 10},
-                dataType: 'json',
-                type: "post",
-                success: function (data) {
-                  console.log(data.resources);
-                  $('#detail_block_list_real').empty();
-                  $("#resource_detai_tmpl").tmpl(data.resources).appendTo('#detail_block_list_real');
-                }
-              })
-            }
+        function createOptionByType(type_dic, type_one) {
+          var type_twovalue = type_dic[type_one];
+          var result = '"<option value="">-- 请选择类型 --</option>"';
+          for (var i in type_twovalue) {
+            result += "<option value=" + type_twovalue[i] + ">" + type_twovalue[i] + "</option>";
           }
-          $('#pager').bootstrapPaginator(options);
-          $("#pager li a:first-child").click();
+          return result;
         }
-      });
-    }
-  </script>
+        $(function () {
+          $("[name=type_one]").change(function () {
+            $("[name=type_two]").empty().append(createOptionByType(type_dic, $(this).val()));
+          });
+        });
+
+        function initPage() {
+          $.ajax({
+            url: "/admin/getProductTotalCount",
+            type: 'post',
+            dataType: 'json',
+            data: {pageSize: 10},
+            success: function (data) {
+              var totalPages = data.pageCount;
+              var options = {
+                bootstrapMajorVersion: 3,
+                currentPage: 1,
+                totalPages: totalPages || 0,
+                onPageClicked: function (e, originalEvent, type, page) {
+                  $.ajax({
+                    url: "/admin/getProductPage",
+                    data: {currentPage: page, pageSize: 10},
+                    dataType: 'json',
+                    type: "post",
+                    success: function (data) {
+                      console.log(data.resources);
+                      $('#detail_block_list_real').empty();
+                      $("#resource_detai_tmpl").tmpl(data.resources).appendTo('#detail_block_list_real');
+                    }
+                  })
+                }
+              }
+              $('#pager').bootstrapPaginator(options);
+              $("#pager li a:first-child").click();
+            }
+          });
+        }
+      </script>
 
 
-  <script id="resource_detai_tmpl" type="text/x-jquery-tmpl">
+      <script id="resource_detai_tmpl" type="text/x-jquery-tmpl">
    <div class="media">
             <div class="media-left">
               {{if visitPath }}
@@ -342,91 +280,91 @@
             </div>
           </div>
 </script>
-  <script type="text/javascript">
+      <script type="text/javascript">
 /*     var data = [{count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'},
     {count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'}
     ];
     $("#resource_detai_tmpl").tmpl(data).appendTo('#detail_block_list_real'); */
-  </script>
+      </script>
 
-  <script>
-    $(document).ready(function () {
-      initPage();
-      $('#addCourseForm')
-        .bootstrapValidator({
-          message: 'This value is not valid',
-          container: '#errors',
-          feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-          },
-          fields: {
-            count: {
-              validators: {
-                notEmpty: {
-                  message: 'The count is required and cannot be empty'
+      <script>
+        $(document).ready(function () {
+          initPage();
+          $('#addCourseForm')
+            .bootstrapValidator({
+              message: 'This value is not valid',
+              container: '#errors',
+              feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+              },
+              fields: {
+                count: {
+                  validators: {
+                    notEmpty: {
+                      message: 'The count is required and cannot be empty'
+                    }
+                  }
+                },
+                time: {
+                  message: 'The time is not valid',
+                  validators: {
+                    notEmpty: {
+                      message: 'The time is required and cannot be empty'
+                    }
+                  }
+                },
+                level: {
+                  message: 'The level is not valid',
+                  validators: {
+                    notEmpty: {
+                      message: 'The level is required and cannot be empty'
+                    }
+                  }
                 }
               }
-            },
-            time: {
-              message: 'The time is not valid',
-              validators: {
-                notEmpty: {
-                  message: 'The time is required and cannot be empty'
-                }
-              }
-            },
-            level: {
-              message: 'The level is not valid',
-              validators: {
-                notEmpty: {
-                  message: 'The level is required and cannot be empty'
-                }
-              }
-            }
-          }
-        })
-        .on('success.form.bv', function (e) {
+            })
+            .on('success.form.bv', function (e) {
 
-          // Prevent form submission
-          e.preventDefault();
-          // Get the form instance
-          var $form = $(e.target);
-          var formData = new FormData($("#addCourseForm")[0]);
-          // console.log("origin form data" + formData);
-          $.ajax({
-            url: $form.attr('action'),
-            dataType: 'json',
-            method: 'post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            cache: false,
-            beforeSend: function () {
-              var file = $("#imageFile")[0].files[0];
-              formData.append('imageFile', $(file));
-              console.log("before send " + formData);
-            },
-            success: function (result) {
-              $("button[data-dismiss='modal']").click(); //关闭模态弹窗
-              if (result.error) {
-                $("#addCourseAlert").addClass("alert-danger").show();
-                $("#addCourseAlert > strong").html("添加课程失败");
-              } else {
-                $("#addCourseAlert").addClass("alert-success").show();
-                $("#addCourseAlert > strong").html("添加课程成功");
-                initPage();
-              }
-              setTimeout(() => {
-                $("#addCourseAlert").hide();
-              }, 2000);
-            }
-          });
+              // Prevent form submission
+              e.preventDefault();
+              // Get the form instance
+              var $form = $(e.target);
+              var formData = new FormData($("#addCourseForm")[0]);
+              // console.log("origin form data" + formData);
+              $.ajax({
+                url: $form.attr('action'),
+                dataType: 'json',
+                method: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                beforeSend: function () {
+                  var file = $("#imageFile")[0].files[0];
+                  formData.append('imageFile', $(file));
+                  console.log("before send " + formData);
+                },
+                success: function (result) {
+                  $("button[data-dismiss='modal']").click(); //关闭模态弹窗
+                  if (result.error) {
+                    $("#addCourseAlert").addClass("alert-danger").show();
+                    $("#addCourseAlert > strong").html("添加课程失败");
+                  } else {
+                    $("#addCourseAlert").addClass("alert-success").show();
+                    $("#addCourseAlert > strong").html("添加课程成功");
+                    initPage();
+                  }
+                  setTimeout(() => {
+                    $("#addCourseAlert").hide();
+                  }, 2000);
+                }
+              });
 
+            });
         });
-    });
-  </script>
+      </script>
 </body>
 
 </html>

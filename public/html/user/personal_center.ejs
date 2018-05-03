@@ -1,132 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>天涯英语-个人中心</title>
-	<link rel="icon" href="../favicon.ico">
-	<link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet"/>
-    <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>天涯英语-个人中心</title>
+  <link rel="icon" href="../favicon.ico">
+  <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" />
+  <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" />
 
-    <link href="../css/index/default.css" rel="stylesheet"/> 
-    <link href="../css/index/homeindex.css" rel="stylesheet"/>    
-    <link href="../css/index/layout.css" rel="stylesheet"/>
-    <link href="../css/pc.css" rel="stylesheet"/>
+  <link href="../css/index/default.css" rel="stylesheet" />
+  <link href="../css/index/homeindex.css" rel="stylesheet" />
+  <link href="../css/index/layout.css" rel="stylesheet" />
+  <link href="../css/pc.css" rel="stylesheet" />
 </head>
+
 <body>
-	<!-- 顶部导航 -->
-<div id="shared_layout_toper" class="clearfix">
-   <div class="container">
-    <span class="text-666">客服热线</span>
-    <span class="text-blue">&nbsp;400-777-8828</span> 
-    <ul class="pull-right list-inline">
-     <li><a href="#" target="_blank">个人中心</a></li> 
-     <li><a href="#" target="_blank">新闻动态</a></li> 
-     <li><a href="#" target="_blank">意见箱</a></li>  
-    </ul>
-   </div>
-  </div>
- 
-  <!-- 头部导航 -->
-<div id="shared_layout_header" class="clearfix">
-  <nav class="clearfix layout-header1">
-   <div class="container clearfix">
-    <div id="shared_signin" class="pull-right">
-    </div> 
-    <a href="https://www.likeshuo.com" class="pull-left"><img src="../images/logo.PNG" alt="" class="img-responsive" /></a> 
-    <span class="pull-left hidden-xs">天涯英语，与全球友人一起学习!</span>
-   </div>
-  </nav> 
-  <nav class="clearfix navbar navbar-default layout-header2">
-   <div class="container">
-    <div class="navbar-header">
-     <button type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-    </div> 
-    <div class="collapse navbar-collapse">
-     <ul class="nav navbar-nav">
-      <li class="active"><a href="/" class="text-overflow"><i class="glyphicon glyphicon-home"></i>&nbsp;<span>首页</span><span class="sr-only">(current)</span></a></li> 
-      <li><a href="/general" target="_blank" class="text-overflow">成人英语</a></li> 
-      <li><a href="/junior" target="_blank" class="text-overflow">青少英语</a></li> 
-      <li><a href="/professional" target="_blank" class="text-overflow">商务英语</a></li>
-      <li><a href="/overseas" target="_blank" class="text-overflow">海外考试</a></li>    
-     </ul>
-    </div>
-   </div>
-  </nav>
- </div>
-  
-<!-- 头像   -->
-  <div class="boxtx">
+  <!-- 顶部导航 -->
+  <%- include top %>
+    <!-- 头部导航 -->
+    <%- include nav%>
+
+
+      <!-- 头像   -->
+      <div class="boxtx">
         <div style="margin: 20px;display: inline-block">
-         <img src="../images/tx.png">
-        </div> 
+          <img src="../images/tx.png">
+        </div>
         <button type="button" class="el-button el-button--primary el-button--small">
-        <span>上传头像</span></button>
+          <span>上传头像</span>
+        </button>
         <!-- <div style="padding-left: 30px;padding-top: 50px;padding-bottom: 50px;display: inline-block;">姓名</div>  -->
-  </div>
-        
-  <!-- 管理课程 -->
-  <div style="margin-left: 375px">
-      <button type="button" class="el-button el-button--primary el-button--small">
-       <span>我的课程</span></button> 
- </div>
+      </div>
+
+      <!-- 管理课程 -->
+      <div style="margin-left: 375px">
+        <button type="button" class="el-button el-button--primary el-button--small">
+          <span>我的课程</span>
+        </button>
+      </div>
 
 
 
-    <div class="boxkc">
-            <div class="el-tabs__content">
-                    <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-                     <div id="detail_block_list" class="panel-loading">
-                      <div class="media">
-                       <div class="media-left">
-                        <img src="../images/cr.jpg"/>
-                       </div> 
-                       <div class="media-body">
-                        <div class="list-detail">
-                         <h3 class="text-red"> &yen;0 </h3> 
-                         <div>
-                          <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                         </div> 
-                         <div>
-                          <span class="text-666">服务期限：</span>&times;30天
-                         </div> 
-                         <div>
-                          <span class="text-666">适用级别：</span>L1-L12
-                         </div> 
-                         <div>
-                          <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊 
-                         </div> 
-                         <div class="detail-control"> 
-                                <div class="btn-list"> 
-                                 <button type="button" class="el-button el-button--primary el-button--small"> 
-                                  <!----> 
-                                  <!----><span>开始学习</span> 
-                                  <div class="btn-list"> 
-                                  </div></button>
-                                 <button type="button" class="el-button el-button--primary el-button--small"> 
-                                  <!----> 
-                                  <!----><span>删除课程</span></button> 
-                                </div> 
-                               </div>
-
-                         
-                               
-                         </div>
-                        </div>
-                       </div>
+      <div class="boxkc">
+        <div class="el-tabs__content">
+          <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+            <div id="detail_block_list" class="panel-loading">
+              <div class="media">
+                <div class="media-left">
+                  <img src="../images/cr.jpg" />
+                </div>
+                <div class="media-body">
+                  <div class="list-detail">
+                    <h3 class="text-red"> &yen;0 </h3>
+                    <div>
+                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
+                    </div>
+                    <div>
+                      <span class="text-666">服务期限：</span>&times;30天
+                    </div>
+                    <div>
+                      <span class="text-666">适用级别：</span>L1-L12
+                    </div>
+                    <div>
+                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
+                    </div>
+                    <div class="detail-control">
+                      <div class="btn-list">
+                        <button type="button" class="el-button el-button--primary el-button--small">
+                          <!---->
+                          <!---->
+                          <span>开始学习</span>
+                          <div class="btn-list">
+                          </div>
+                        </button>
+                        <button type="button" class="el-button el-button--primary el-button--small">
+                          <!---->
+                          <!---->
+                          <span>删除课程</span>
+                        </button>
                       </div>
-                      <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
-                       <div class="el-loading-spinner">
-                        <svg viewbox="25 25 50 50" class="circular">
-                         <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                        </svg>
-                        <!---->
-                       </div>
-                      </div>
-                     </div> 
-    </div>
-       
-     
+                    </div>
 
-          
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="el-loading-mask el-loading-fade-enter-to" style="display: none;">
+              <div class="el-loading-spinner">
+                <svg viewbox="25 25 50 50" class="circular">
+                  <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                </svg>
+                <!---->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
 </body>
+
 </html>

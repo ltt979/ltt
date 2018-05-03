@@ -23,16 +23,17 @@ module.exports = function (app) {
     //admin
     app.get('/admin/login',adminrouter.login);
     app.post('/admin/loginSubmit', adminrouter.loginSubmit);
-    app.get('/user/pcenter',userrouter.pcenter);
     app.get('/admin/administrator_coursetoadd',adminrouter.administrator_coursetoadd);
     app.post('/admin/addCourseSubmit', upload.single('imageFile'),adminrouter.addCourseSubmit);
     app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
     app.post('/admin/getProductPage', adminrouter.getProductPage);
-
-
-    //adult 
+    
+    
+    //pc
     app.get('/pc/adult',userrouter.adult);
+    app.get('/pc/pcenter',userrouter.pcenter);
     app.post('/pc/getProductTotalCount', userrouter.getProductTotalCount);
     app.post('/pc/getProductPage', userrouter.getProductPage);
+    app.post('/pc/addcourse',userrouter.addcourse);
 
 }
