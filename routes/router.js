@@ -17,8 +17,11 @@ module.exports = function (app) {
     app.get('/login', userrouter.login);
     app.post('/loginSubmit',userrouter.loginSubmit);
     app.get('/logout',userrouter.logout);
-    app.get('addcourse', userrouter.addcourse);
+    app.get('/addcourse', userrouter.addcourse);
     app.post('/ajax_username_check', urlencodedParser, userrouter.ajax_username_check);
+
+    
+  
 
     //admin
     app.get('/admin/login',adminrouter.login);
@@ -27,6 +30,7 @@ module.exports = function (app) {
     app.post('/admin/addCourseSubmit', upload.single('imageFile'),adminrouter.addCourseSubmit);
     app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
     app.post('/admin/getProductPage', adminrouter.getProductPage);
+   
     
     
     //pc

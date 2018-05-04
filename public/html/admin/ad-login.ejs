@@ -86,21 +86,21 @@
                 },
                 fields: {
                   username: {
-                    message: 'The username is not valid',
+                    message: 'The username is not exit',
                     validators: {
                       notEmpty: {
-                        message: 'The username is required'
+                        // message: 'The username is required'
                       },
                       regexp: {
                         regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'The username can only consist of alphabetical, number, dot and underscore'
+                        // message: 'The username can only consist of alphabetical, number, dot and underscore'
                       }
                     }
                   },
                   password: {
                     validators: {
                       notEmpty: {
-                        message: 'The password is required'
+                        message: 'The password is wrong'
                       }
 
                     }
