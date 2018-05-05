@@ -17,7 +17,7 @@ module.exports = Resource;
 
 Resource.getPaginator = function (currentPage, pageSize, query, callback) {
   var db = mongodb.getMongoDB();
-  db.collection(setting.resource).find(query).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id": -1}).toArray(function (err, docs) {
+  db.collection(settings.resources).find(query).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id": -1}).toArray(function (err, docs) {
     if (err) {
       console.log(error);
       return;
@@ -30,7 +30,7 @@ Resource.getPaginator = function (currentPage, pageSize, query, callback) {
 var getTotalCount = function (query) {
   return new Promise(function (reslove, reject) {
     var db = mongodb.getMongoDB();
-    db.collection(setting.resource).count(query, function (err, count) {
+    db.collection(settings.resources).count(query, function (err, count) {
       if (err) {
         reject(err);
       }
