@@ -3,6 +3,8 @@ var User = require('../modules/user');
 var Admin = require('../modules/admin');
 var Resource = require("../modules/resource");
 var path = require("path");
+var News = require("../modules/news");
+var settings = require("../settings");
 
 var getAdmin = function (req, res) {
     // 如果不存在登录的管理用户，则跳到管理员登录页
@@ -88,6 +90,16 @@ var getProductTotalCount = function (req, res) {
     });
 }
 
+var getNewsTotalCount = function (req, res) {
+    var pageSize = req.body.pageSize;
+    News.getPageCount(pageSize).then(function (pageCount) {
+        res.json({"pageCount": pageCount});
+    }).catch(function (error) {
+        console.error(error);
+        res.json({"pageCount": 10});
+    });
+}
+
 var getProductPage = function (req, res) {
     var pageSize = req.body.pageSize;
     var currentPage = req.body.currentPage;
@@ -96,7 +108,40 @@ var getProductPage = function (req, res) {
     });
 }
 
+var getNewsPage = function (req, res) {
+    var pageSize = req.body.pageSize;
+    var currentPage = req.body.currentPage;
+    News.getPaginator(currentPage, pageSize,null,function(docs){
+        res.json({"resources": docs});
+    });
+}
 
+var addnewsAjax = function(req,res){
+    var news = new News({
+        title  : req.body.title,
+        content : req.body.content,
+        createTime : new Date()
+    });
+
+    news.save(function(err,addNews){
+        if(err){
+            res.json({"msg":"添加新闻出错","error":true});
+        }else{
+            res.json({'msg':'添加新闻成功'});
+        }
+    });
+}
+
+
+var addnews = function(req,res){
+    var admin = getAdmin(req, res);
+    if (admin == null) {
+        return;
+    }
+    res.render("admin/administrator-newstoadd", {
+        user: admin
+    });
+}
 
 
 exports.login = login;
@@ -104,4 +149,8 @@ exports.loginSubmit = loginSubmit;
 exports.administrator_coursetoadd = administrator_coursetoadd;
 exports.addCourseSubmit = addCourseSubmit;
 exports.getProductTotalCount = getProductTotalCount;
+exports.getNewsTotalCount = getNewsTotalCount;
 exports.getProductPage = getProductPage;
+exports.getNewsPage = getNewsPage;
+exports.addnewsAjax = addnewsAjax;
+exports.addnews = addnews;

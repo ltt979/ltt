@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>天涯英语-管理中心-添加课程</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <!--   <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" /> -->
+  <link href="/css/Css.css" rel="stylesheet" />
+  <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" />
+  <link href="/css/index/default.css" rel="stylesheet" />
+  <link href="/css/index/homeindex.css" rel="stylesheet" />
+  <link href="/css/index/layout.css" rel="stylesheet" />
+  <link href="/css/pc.css" rel="stylesheet" />
+  <!--   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+ -->
+</head>
+<style>
+  .modal-dialog {
+    z-index: 1040;
+    width: 600px;
+  }
+</style>
+
+<body>
+  <!-- 顶部导航 -->
+  <%- include ../top %>
+    <!-- 头部导航 -->
+    <%- include admin_nav%>
+      <!-- <div style="margin: 10px 128px;"> -->
+      <div class="contrainer">
+        <button style="margin: 10px 168px" type="button" class="el-button el-button--primary el-button--small" data-toggle="modal"
+          data-target="#addNewsModal">
+          <span>添加新闻</span>
+        </button>
+        <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true"
+          data-backdrop="false">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  &times;
+                </button>
+                <h4 class="modal-title" id="addCourseModalLabel">
+                  添加新闻
+                </h4>
+              </div>
+              <form id="addNewsForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/admin/addnewsAjax"
+                method="post">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="title" class="control-label">新闻标题：</label>
+                      <input name="title" type="text" class="form-control" id="title" placeholder="2018CCTV《爱拼才会赢》，天涯英语等你来挑战" data-bv-notempty
+                        data-bv-notempty-message="新闻标题必选" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label for="content" class="control-label">内容：</label>
+                      <textarea class="form-control" id="content" form="addNewsForm" name="content"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <div id="errors"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    新增课程
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- 已有课程 -->
+        <div class="boxkc">
+          <div class="el-tabs__content">
+            <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+              <div id="detail_block_list" class="panel-loading">
+
+              </div>
+              <div class="row">
+                <div class="col-*-12" style="text-align: center;">
+                  <ul id="pager"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- message -->
+        <div style="position: absolute;width: 100%; top: 241px;">
+          <div id="addNewsAlert" class="alert" style="display : none ;text-align: center;">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong></strong>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+      <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+
+      <script id="news_detail_tmpl" type="text/x-jquery-tmpl">
+        <a href="/news/detail/{{= _id}}" style="display: block; padding : 20px; font-size: 20px;">{{= title}}</a>
+      </script>
+      <script type="text/javascript">
+/*     var data = [{count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'},
+    {count: 10, times: 23, level: 'sfsdf', bundle: 'xsfdfsd bundel'}
+    ];
+    $("#news_detail_tmpl").tmpl(data).appendTo('#detail_block_list'); */
+      </script>
+
+      <script>
+        $(document).ready(function () {
+          initPage();
+          $("#addNewsForm").bootstrapValidator({}).on('success.form.bv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+            // Get the form instance
+            var $form = $(e.target);
+            $.ajax({
+              url: $form.attr('action'),
+              dataType: 'json',
+              method: 'post',
+              data: $("#addNewsForm").serialize(),
+              cache: false,
+              beforeSend: function () {
+              },
+              success: function (result) {
+                $("button[data-dismiss='modal']").click(); //关闭模态弹窗
+                if (result.error) {
+                  $("#addNewsAlert > strong").html(result.msg);
+                  $("#addNewsAlert").addClass("alert-danger").show();
+                } else {
+                  $("#addNewsAlert > strong").html(result.msg);
+                  $("#addNewsAlert").addClass("alert-success").show();
+                  initPage();
+                }
+                setTimeout(() => {
+                  $("#addNewsAlert").hide();
+                }, 2000);
+              }
+            });
+
+          });
+
+        });
+
+        function initPage() {
+          $.ajax({
+            url: "/admin/getNewsTotalCount",
+            type: 'post',
+            dataType: 'json',
+            data: { pageSize: 10 },
+            success: function (data) {
+              var totalPages = data.pageCount;
+              var options = {
+                bootstrapMajorVersion: 3,
+                currentPage: 1,
+                totalPages: totalPages || 0,
+                onPageClicked: function (e, originalEvent, type, page) {
+                  $.ajax({
+                    url: "/admin/getNewsPage",
+                    data: { currentPage: page, pageSize: 10 },
+                    dataType: 'json',
+                    type: "post",
+                    success: function (data) {
+                      console.log(data.resources);
+                      $('#detail_block_list').empty();
+                      $("#news_detail_tmpl").tmpl(data.resources).appendTo('#detail_block_list');
+                    }
+                  })
+                }
+              }
+              $('#pager').bootstrapPaginator(options);
+              $("#pager li a:first-child").click();
+            }
+          });
+        }
+
+      </script>
+</body>
+
+</html>

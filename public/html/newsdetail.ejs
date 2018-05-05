@@ -1,35 +1,35 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
- <head> 
-  <meta charset="UTF-8" /> 
-  <title>天涯英语-新闻动态</title> 
-  <link rel="icon" href="../favicon.ico" /> 
-  <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" /> 
-  <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" /> 
-  <link href="../css/index/default.css" rel="stylesheet" /> 
-  <link href="../css/index/homeindex.css" rel="stylesheet" /> 
-  <link href="../css/index/layout.css" rel="stylesheet" /> 
-  <link href="../css/pc.css" rel="stylesheet" /> 
- </head> 
- <body> 
-  <!-- 顶部导航 -->
-  <%- include top %>
-    <!-- 头部导航 -->
-    <%- include nav%>
 
+<head>
+    <meta charset="UTF-8" />
+    <title>天涯英语-新闻动态</title>
+    <link rel="icon" href="../favicon.ico" />
+    <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" />
+    <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" />
+    <link href="../css/index/default.css" rel="stylesheet" />
+    <link href="../css/index/homeindex.css" rel="stylesheet" />
+    <link href="../css/index/layout.css" rel="stylesheet" />
+    <link href="../css/pc.css" rel="stylesheet" />
+</head>
 
- 
+<body>
+    <!-- 顶部导航 -->
+    <%- include top %>
+        <!-- 头部导航 -->
+        <%- include nav%>
+            <div style="margin-top: 50px">
+                <div style="width: 1200px;height: 3000px;background-color: white;margin: 0 auto;text-align: center">
 
-<div style="margin-top: 50px">
-    <div style="width: 1200px;height: 3000px;background-color: white;margin: 0 auto;text-align: center">
-   
-        <div class="lianjie">
-      
-    </div>
-    </div>
-</div>
+                    <div class="lianjie">
+                        <a style="display: block">
+                            <%= news.title %>
+                        </a>
+                        <%= news.content%>
+                    </div>
+                </div>
+            </div>
 
- 
- 
-  </body> 
-  </html>
+</body>
+
+</html>

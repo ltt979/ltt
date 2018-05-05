@@ -25,7 +25,7 @@ module.exports = function (app) {
     app.get('/overseas', commonrouter.overseas);
     app.get('/newsdetail', commonrouter.newsdetail);
     app.get('/administrator_suggestion', commonrouter.administrator_suggestion);
-    
+    app.get("/newsdetail/:id",commonrouter.newsdetail);
     
 
 
@@ -36,8 +36,11 @@ module.exports = function (app) {
     app.get('/admin/administrator_coursetoadd',adminrouter.administrator_coursetoadd);
     app.post('/admin/addCourseSubmit', upload.single('imageFile'),adminrouter.addCourseSubmit);
     app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
+    app.post('/admin/getNewsTotalCount', adminrouter.getNewsTotalCount);
     app.post('/admin/getProductPage', adminrouter.getProductPage);
-   
+    app.post('/admin/getNewsPage', adminrouter.getNewsPage);
+    app.get('/admin/addnews',adminrouter.addnews);
+    app.post('/admin/addnewsAjax',adminrouter.addnewsAjax);
     
     
     //pc
