@@ -30,7 +30,7 @@ var loginSubmit = function (req, res) {
             if (user.password == req.body.password && user.role === "admin") {
                 req.session.user = user;
                 req.flash('success', '管理员登录成功!');
-                res.redirect('/');//登录成功后返回主页
+                res.redirect('/admin/administrator_coursetoadd');//登录成功后返回管理中心页面
             }
         } else {
             req.flash('error', '用户名或密码错误!');

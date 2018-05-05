@@ -131,7 +131,7 @@ var logout = function (req, res) {
 
 var adult = function (req, res) {
   var user = checkLogin(req, res);
-  res.render("user/addcourse-adult1.ejs", { user: user });
+  res.render("/adult", { user: user });
 }
 
 

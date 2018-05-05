@@ -19,9 +19,16 @@ module.exports = function (app) {
     app.get('/logout',userrouter.logout);
     app.get('/addcourse', userrouter.addcourse);
     app.post('/ajax_username_check', urlencodedParser, userrouter.ajax_username_check);
-
+    app.get('/junior', commonrouter.junior); 
+    app.get('/adult', commonrouter.adult);
+    app.get('/business', commonrouter.business);
+    app.get('/overseas', commonrouter.overseas);
+    app.get('/newsdetail', commonrouter.newsdetail);
+    app.get('/administrator_suggestion', commonrouter.administrator_suggestion);
     
-  
+    
+
+
 
     //admin
     app.get('/admin/login',adminrouter.login);
