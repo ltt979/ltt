@@ -26,7 +26,16 @@ module.exports = function (app) {
     app.get('/newsdetail', commonrouter.newsdetail);
     app.get('/administrator_suggestion', commonrouter.administrator_suggestion);
     app.get("/newsdetail/:id",commonrouter.newsdetail);
-    
+    app.get("/download",commonrouter.download);
+    app.get("/addcourse_adult",commonrouter.addcourse_adult);
+    app.get("/addcourse_business",commonrouter.addcourse_business);
+    app.get("/addcourse_junior",commonrouter.addcourse_junior);
+    app.get("/addcourse_overseas",commonrouter.addcourse_overseas);
+    app.get("/newslist",commonrouter.newslist);
+    app.get("/suggestion_box",commonrouter.suggestion_box);
+    app.get("/administrator_suggestion",commonrouter.administrator_suggestion);
+
+
 
 
 

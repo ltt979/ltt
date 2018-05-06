@@ -19,7 +19,7 @@ var getAdmin = function (req, res) {
 
 var login = function (req, res) {
     var error = req.flash("error");
-    res.render('admin/ad-login', {title: '登录', error: error});
+    res.render('admin/ad_login', {title: '登录', error: error});
 }
 
 var loginSubmit = function (req, res) {
@@ -47,7 +47,7 @@ var administrator_coursetoadd = function (req, res) {
     if (admin == null) {
         return;
     }
-    res.render("admin/administrator-coursetoadd", {
+    res.render("admin/administrator_coursetoadd", {
         user: admin
     });
 }
@@ -138,7 +138,7 @@ var addnews = function(req,res){
     if (admin == null) {
         return;
     }
-    res.render("admin/administrator-newstoadd", {
+    res.render("admin/administrator_newstoadd", {
         user: admin
     });
 }
