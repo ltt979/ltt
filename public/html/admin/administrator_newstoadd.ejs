@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>天涯英语-管理中心-添加课程</title>
+  <title>新闻管理</title>
   <link rel="icon" href="/favicon.ico" />
   <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <!--   <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" /> -->
@@ -27,12 +27,18 @@
  
     <!-- 头部导航 -->
     <%- include admin_nav%>
-      <!-- <div style="margin: 10px 128px;"> -->
-      <div class="contrainer">
-        <button style="margin: 10px 168px" type="button" class="el-button el-button--primary el-button--small" data-toggle="modal"
+     <!-- 头像   --> 
+  <div class="boxtx"> 
+    <div style="margin: 20px;display: inline-block"> 
+     <img src="../images/ad.jpg" /> 
+        <button style="margin-left: 50px" type="button" class="el-button el-button--primary el-button--small" data-toggle="modal"
           data-target="#addNewsModal">
           <span>添加新闻</span>
         </button>
+    </div> 
+   </div> 
+    
+     
         <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true"
           data-backdrop="false">
           <div class="modal-dialog">

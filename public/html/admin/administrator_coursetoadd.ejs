@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>天涯英语-管理中心-添加课程</title>
+  <title>课程管理</title>
   <link rel="icon" href="/favicon.ico" />
   <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <!--   <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" /> -->
@@ -27,11 +27,18 @@
  
     <!-- 头部导航 -->
     <%- include admin_nav%>
-      <!-- 管理课程 -->
-      <div style="margin: 10px 128px;">
-        <button type="button" class="el-button el-button--primary el-button--small" data-toggle="modal" data-target="#addCourseModal">
-          <span>添加课程</span>
-        </button>
+     <!-- 头像   --> 
+  <div class="boxtx"> 
+    <div style="margin: 20px;display: inline-block"> 
+     <img src="../images/ad.jpg" />  
+      <button style="margin-left: 50px" type="button" class="el-button el-button--primary el-button--small" data-toggle="modal" data-target="#addCourseModal">
+      <span>添加课程</span>
+      </button> 
+    </div> 
+   </div> 
+  
+  
+
         <div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true"
           data-backdrop="false">
           <div class="modal-dialog">
@@ -168,38 +175,38 @@
           });
         });
 
-        function initPage() {
-          $.ajax({
-            url: "/admin/getProductTotalCount",
-            type: 'post',
-            dataType: 'json',
-            data: { pageSize: 10 },
-            success: function (data) {
-              var totalPages = data.pageCount;
-              var options = {
-                bootstrapMajorVersion: 3,
-                currentPage: 1,
-                totalPages: totalPages || 0,
-                onPageClicked: function (e, originalEvent, type, page) {
-                  $.ajax({
-                    url: "/admin/getProductPage",
-                    data: { currentPage: page, pageSize: 10 },
-                    dataType: 'json',
-                    type: "post",
-                    success: function (data) {
-                      console.log(data.resources);
-                      $('#detail_block_list_real').empty();
-                      $("#resource_detai_tmpl").tmpl(data.resources).appendTo('#detail_block_list_real');
-                    }
-                  })
-                }
-              }
-              $('#pager').bootstrapPaginator(options);
-              $("#pager li a:first-child").click();
-            }
-          });
-        }
-      </script>
+      //   function initPage() {
+      //     $.ajax({
+      //       url: "/admin/getProductTotalCount",
+      //       type: 'post',
+      //       dataType: 'json',
+      //       data: { pageSize: 10 },
+      //       success: function (data) {
+      //         var totalPages = data.pageCount;
+      //         var options = {
+      //           bootstrapMajorVersion: 3,
+      //           currentPage: 1,
+      //           totalPages: totalPages || 0,
+      //           onPageClicked: function (e, originalEvent, type, page) {
+      //             $.ajax({
+      //               url: "/admin/getProductPage",
+      //               data: { currentPage: page, pageSize: 10 },
+      //               dataType: 'json',
+      //               type: "post",
+      //               success: function (data) {
+      //                 console.log(data.resources);
+      //                 $('#detail_block_list_real').empty();
+      //                 $("#resource_detai_tmpl").tmpl(data.resources).appendTo('#detail_block_list_real');
+      //               }
+      //             })
+      //           }
+      //         }
+      //         $('#pager').bootstrapPaginator(options);
+      //         $("#pager li a:first-child").click();
+      //       }
+      //     });
+      //   }
+      // </script>
 
 
       <script id="resource_detai_tmpl" type="text/x-jquery-tmpl">

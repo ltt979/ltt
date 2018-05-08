@@ -130,6 +130,33 @@ var administrator_suggestion = function (req, res) {
   });
   // console.log(JSON.stringify(req.session.user));
 }
+
+var idea = function (req, res) {
+  var msg = req.flash("msg");
+  res.render('idea', {
+    user: req.session.user,
+    msg: msg
+  });
+  // console.log(JSON.stringify(req.session.user));
+}
+
+var teacher = function (req, res) {
+  var msg = req.flash("msg");
+  res.render('teacher', {
+    user: req.session.user,
+    msg: msg
+  });
+  // console.log(JSON.stringify(req.session.user));
+}
+
+var introduction = function (req, res) {
+  var msg = req.flash("msg");
+  res.render('introduction', {
+    user: req.session.user,
+    msg: msg
+  });
+  // console.log(JSON.stringify(req.session.user));
+}
 exports.index = index;
 exports.junior = junior;
 exports.adult = adult;
@@ -146,5 +173,8 @@ exports.addcourse_business = addcourse_business;
 exports.addcourse_junior = addcourse_junior;
 exports.addcourse_overseas = addcourse_overseas;
 exports.administrator_suggestion = administrator_suggestion;
+exports.idea = idea;
+exports.teacher = teacher;
+exports.introduction = introduction;
 
 

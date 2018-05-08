@@ -24,7 +24,6 @@ module.exports = function (app) {
     app.get('/business', commonrouter.business);
     app.get('/overseas', commonrouter.overseas);
     app.get('/newsdetail', commonrouter.newsdetail);
-    app.get('/administrator_suggestion', commonrouter.administrator_suggestion);
     app.get("/newsdetail/:id",commonrouter.newsdetail);
     app.get("/download",commonrouter.download);
     app.get("/addcourse_adult",commonrouter.addcourse_adult);
@@ -33,7 +32,9 @@ module.exports = function (app) {
     app.get("/addcourse_overseas",commonrouter.addcourse_overseas);
     app.get("/newslist",commonrouter.newslist);
     app.get("/suggestion_box",commonrouter.suggestion_box);
-    app.get("/administrator_suggestion",commonrouter.administrator_suggestion);
+    app.get("/idea",commonrouter.idea);
+    app.get("/introduction",commonrouter.introduction);
+    app.get("/teacher",commonrouter.teacher);
 
 
 
@@ -50,7 +51,7 @@ module.exports = function (app) {
     app.post('/admin/getNewsPage', adminrouter.getNewsPage);
     app.get('/admin/addnews',adminrouter.addnews);
     app.post('/admin/addnewsAjax',adminrouter.addnewsAjax);
-    
+    app.get("/admin/administrator_suggestion",adminrouter.administrator_suggestion);
     
     //pc
     app.get('/pc/adult',userrouter.adult);

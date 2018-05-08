@@ -52,6 +52,17 @@ var administrator_coursetoadd = function (req, res) {
     });
 }
 
+var administrator_suggestion = function (req, res) {
+    var admin = getAdmin(req, res);
+    if (admin == null) {
+        return;
+    }
+    res.render("admin/administrator_suggestion", {
+        user: admin
+    });
+}
+
+
 var addCourseSubmit = function (req, res) {
     var admin = getAdmin(req, res);
     if (admin == null) {
@@ -154,3 +165,4 @@ exports.getProductPage = getProductPage;
 exports.getNewsPage = getNewsPage;
 exports.addnewsAjax = addnewsAjax;
 exports.addnews = addnews;
+exports.administrator_suggestion = administrator_suggestion;
