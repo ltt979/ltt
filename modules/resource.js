@@ -1,5 +1,8 @@
+
 var mongodb = require("./mongodbUtil");
 var settings = require("../settings");
+var ObjectId = require("bson").ObjectID;
+var inspect = require('util').inspect;
 var pageSize = 10;
 function Resource(resource) {
   this.count = resource.count;
@@ -45,7 +48,52 @@ Resource.getPageCount = function (pageSize, query) {
       resolve(Math.floor(totalCount / pageSize) + (totalCount % pageSize == 0 ? 0 : 1));
     });
   });
-
-
 }
 
+Resource.getResourceByUserId = function (userId, callback) {
+  var db = mongodb.getMongoDB();
+  db.collection(settings.resources, function (err, resourceCollection) {
+    if (err) {
+      callback(err);
+      return;
+    }
+    var userCollection = db.collection(settings.user);
+    userCollection.findOne({_id: ObjectId(userId)}, function (err, user) {
+      // console.log(inspect(user));
+      if (null == user || !user.own) {
+        callback(new Error("user not found by id " + userId));
+        return;
+      }
+      
+      var ownArray = user.own;
+      var ownObjectArray = [];
+      for(var i=0;i<ownArray.length;i++){
+        ownObjectArray.push(ObjectId(ownArray[i]));
+      }
+      // console.log("own ownObjectArray is " + ownObjectArray);
+      if (!ownArray || ownArray.length == 0) {
+        callback(null, []);
+        return;
+      }
+      resourceCollection.find({
+        _id: {$in: ownObjectArray}
+      }).toArray(function (err, resources) {
+        if (err) {
+          callback(err); return;
+        }
+        callback(null, resources);
+      });
+    });
+  })
+}
+
+//test of getResourceByUserId
+// setTimeout(() => {
+//   Resource.getResourceByUserId('5af2ee686809071e70d06a17',function(err,resoures){
+//     if(err){
+//       console.log(err);
+//       return;
+//     }
+//     console.log("resourc of the user is " + inspect(resoures));
+//   });
+// }, 2000);
