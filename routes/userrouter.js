@@ -4,38 +4,56 @@ var Resource = require('../modules/resource');
 
 
 var reg = function (req, res) {
-  res.render('register', { title: '注册' });
+  res.render('register', {title: '注册'});
 }
 var login = function (req, res) {
-  res.render('login', { title: '登录' });
+  res.render('login', {title: '登录'});
 }
+// ajax add course
 var addcourse = function (req, res) {
   var user = checkLogin(req, res);
   var courseID = req.body.courseID;
-  if(!courseID){
-    res.json({ "msg": "请选择需要添加的课程" });
+  if (!courseID) {
+    res.json({"msg": "请选择需要添加的课程"});
   }
   User.addCourse(user._id, courseID, function (err, updateUser) {
     if (err) {
-      res.json({ "msg": "添加课程出错" });
+      res.json({"msg": "添加课程出错"});
     }
     if (updateUser != null) {
       req.session.user = updateUser;
-      res.json({ "msg": "添加成功" });
+      res.json({"msg": "添加成功", "success": true});
     }
   });
+}
 
+// ajax add course
+var delcourseAjax = function (req, res) {
+  var user = checkLogin(req, res);
+  var courseID = req.body.courseID;
+  if (!courseID) {
+    res.json({"msg": "请选择需要移除的课程"});
+  }
+  User.delCourse(user._id, courseID, function (err, updateUser) {
+    if (err) {
+      res.json({"msg": "移除课程出错"});
+    }
+    if (updateUser != null) {
+      req.session.user = updateUser;
+      res.json({"msg": "移除成功", "success": true});
+    }
+  });
 }
 
 var ajax_username_check = function (req, res) {
   User.get(req.body.username, function (err, user) {
     if (err) {
-      res.json({ valid: false });
+      res.json({valid: false});
     } else {
       if (null == user) {
-        res.json({ valid: true });
+        res.json({valid: true});
       } else {
-        res.json({ valid: false });
+        res.json({valid: false});
       }
     }
   })
@@ -79,8 +97,8 @@ var regSubmit = function (req, res) {
       }
       req.session.user = user;//用户信息存入 session
       req.flash('success', '注册成功!');
-      // res.redirect('/');//注册成功后返回主页
-      pcenter(req, res);
+      res.redirect('/pc/pcenter');//注册成功后返回主页
+      // pcenter(req, res);
     });
   });
 }
@@ -107,7 +125,7 @@ var loginSubmit = function (req, res) {
 
 var pcenter = function (req, res) {
   var user = checkLogin(req, res);
-  res.render('user/personal_center', { user: user });
+  res.render('user/personal_center', {user: user});
 }
 
 var checkLogin = function (req, res) {
@@ -131,7 +149,7 @@ var logout = function (req, res) {
 
 var adult = function (req, res) {
   var user = checkLogin(req, res);
-  res.render("/adult", { user: user });
+  res.render("/adult", {user: user});
 }
 
 
@@ -144,10 +162,10 @@ var getProductTotalCount = function (req, res) {
     type_two: type_two
   }
   Resource.getPageCount(pageSize, query).then(function (pageCount) {
-    res.json({ "pageCount": pageCount });
+    res.json({"pageCount": pageCount});
   }).catch(function (error) {
     console.error(error);
-    res.json({ "pageCount": 10 });
+    res.json({"pageCount": 10});
   });
 }
 
@@ -160,18 +178,26 @@ var getProductPage = function (req, res) {
     type_two: req.body.type_two
   }
   Resource.getPaginator(currentPage, pageSize, query, function (docs) {
-    for(var i in docs){
-      if(user.own && user.own.indexOf(docs[i]["_id"].toHexString())>-1){
+    for (var i in docs) {
+      if (user.own && user.own.indexOf(docs[i]["_id"].toHexString()) > -1) {
         docs[i].owned = true;
-      }else{
+      } else {
         docs[i].owned = false;
       }
     }
-    res.json({ "resources": docs });
+    res.json({"resources": docs});
   });
 }
 
-
+var getResourceByUserIdAjax = function (req, res) {
+  var user = checkLogin(req, res);
+  Resource.getResourceByUserId(user._id, function (err, resources) {
+    if (err) {
+      res.json({"msg": err});
+    }
+    res.json({"success": true, resources: resources});
+  })
+}
 
 
 
@@ -187,3 +213,5 @@ exports.logout = logout;
 exports.adult = adult;
 exports.getProductTotalCount = getProductTotalCount;
 exports.getProductPage = getProductPage;
+exports.delcourseAjax = delcourseAjax;
+exports.getResourceByUserIdAjax = getResourceByUserIdAjax;

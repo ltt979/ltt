@@ -5,6 +5,6 @@ module.exports = {
     port: 27017,
     news : "news",
     resources : "resources",
-    user : "user",
+    user : "users",
     session : "session"
   }; 

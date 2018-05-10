@@ -59,5 +59,7 @@ module.exports = function (app) {
     app.post('/pc/getProductTotalCount', userrouter.getProductTotalCount);
     app.post('/pc/getProductPage', userrouter.getProductPage);
     app.post('/pc/addcourse',userrouter.addcourse);
+    app.post('/pc/delcourseAjax', userrouter.delcourseAjax);
+    app.post('/pc/getResourceByUserIdAjax', userrouter.getResourceByUserIdAjax);
 
 }

@@ -125,13 +125,13 @@
                   <div class="detail-control">
                       <div class="btn-list">
                          {{if !owned}}
-                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small">
+                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small add">
                               立即添加
                           </button>
                           {{/if}}
                           {{if owned}}
-                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small">
-                              立即添加
+                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small del">
+                              立即移除
                           </button>
                           {{/if}}
                       </div>
@@ -162,7 +162,7 @@
               url: "/pc/getProductTotalCount",
               type: 'post',
               dataType: 'json',
-              data: { pageSize: 10, type_one: type_one, type_two: type_two },
+              data: {pageSize: 10, type_one: type_one, type_two: type_two},
               success: function (data) {
                 var totalPages = data.pageCount;
                 var options = {
@@ -172,11 +172,11 @@
                   onPageClicked: function (e, originalEvent, type, page) {
                     $.ajax({
                       url: "/pc/getProductPage",
-                      data: { currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two },
+                      data: {currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two},
                       dataType: 'json',
                       type: "post",
                       success: function (data) {
-                        console.log(data.resources);
+                        // console.log(data.resources);
                         $container.empty();
                         $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
                       }
@@ -197,33 +197,56 @@
             initPage("成人英语", $(val).html().trim(), $("#" + pane).find("div#detail_block_list"), $("#" + pane).find("#pager"))
           });
 
-          $(document).on('click', ".detail-control button", function (e) {
-          debugger;
-          var courseID = $(e.target).data('id');
-          if (!courseID) {
-            alert("請選擇需要添加的課程");
-            return false;
-          }
-          $.ajax({
-            url: '/pc/addcourse',
-            data: { courseID: courseID },
-            dataType: 'json',
-            type: "post",
-            success: function (data) {
-              $("#myModal .modal-body").html(data.msg);
-              $("#myModal").modal();
+          $(document).on('click', ".detail-control button.add", function (e) {
+            var courseID = $(e.target).data('id');
+            if (!courseID) {
+              alert("请选择需要添加的课程");
+              return false;
             }
+            $.ajax({
+              url: '/pc/addcourse',
+              data: {courseID: courseID},
+              dataType: 'json',
+              type: "post",
+              success: function (data) {
+                $("#myModal .modal-body").html(data.msg);
+                $("#myModal").modal();
+                debugger;
+                if(data.success){
+                  $(e.target).removeClass("add").addClass("del").html("立即移除");
+                }
+              }
+            });
           });
+          $(document).on('click', ".detail-control button.del", function (e) {
+            var courseID = $(e.target).data('id');
+            if (!courseID) {
+              alert("请选择需要移除的课程");
+              return false;
+            }
+            $.ajax({
+              url: '/pc/delcourseAjax',
+              data: {courseID: courseID},
+              dataType: 'json',
+              type: "post",
+              success: function (data) {
+                $("#myModal .modal-body").html(data.msg);
+                $("#myModal").modal();
+                if (data.success) {
+                  debugger;
+                  $(e.target).removeClass("del").addClass("add").html("立即添加");
+                }
+              }
+            });
           });
-
         </script>
 </body>
 
 </html>
 
- <!--成人口语 -->
-     
- <!-- <div class="el-tabs__content">
+<!--成人口语 -->
+
+<!-- <div class="el-tabs__content">
     <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
       <div id="detail_block_list_real" class="panel-loading">
          <div class="media">

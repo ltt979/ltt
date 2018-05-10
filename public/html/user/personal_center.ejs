@@ -15,71 +15,92 @@
 </head>
 
 <body>
-<!-- 顶部导航 -->
-<%- include ../top %>
-  <!-- 头部导航 -->
-  <%- include ../nav%>
+  <!-- 顶部导航 -->
+  <%- include ../top %>
+    <!-- 头部导航 -->
+    <%- include ../nav%>
 
 
       <!-- 头像   -->
-      <div class="boxtx">
+      <!--      <div class="boxtx">
         <div style="margin: 20px;display: inline-block">
           <img src="../images/tx.jpg">
         </div>
-      </div>
-      
+      </div> -->
+
       <!-- 管理课程 -->
-      <div style="margin-left: 375px">
+      <!--    <div style="margin-left: 375px">
         <button type="button" class="el-button el-button--primary el-button--small">
           <span>我的课程</span>
         </button>
-      </div>
-
-
-
+      </div> -->
       <div class="boxkc">
         <div class="el-tabs__content">
           <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
             <div id="detail_block_list" class="panel-loading">
-              <div class="media">
-                <div class="media-left">
-                  <img src="../images/cr.jpg" />
-                </div>
-                <div class="media-body">
-                  <div class="list-detail">
-                    <h3 class="text-red"> &yen;0 </h3>
-                    <div>
-                      <span class="text-666">课程数量：</span>私教课(45分钟) &times; 3节 / 小班课(45分钟) &times; 3节 / 讲堂课(45分钟) &times; 15节
-                    </div>
-                    <div>
-                      <span class="text-666">服务期限：</span>&times;30天
-                    </div>
-                    <div>
-                      <span class="text-666">适用级别：</span>L1-L12
-                    </div>
-                    <div>
-                      <span class="text-666">额外赠送：</span>赠送16U币 / 学习指导 / 英语胶囊
-                    </div>
-                    <div class="detail-control">
-                      <div class="btn-list">
-                        <button type="button" class="el-button el-button--primary el-button--small">
-              <!-- 添加a标签之后 “开始学习”的字样就被挡住了  but i don't know why -->
-                          <a href="/download"><span>开始学习</span></a> 
-                          <div class="btn-list">
-                          </div>
-                        </button>
-                        <button type="button" class="el-button el-button--primary el-button--small">
-                          <span>删除课程</span>
-                        </button>
-                     </div>
-                   </div>
-                 </div>
-              </div>
+
+
             </div>
           </div>
-       </div>
+        </div>
       </div>
-    </div>
+      <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+      <script id="resource_detail_tmpl" type="text/x-jquery-tmpl">
+                                  <div class="media">
+                                    <div class="media-left">
+                                    {{if visitPath }}
+                                     <img src="${visitPath}" width=300px height=189px /> {{else}}
+                                     <img src="\images\cr.jpg" width=300px height=189px /> {{/if}}
+                                   </div>
+                                    <div class="media-body">
+                                      <div class="list-detail">
+                                        <h3 class="text-red"> &yen;0 </h3>
+                                        <div>
+                                          <span class="text-666">课程数量：</span>${count}
+                                        </div>
+                                        <div>
+                                          <span class="text-666">服务期限：</span>${time}
+                                        </div>
+                                        <div>
+                                          <span class="text-666">适用级别：</span>${level}
+                                        </div>
+                                        <div>
+                                          <span class="text-666">额外赠送：</span>${bundle}
+                                        </div>
+                                        <div class="detail-control">
+                                          <div class="btn-list">
+                                            <button type="button" class="el-button el-button--primary el-button--small">
+                                              <span>开始学习</span>
+                                            </button>
+                                            <button type="button" class="el-button el-button--primary el-button--small">
+                                              <span>删除课程</span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </script>
+      <script>
+        $(function () {
+          $.ajax({
+            url: "/pc/getResourceByUserIdAjax",
+            data: {},
+            dataType: 'json',
+            type: "post",
+            success: function (data) {
+              var $container = $("#detail_block_list");
+              $container.empty();
+              debugger;
+              var $tempval = $("#resource_detail_tmpl").tmpl(data.resources);
+              $tempval.appendTo($container);
+            }
+          })
+        });
+      </script>
 </body>
-</html>
 
+</html>
