@@ -7,7 +7,6 @@
   <link rel="icon" href="/favicon.ico">
   <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/Css.css" rel="stylesheet" />
-
   <link href="/css/index/default.css" rel="stylesheet" />
   <link href="/css/index/homeindex.css" rel="stylesheet" />
   <link href="/css/index/layout.css" rel="stylesheet" />
@@ -80,166 +79,107 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
+              <div role="tabpanel" id="pane-3" aria-labelledby="tab-3" class="el-tab-pane" style="display:none;">
+                <div id="detail_block_list" class="panel-loading">
+                </div>
+                <div class="row">
+                  <div class="col-*-12" style="text-align: center;">
+                    <ul id="pager"></ul>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" id="pane-4" aria-labelledby="tab-4" class="el-tab-pane" style="display:none;">
+                <div id="detail_block_list" class="panel-loading">
+                </div>
+                <div class="row">
+                  <div class="col-*-12" style="text-align: center;">
+                    <ul id="pager"></ul>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" id="pane-5" aria-labelledby="tab-5" class="el-tab-pane" style="display:none;">
+                <div id="detail_block_list" class="panel-loading">
+                </div>
+                <div class="row">
+                  <div class="col-*-12" style="text-align: center;">
+                    <ul id="pager"></ul>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" id="pane-6" aria-labelledby="tab-6" class="el-tab-pane" style="display:none;">
+                <div id="detail_block_list" class="panel-loading">
+                </div>
+                <div class="row">
+                  <div class="col-*-12" style="text-align: center;">
+                    <ul id="pager"></ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <%- include modal%>
+          <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+          <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+          <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+          <script type="text/javascript" src="/html/user/user_common.js"></script>
 
-        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
-        <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
-
-        <script id="resource_detail_tmpl" type="text/x-jquery-tmpl">
-      <div class="media">
-          <div class="media-left">
-              {{if visitPath }}
-              <img src="${visitPath}" width=300px height=189px /> {{else}}
-              <img src="\images\cr.jpg" width=300px height=189px /> {{/if}}
-          </div>
-          <div class="media-body">
-              <div class="list-detail">
-                  <h3 class="text-red"> &yen;0 </h3>
-                  <div>
-                      <span class="text-666">课程数量：</span> ${count}
-                  </div>
-                  <div>
-                      <span class="text-666">服务期限：</span>${time}
-                  </div>
-                  <div>
-                      <span class="text-666">适用级别：</span>${level}
-                  </div>
-                  <div>
-                      <span class="text-666">额外赠送：</span>${bundle}
-                  </div>
-                  <div class="detail-control">
-                      <div class="btn-list">
-                         {{if !owned}}
-                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small add">
-                              立即添加
-                          </button>
-                          {{/if}}
-                          {{if owned}}
-                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small del">
-                              立即移除
-                          </button>
-                          {{/if}}
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>      
-    </script>
-
-        <script>
-          $(function () {
-            //导航栏点击事件
-            $(".el-tabs__nav div").click(function () {
-              $(this).siblings().removeClass("is-active");
-              $(this).addClass("is-active");
-              $(".el-tabs__content").children().hide();
-              var showContentId = $(this).attr("aria-controls");
-              $("#" + showContentId).show();
-            });
-
-
-
-
-          });
-
-          function initPage(type_one, type_two, $container, $pager) {
-            $.ajax({
-              url: "/pc/getProductTotalCount",
-              type: 'post',
-              dataType: 'json',
-              data: {pageSize: 10, type_one: type_one, type_two: type_two},
-              success: function (data) {
-                var totalPages = data.pageCount;
-                var options = {
-                  bootstrapMajorVersion: 3,
-                  currentPage: 1,
-                  totalPages: totalPages || 1,
-                  onPageClicked: function (e, originalEvent, type, page) {
-                    $.ajax({
-                      url: "/pc/getProductPage",
-                      data: {currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two},
-                      dataType: 'json',
-                      type: "post",
-                      success: function (data) {
-                        // console.log(data.resources);
-                        $container.empty();
-                        $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
-                      }
-                    })
-                  }
-                }
-                // $('#pager').bootstrapPaginator(options);
-                // $("#pager li a:first-child").click();
-                $pager.bootstrapPaginator(options);
-                $pager.find("li a:first-child").click();
-              }
-            });
-          }
-
-          $.each($(".el-tabs__nav div"), function (index, val) {
-            // initPage("成人英语", "成人口语", $("#pane-1").find("div#detail_block_list"), $("#pane-1").find("#pager"))
-            var pane = $(val).attr("aria-controls");
-            initPage("成人英语", $(val).html().trim(), $("#" + pane).find("div#detail_block_list"), $("#" + pane).find("#pager"))
-          });
-
-          $(document).on('click', ".detail-control button.add", function (e) {
-            var courseID = $(e.target).data('id');
-            if (!courseID) {
-              alert("请选择需要添加的课程");
-              return false;
-            }
-            $.ajax({
-              url: '/pc/addcourse',
-              data: {courseID: courseID},
-              dataType: 'json',
-              type: "post",
-              success: function (data) {
-                $("#myModal .modal-body").html(data.msg);
-                $("#myModal").modal();
-                debugger;
-                if(data.success){
-                  $(e.target).removeClass("add").addClass("del").html("立即移除");
-                }
-              }
-            });
-          });
-          $(document).on('click', ".detail-control button.del", function (e) {
-            var courseID = $(e.target).data('id');
-            if (!courseID) {
-              alert("请选择需要移除的课程");
-              return false;
-            }
-            $.ajax({
-              url: '/pc/delcourseAjax',
-              data: {courseID: courseID},
-              dataType: 'json',
-              type: "post",
-              success: function (data) {
-                $("#myModal .modal-body").html(data.msg);
-                $("#myModal").modal();
-                if (data.success) {
+          <%- include tmpl%>
+            <script>
+              $(function () {
+                $.each($(".el-tabs__nav div"), function (index, val) {
+                  // initPage("成人英语", "成人口语", $("#pane-1").find("div#detail_block_list"), $("#pane-1").find("#pager"))
+                  var pane = $(val).attr("aria-controls");
+                  initPage("成人英语", $(val).html().trim(), $("#" + pane).find("div#detail_block_list"), $("#" + pane).find("#pager"))
+                });
+                //导航栏点击事件
+                $(".el-tabs__nav div").click(function () {
                   debugger;
-                  $(e.target).removeClass("del").addClass("add").html("立即添加");
-                }
+                  $(this).siblings().removeClass("is-active");
+                  $(this).addClass("is-active");
+                  $(".el-tabs__content").children().hide();
+                  var showContentId = $(this).attr("aria-controls");
+                  $("#" + showContentId).show();
+                });
+              });
+
+              function initPage(type_one, type_two, $container, $pager) {
+                $.ajax({
+                  url: "/pc/getProductTotalCount",
+                  type: 'post',
+                  dataType: 'json',
+                  data: {pageSize: 10, type_one: type_one, type_two: type_two},
+                  success: function (data) {
+                    var totalPages = data.pageCount;
+                    var options = {
+                      bootstrapMajorVersion: 3,
+                      currentPage: 1,
+                      totalPages: totalPages || 1,
+                      onPageClicked: function (e, originalEvent, type, page) {
+                        $.ajax({
+                          url: "/pc/getProductPage",
+                          data: {currentPage: page, pageSize: 10, type_one: type_one, type_two: type_two},
+                          dataType: 'json',
+                          type: "post",
+                          success: function (data) {
+                            // console.log(data.resources);
+                            $container.empty();
+                            $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
+                          }
+                        })
+                      }
+                    }
+                    // $('#pager').bootstrapPaginator(options);
+                    // $("#pager li a:first-child").click();
+                    $pager.bootstrapPaginator(options);
+                    $pager.find("li a:first-child").click();
+                  }
+                });
               }
-            });
-          });
-        </script>
+
+
+            </script>
 </body>
 
 </html>

@@ -132,6 +132,7 @@ var checkLogin = function (req, res) {
   var user = req.session.user;
   if (!user || !user.name) {
     login(req, res);
+    return;
   } else {
     return user;
   }
@@ -174,8 +175,10 @@ var getProductPage = function (req, res) {
   var pageSize = req.body.pageSize;
   var currentPage = req.body.currentPage;
   var query = {
-    type_one: req.body.type_one,
-    type_two: req.body.type_two
+    type_one: req.body.type_one
+  }
+  if (req.body.type_two){
+    query.type_two = req.body.type_two;
   }
   Resource.getPaginator(currentPage, pageSize, query, function (docs) {
     for (var i in docs) {
@@ -194,6 +197,13 @@ var getResourceByUserIdAjax = function (req, res) {
   Resource.getResourceByUserId(user._id, function (err, resources) {
     if (err) {
       res.json({"msg": err});
+    }
+    for (var i in resources) {
+      if (user.own && user.own.indexOf(resources[i]["_id"].toHexString()) > -1) {
+        resources[i].owned = true;
+      } else {
+        resources[i].owned = false;
+      }
     }
     res.json({"success": true, resources: resources});
   })

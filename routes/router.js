@@ -44,7 +44,7 @@ module.exports = function (app) {
     app.get('/admin/login',adminrouter.login);
     app.post('/admin/loginSubmit', adminrouter.loginSubmit);
     app.get('/admin/administrator_coursetoadd',adminrouter.administrator_coursetoadd);
-    app.post('/admin/addCourseSubmit', upload.single('imageFile'),adminrouter.addCourseSubmit);
+    app.post('/admin/addCourseSubmit', upload.fields([{name : 'imageFile'},{name :"zipFile"}]),adminrouter.addCourseSubmit);
     app.post('/admin/getProductTotalCount', adminrouter.getProductTotalCount);
     app.post('/admin/getNewsTotalCount', adminrouter.getNewsTotalCount);
     app.post('/admin/getProductPage', adminrouter.getProductPage);
@@ -52,6 +52,7 @@ module.exports = function (app) {
     app.get('/admin/addnews',adminrouter.addnews);
     app.post('/admin/addnewsAjax',adminrouter.addnewsAjax);
     app.get("/admin/administrator_suggestion",adminrouter.administrator_suggestion);
+    app.post("/admin/delcourseAjax", adminrouter.delcourseAjax);
     
     //pc
     app.get('/pc/adult',userrouter.adult);

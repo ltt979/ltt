@@ -1,0 +1,20 @@
+path util http file 
+https://nodejs.org/dist/latest-v8.x/docs/api/path.html
+
+服务，是node自带的
+https://nodejs.org/dist/latest-v8.x/docs/api/http.html#http_http_createserver_requestlistener
+
+npm install 在node_modules文件夹下
+express框架就是mvc模型
+
+session
+https://www.npmjs.com/package/express-session
+
+express
+https://www.cnblogs.com/qingjing/p/6563894.html
+
+jquery tmpl 前端模板
+https://blog.csdn.net/doulvme/article/details/76613480
+
+jquery api
+http://jquery.cuishifeng.cn/

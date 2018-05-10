@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <title>添加课程</title>
   <link rel="icon" href="../favicon.ico">
-  <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" />
-  <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" />
-
+  <!-- <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" />
+  <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" /> -->
+  <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/Css.css" rel="stylesheet" />
   <link href="../css/index/default.css" rel="stylesheet" />
   <link href="../css/index/homeindex.css" rel="stylesheet" />
   <link href="../css/index/layout.css" rel="stylesheet" />
@@ -15,10 +16,10 @@
 </head>
 
 <body>
-<!-- 顶部导航 -->
-<%- include ../top %>
-  <!-- 头部导航 -->
-  <%- include ../nav%>
+  <!-- 顶部导航 -->
+  <%- include ../top %>
+    <!-- 头部导航 -->
+    <%- include ../nav%>
       <div class="renderbody">
         <div id="product_detail_index" class="container">
           <div class="el-tabs el-tabs--top">
@@ -34,8 +35,32 @@
                 </div>
               </div>
             </div>
-
- 
+          </div>
+          <div class="el-tabs__content">
+            <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+              <div id="detail_block_list" class="panel-loading">
+              </div>
+              <div class="row">
+                <div class="col-*-12" style="text-align: center;">
+                  <ul id="pager"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include modal%>
+        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+        <script type="text/javascript" src="/html/user/user_common.js"></script>
+        <%- include tmpl%>
+          <script>
+            $(function () {
+              initPage('商务英语');
+            });
+          </script>
 </body>
 
 </html>

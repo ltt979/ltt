@@ -25,6 +25,6 @@ resource
     "type_one" : "成人英语",
     "type_two" : "成人口语",
     "operator" : "5ae6e85f9305339df42adffe",
-    "visitPath" : "\\uploads\\d62bfa019a7a429edef1f30efeb2ef56-ckk.jpg",
+    "imagePath" : "\\uploads\\d62bfa019a7a429edef1f30efeb2ef56-ckk.jpg",
     "createTime" : ISODate("2018-05-03T08:54:02.073Z")
 }

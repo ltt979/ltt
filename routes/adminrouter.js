@@ -68,8 +68,10 @@ var addCourseSubmit = function (req, res) {
     if (admin == null) {
         return;
     }
-    var filePath = req.file.path; 
-    var visitPath = filePath.slice(filePath.indexOf("public") + 6).replace("/\\/g", "/")
+    var imageFilePath = req.files.imageFile[0].path;
+    var imagePath = imageFilePath.slice(imageFilePath.indexOf("public") + 6).replace("/\\/g", "/")
+    var zipFilePath = req.files.zipFile[0].path;
+    var zipPath = zipFilePath.slice(zipFilePath.indexOf("public") + 6).replace("/\\/g", "/")
 
     var resource = {
         count: req.body.count,
@@ -78,8 +80,9 @@ var addCourseSubmit = function (req, res) {
         bundle: req.body.bundle,
         type_one: req.body.type_one,
         type_two: req.body.type_two,
-        operator : admin._id,
-        visitPath: visitPath
+        operator: admin._id,
+        imagePath: imagePath,
+        zipPath: zipPath
     }
     Admin.addCourse(resource, function (error, resource) {
         if (error) {
@@ -114,7 +117,7 @@ var getNewsTotalCount = function (req, res) {
 var getProductPage = function (req, res) {
     var pageSize = req.body.pageSize;
     var currentPage = req.body.currentPage;
-    Resource.getPaginator(currentPage, pageSize,null,function(docs){
+    Resource.getPaginator(currentPage, pageSize, null, function (docs) {
         res.json({"resources": docs});
     });
 }
@@ -122,35 +125,55 @@ var getProductPage = function (req, res) {
 var getNewsPage = function (req, res) {
     var pageSize = req.body.pageSize;
     var currentPage = req.body.currentPage;
-    News.getPaginator(currentPage, pageSize,null,function(docs){
+    News.getPaginator(currentPage, pageSize, null, function (docs) {
         res.json({"resources": docs});
     });
 }
 
-var addnewsAjax = function(req,res){
+var addnewsAjax = function (req, res) {
     var news = new News({
-        title  : req.body.title,
-        content : req.body.content,
-        createTime : new Date()
+        title: req.body.title,
+        content: req.body.content,
+        createTime: new Date()
     });
 
-    news.save(function(err,addNews){
-        if(err){
-            res.json({"msg":"添加新闻出错","error":true});
-        }else{
-            res.json({'msg':'添加新闻成功'});
+    news.save(function (err, addNews) {
+        if (err) {
+            res.json({"msg": "添加新闻出错", "error": true});
+        } else {
+            res.json({'msg': '添加新闻成功'});
         }
     });
 }
 
 
-var addnews = function(req,res){
+var addnews = function (req, res) {
     var admin = getAdmin(req, res);
     if (admin == null) {
         return;
     }
     res.render("admin/administrator_newstoadd", {
         user: admin
+    });
+}
+
+var delcourseAjax = function (req, res) {
+    var admin = getAdmin(req, res);
+    if (admin == null) {
+        return;
+    }
+    var courseId = req.body.courseID;
+    if (!courseId) {
+        res.json({"error": true, "msg": "请选择需要移除的课程"});
+        return;
+    }
+    Resource.delResourceById(courseId, function (err, result) {
+        if (err) {
+            res.json({"error": true, "msg": "删除课程出错，请联系管理员"});
+            return;
+        } else {
+            res.json({"msg": "删除成功"})
+        }
     });
 }
 
@@ -166,3 +189,4 @@ exports.getNewsPage = getNewsPage;
 exports.addnewsAjax = addnewsAjax;
 exports.addnews = addnews;
 exports.administrator_suggestion = administrator_suggestion;
+exports.delcourseAjax = delcourseAjax;

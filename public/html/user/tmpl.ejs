@@ -1,0 +1,41 @@
+<script id="resource_detail_tmpl" type="text/x-jquery-tmpl">
+      <div class="media">
+          <div class="media-left">
+              {{if imagePath }}
+              <img src="${imagePath}" width=300px height=189px /> {{else}}
+              <img src="\images\cr.jpg" width=300px height=189px /> {{/if}}
+          </div>
+          <div class="media-body">
+              <div class="list-detail">
+                  <h3 class="text-red"> &yen;0 </h3>
+                  <div>
+                      <span class="text-666">课程数量：</span> ${count}
+                  </div>
+                  <div>
+                      <span class="text-666">服务期限：</span>${time}
+                  </div>
+                  <div>
+                      <span class="text-666">适用级别：</span>${level}
+                  </div>
+                  {{if $data.bundle}}
+                  <div>
+                      <span class="text-666">额外赠送：</span>${bundle}
+                  </div>
+                  {{/if}}
+                  <div class="detail-control">
+                      <div class="btn-list">
+                         {{if !$data.owned}}
+                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small add">
+                              立即添加
+                          </button>
+                          {{else}}
+                          <button data-id="${_id}" type="button" class="el-button el-button--primary el-button--small del">
+                              立即移除
+                          </button>
+                          {{/if}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>      
+    </script>

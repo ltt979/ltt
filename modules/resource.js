@@ -64,10 +64,10 @@ Resource.getResourceByUserId = function (userId, callback) {
         callback(new Error("user not found by id " + userId));
         return;
       }
-      
+
       var ownArray = user.own;
       var ownObjectArray = [];
-      for(var i=0;i<ownArray.length;i++){
+      for (var i = 0; i < ownArray.length; i++) {
         ownObjectArray.push(ObjectId(ownArray[i]));
       }
       // console.log("own ownObjectArray is " + ownObjectArray);
@@ -87,6 +87,14 @@ Resource.getResourceByUserId = function (userId, callback) {
   })
 }
 
+
+Resource.delResourceById = function (resourceId, callback) {
+  var db = mongodb.getMongoDB();
+  var resourcesCol = db.collection(settings.resources);
+  resourcesCol.findOneAndDelete({_id: ObjectId(resourceId)}, function (err, result) {
+    callback(err, result);
+  });
+}
 //test of getResourceByUserId
 // setTimeout(() => {
 //   Resource.getResourceByUserId('5af2ee686809071e70d06a17',function(err,resoures){
@@ -96,4 +104,13 @@ Resource.getResourceByUserId = function (userId, callback) {
 //     }
 //     console.log("resourc of the user is " + inspect(resoures));
 //   });
+// }, 2000);
+//test delResourceById
+// setTimeout(() => {
+//   Resource.delResourceById('5af4238241a05823e88319ee',function(err,result){
+//     if(err){
+//       console.log(err);
+//     }
+//     console.log(inspect(result));
+//   })
 // }, 2000);
