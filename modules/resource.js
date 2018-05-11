@@ -114,3 +114,20 @@ Resource.delResourceById = function (resourceId, callback) {
 //     console.log(inspect(result));
 //   })
 // }, 2000);
+
+
+Resource.getById = function (id, callback) {
+  var db = mongodb.getMongoDB();
+  db.collection(settings.resources).findOne({_id: ObjectId(id)}, function (err, result) {
+    if (err) {
+      console.error(error);
+      callback(err);
+      return;
+    }
+    if (!result) {
+      callback(new Error("沒有找到对应的课程"));
+      return;
+    }
+    return callback(null, result);
+  });
+}

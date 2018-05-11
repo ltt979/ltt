@@ -1,5 +1,6 @@
 var News = require("../modules/news");
 var Suggestion = require("../modules/suggestion");
+var Resource = require("../modules/resource");
 
 var index = function (req, res) {
   var msg = req.flash("msg");
@@ -58,6 +59,20 @@ var newsdetail = function (req, res) {
     res.render("newsdetail", {
       user: req.session.user,
       news: theNews
+    });
+  })
+}
+
+var resourceDetail = function (req, res) {
+  var resourceId = req.params.id;
+  Resource.getById(resourceId, function (err, resource) {
+    if (err) {
+      req.flash("msg", "未找新闻，为您跳转到主页。");
+      return index(req, res);
+    }
+    res.render("download", {
+      user: req.session.user,
+      resource: resource
     });
   })
 }
@@ -221,5 +236,6 @@ exports.teacher = teacher;
 exports.introduction = introduction;
 exports.getNewsPage = getNewsPage;
 exports.getNewsTotalCount = getNewsTotalCount;
+exports.resourceDetail = resourceDetail;
 
 

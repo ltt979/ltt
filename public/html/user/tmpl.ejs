@@ -1,9 +1,11 @@
 <script id="resource_detail_tmpl" type="text/x-jquery-tmpl">
       <div class="media">
           <div class="media-left">
+              <a href="/resourceDetail/${_id}">
               {{if imagePath }}
               <img src="${imagePath}" width=300px height=189px /> {{else}}
               <img src="\images\cr.jpg" width=300px height=189px /> {{/if}}
+              </a>
           </div>
           <div class="media-body">
               <div class="list-detail">

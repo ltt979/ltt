@@ -36,6 +36,7 @@ module.exports = function (app) {
     app.get("/teacher", commonrouter.teacher);
     app.post('/common/getNewsPage', commonrouter.getNewsPage);
     app.post('/common/getNewsTotalCount', commonrouter.getNewsTotalCount);
+    app.get('/resourceDetail/:id', commonrouter.resourceDetail);
 
     //admin
     app.get('/admin/login', adminrouter.login);
