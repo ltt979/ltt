@@ -1,11 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+var settings = require('../settings');
+var util = require('util');
 
 // Connection URL
-const url = 'mongodb://127.0.0.1:27017';
+const url = util.format('mongodb://%s:%s',settings.host,settings.port);
 
 // Database Name
-const dbName = 'blog';
+const dbName = settings.db;
 var mongoblog;
 
 // Use connect method to connect to the server

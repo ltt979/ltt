@@ -2,6 +2,7 @@ var crypto = require('crypto');
 var User = require('../modules/user');
 var Admin = require('../modules/admin');
 var Resource = require("../modules/resource");
+var Suggestion = require("../modules/suggestion");
 var path = require("path");
 var News = require("../modules/news");
 var settings = require("../settings");
@@ -104,15 +105,16 @@ var getProductTotalCount = function (req, res) {
     });
 }
 
-var getNewsTotalCount = function (req, res) {
+var getSuggestionTotalCount = function (req, res) {
     var pageSize = req.body.pageSize;
-    News.getPageCount(pageSize).then(function (pageCount) {
+    Suggestion.getPageCount(pageSize).then(function (pageCount) {
         res.json({"pageCount": pageCount});
     }).catch(function (error) {
         console.error(error);
         res.json({"pageCount": 10});
     });
 }
+
 
 var getProductPage = function (req, res) {
     var pageSize = req.body.pageSize;
@@ -122,13 +124,14 @@ var getProductPage = function (req, res) {
     });
 }
 
-var getNewsPage = function (req, res) {
+var getSuggestionPage = function (req, res) {
     var pageSize = req.body.pageSize;
     var currentPage = req.body.currentPage;
-    News.getPaginator(currentPage, pageSize, null, function (docs) {
-        res.json({"resources": docs});
+    Suggestion.getPaginator(currentPage, pageSize, null, function (err,docs) {
+        res.json({"docs": docs});
     });
 }
+
 
 var addnewsAjax = function (req, res) {
     var news = new News({
@@ -177,16 +180,41 @@ var delcourseAjax = function (req, res) {
     });
 }
 
+var delNewsAjax = function (req, res) {
+    var admin = getAdmin(req, res);
+    if (admin == null) {
+        return;
+    }
+    var newsId = req.body.newsId;
+    if (!newsId) {
+        res.json({
+            error: true,
+            msg: "请选择需要删除的新闻"
+        });
+    } else {
+        News.delById(newsId, function (err, result) {
+            if (err) {
+                res.json({
+                    error: true,
+                    msg: err
+                })
+            } else {
+                res.json({success: true, msg: "删除成功"})
+            }
+        });
+    }
+}
 
 exports.login = login;
 exports.loginSubmit = loginSubmit;
 exports.administrator_coursetoadd = administrator_coursetoadd;
 exports.addCourseSubmit = addCourseSubmit;
 exports.getProductTotalCount = getProductTotalCount;
-exports.getNewsTotalCount = getNewsTotalCount;
 exports.getProductPage = getProductPage;
-exports.getNewsPage = getNewsPage;
 exports.addnewsAjax = addnewsAjax;
 exports.addnews = addnews;
 exports.administrator_suggestion = administrator_suggestion;
 exports.delcourseAjax = delcourseAjax;
+exports.delNewsAjax = delNewsAjax;
+exports.getSuggestionTotalCount = getSuggestionTotalCount;
+exports.getSuggestionPage = getSuggestionPage;

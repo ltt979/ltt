@@ -197,6 +197,7 @@ var getResourceByUserIdAjax = function (req, res) {
   Resource.getResourceByUserId(user._id, function (err, resources) {
     if (err) {
       res.json({"msg": err});
+      return;
     }
     for (var i in resources) {
       if (user.own && user.own.indexOf(resources[i]["_id"].toHexString()) > -1) {

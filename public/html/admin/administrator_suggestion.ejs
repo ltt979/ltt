@@ -1,39 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
- <head> 
-  <meta charset="UTF-8" /> 
-  <title>意见箱</title> 
-  <link rel="icon" href="../favicon.ico" /> 
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="../css/index/default.css" rel="stylesheet" /> 
-  <link href="../css/index/homeindex.css" rel="stylesheet" /> 
-  <link href="../css/index/layout.css" rel="stylesheet" /> 
-  <link href="../css/pc.css" rel="stylesheet" /> 
-  <link href="/css/Css.css" rel="stylesheet" />
- </head> 
- <body> 
- 
+
+<head>
+    <meta charset="UTF-8" />
+    <title>意见箱</title>
+    <link rel="icon" href="../favicon.ico" />
+    <!-- <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" /> 
+  <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" />  -->
+    <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/index/default.css" rel="stylesheet" />
+    <link href="../css/index/homeindex.css" rel="stylesheet" />
+    <link href="../css/index/layout.css" rel="stylesheet" />
+    <link href="../css/pc.css" rel="stylesheet" />
+    <link href="/css/Css.css" rel="stylesheet" />
+</head>
+
+<body>
+
     <!-- 头部导航 -->
     <%- include admin_nav%>
- <!-- 头像   --> 
- <div class="boxtx"> 
-    <div style="margin: 20px;display: inline-block"> 
-     <img src="../images/ad.jpg" /> 
-    </div> 
-   </div> 
+        <!-- 头像   -->
+        <div class="boxtx">
+            <div style="margin: 20px;display: inline-block">
+                <img src="../images/ad.jpg" />
+            </div>
+        </div>
 
- <h2 style="text-align:center;margin-top: 50px">用户意见</h2>
+        <h2 style="text-align:center;margin-top: 50px">用户意见</h2>
 
-<div style="margin-top: 50px">
-    <div style="width: 1200px;height: 3000px;background-color: white;margin: 0 auto;text-align: center">
-   
-        <div class="lianjie">
-       
-    </div>
-    </div>
-</div>
+        <div style="margin-top: 50px">
+            <div style="width: 1200px;height: auto;background-color: white;margin: 0 auto;text-align: left">
+                <div class="lianjie" id="detail_block_list">
+                    <!-- <div style="margin: 20px;background-color: #d5f1ee5c;">
+                        <div>意见：</div>
+                        <div>用户名：</div>
+                        <div>时间：</div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-*-12" style="text-align: center;">
+                        <ul id="pager"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script id="suggestion_detail_tmpl" type="text/x-jquery-tmpl">
+            <div style="margin: 20px;background-color: #d5f1ee5c;">
+                <div>意见：{{= content}}</div>
+                <div>用户名：{{= username}}</div>
+                <div>时间：{{= createTime}}</div>
+            </div>
+        </script>
+        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
+        <script>
+            initPage();
+            function initPage() {
+                $.ajax({
+                    url: "/admin/getSuggestionTotalCount",
+                    type: 'post',
+                    dataType: 'json',
+                    data: {pageSize: 10},
+                    success: function (data) {
+                        var totalPages = data.pageCount;
+                        var options = {
+                            bootstrapMajorVersion: 3,
+                            currentPage: 1,
+                            totalPages: totalPages || 0,
+                            onPageClicked: function (e, originalEvent, type, page) {
+                                $.ajax({
+                                    url: "/admin/getSuggestionPage",
+                                    data: {currentPage: page, pageSize: 10},
+                                    dataType: 'json',
+                                    type: "post",
+                                    success: function (data) {
+                                        if (data.docs) {
+                                            $('#detail_block_list').empty();
+                                            $("#suggestion_detail_tmpl").tmpl(data.docs).appendTo('#detail_block_list');
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                        $('#pager').bootstrapPaginator(options);
+                        $("#pager li a:first-child").click();
+                    }
+                });
+            }
+        </script>
 
- 
- 
-  </body> 
-  </html>
+</body>
+
+</html>

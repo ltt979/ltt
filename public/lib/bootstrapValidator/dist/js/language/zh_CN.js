@@ -370,4 +370,4 @@ var i18n;
     });
 }(window.jQuery));
 
-module.exports = i18n;
+// module.exports = i18n;

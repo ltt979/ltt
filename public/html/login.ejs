@@ -69,6 +69,7 @@
     <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/language/zh_CN.js"></script>/
     <script type="text/javascript" src="/lib/md5-min.js"></script>
 
     <script type="text/javascript">
@@ -87,11 +88,12 @@
               validators: {
                 notEmpty: {
                   message: 'The username is not exit'
-                },
-                regexp: {
-                  regexp: /^[a-zA-Z0-9_\.]+$/,
-                  // message: 'The username can only consist of alphabetical, number, dot and underscore'
-                },
+                }
+                // ,
+                // regexp: {
+                //   regexp: /^[a-zA-Z0-9_\.]+$/,
+                //   // message: 'The username can only consist of alphabetical, number, dot and underscore'
+                // },
               }
             },
             password: {

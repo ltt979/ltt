@@ -8,7 +8,7 @@
   <!--   <link href="https://attach.likeshuo.com/Layout/Web1/Css?v=20180411001" rel="stylesheet" />
   <link href="https://attach.likeshuo.com/Layout/Marketing/Css?v=20180411001" rel="stylesheet" />
  -->
- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="/lib/bootstrapValidator/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/Css.css" rel="stylesheet" />
   <link href="/css/index/default.css" rel="stylesheet" />
   <link href="/css/index/homeindex.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <%- include modal%>
+      <%- include ../modal%>
         <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
@@ -64,9 +64,10 @@
                 type: "post",
                 success: function (data) {
                   var $container = $("#detail_block_list");
-                  $container.empty();
-                  var $tempval = $("#resource_detail_tmpl").tmpl(data.resources);
-                  $tempval.appendTo($container);
+                  if(data.resources){
+                    $container.empty();
+                    $("#resource_detail_tmpl").tmpl(data.resources).appendTo($container);
+                  }
                 }
               })
             }
@@ -86,7 +87,6 @@
                 success: function (data) {
                   $("#myModal .modal-body").html(data.msg);
                   $("#myModal").modal();
-                  debugger;
                   if (data.success) {
                     $(e.target).removeClass("add").addClass("del").html("立即移除");
                     pc_center_init();

@@ -22,90 +22,90 @@
 </style>
 
 <body>
- 
-    <!-- 头部导航 -->
-    <%- include admin_nav%>
-     <!-- 头像   --> 
-  <div class="boxtx"> 
-    <div style="margin: 20px;display: inline-block"> 
-     <img src="../images/ad.jpg" /> 
+
+  <!-- 头部导航 -->
+  <%- include admin_nav%>
+    <!-- 头像   -->
+    <div class="boxtx">
+      <div style="margin: 20px;display: inline-block">
+        <img src="../images/ad.jpg" />
         <button style="margin-left: 50px" type="button" class="el-button el-button--primary el-button--small" data-toggle="modal"
           data-target="#addNewsModal">
           <span>添加新闻</span>
         </button>
-    </div> 
-   </div> 
-    
-     
-        <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true"
-          data-backdrop="false">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                  &times;
-                </button>
-                <h4 class="modal-title" id="addCourseModalLabel">
-                  添加新闻
-                </h4>
-              </div>
-              <form id="addNewsForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/admin/addnewsAjax"
-                method="post">
-                <div class="modal-body">
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <label for="title" class="control-label">新闻标题：</label>
-                      <input name="title" type="text" class="form-control" id="title" placeholder="2018CCTV《爱拼才会赢》，天涯英语等你来挑战" data-bv-notempty
-                        data-bv-notempty-message="新闻标题必选" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <label for="content" class="control-label">内容：</label>
-                      <textarea class="form-control" id="content" form="addNewsForm" name="content"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <div id="errors"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                  </button>
-                  <button type="submit" class="btn btn-primary">
-                    新增新闻
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- 已有课程 -->
-        <div class="boxkc">
-          <div class="el-tabs__content">
-            <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
-              <div id="detail_block_list" class="panel-loading">
+      </div>
+    </div>
 
+
+    <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true"
+      data-backdrop="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h4 class="modal-title" id="addCourseModalLabel">
+              添加新闻
+            </h4>
+          </div>
+          <form id="addNewsForm" class="form-horizontal templatemo-create-account templatemo-container" role="form" action="/admin/addnewsAjax"
+            method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="title" class="control-label">新闻标题：</label>
+                  <input name="title" type="text" class="form-control" id="title" placeholder="2018CCTV《爱拼才会赢》，天涯英语等你来挑战" data-bv-notempty
+                    data-bv-notempty-message="新闻标题必选" />
+                </div>
               </div>
-              <div class="row">
-                <div class="col-*-12" style="text-align: center;">
-                  <ul id="pager"></ul>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="content" class="control-label">内容：</label>
+                  <textarea class="form-control" id="content" form="addNewsForm" name="content"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div id="errors"></div>
                 </div>
               </div>
             </div>
-          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+              </button>
+              <button type="submit" class="btn btn-primary">
+                新增新闻
+              </button>
+            </div>
+          </form>
         </div>
-
-        <!-- message -->
-        <div style="position: absolute;width: 100%; top: 241px;">
-          <div id="addNewsAlert" class="alert" style="display : none ;text-align: center;">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong></strong>
+      </div>
+    </div>
+    <!-- 已有课程 -->
+    <div class="boxkc">
+      <div class="el-tabs__content">
+        <div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane">
+          <div id="detail_block_list" class="panel-loading">
+          </div>
+          <div class="row">
+            <div class="col-*-12" style="text-align: center;">
+              <ul id="pager"></ul>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- message -->
+    <div style="position: absolute;width: 100%; top: 241px;">
+      <div id="addNewsAlert" class="alert" style="display : none ;text-align: center;">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong></strong>
+      </div>
+    </div>
+    </div>
+    <%- include ../modal%>
       <script type="text/javascript" src="/lib/bootstrapValidator/vendor/jquery/jquery.min.js"></script>
       <script type="text/javascript" src="/lib/bootstrapValidator/vendor/bootstrap/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="/lib/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
@@ -113,7 +113,12 @@
       <script type="text/javascript" src="/lib/bootstrap-paginator.min.js"></script>
 
       <script id="news_detail_tmpl" type="text/x-jquery-tmpl">
-        <a href="/newsdetail/{{= _id}}" style="display: block; padding : 20px; font-size: 20px;">{{= title}}</a>
+      <div>
+        <a href="/newsdetail/{{= _id}}" style=" padding : 20px; font-size: 20px;">{{= title}}</a>
+        <button data-newsid="{{= _id}}" style="position:absolute;right: 50px" type="button" class="el-button el-button--primary el-button--small del">
+           删除新闻
+        </button>
+      </div>
       </script>
 
       <script>
@@ -154,10 +159,10 @@
 
         function initPage() {
           $.ajax({
-            url: "/admin/getNewsTotalCount",
+            url: "/common/getNewsTotalCount",
             type: 'post',
             dataType: 'json',
-            data: { pageSize: 10 },
+            data: {pageSize: 10},
             success: function (data) {
               var totalPages = data.pageCount;
               var options = {
@@ -166,12 +171,11 @@
                 totalPages: totalPages || 0,
                 onPageClicked: function (e, originalEvent, type, page) {
                   $.ajax({
-                    url: "/admin/getNewsPage",
-                    data: { currentPage: page, pageSize: 10 },
+                    url: "/common/getNewsPage",
+                    data: {currentPage: page, pageSize: 10},
                     dataType: 'json',
                     type: "post",
                     success: function (data) {
-                      console.log(data.resources);
                       $('#detail_block_list').empty();
                       $("#news_detail_tmpl").tmpl(data.resources).appendTo('#detail_block_list');
                     }
@@ -183,6 +187,29 @@
             }
           });
         }
+
+        $(document).on('click', "button.del", function (e) {
+          debugger;
+          var newsId = $(e.target).data('newsid');
+          if (!newsId) {
+            alert("请选择需要删除的新闻");
+            return false;
+          }
+          $.ajax({
+            url: '/admin/delNewsAjax',
+            data: {newsId: newsId},
+            dataType: 'json',
+            type: "post",
+            success: function (data) {
+              $("#myModal .modal-body").html(data.msg);
+              $("#myModal").modal();
+              if (data.success) {
+                initPage();
+              }
+            }
+          });
+        });
+
 
       </script>
 </body>

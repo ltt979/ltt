@@ -1,4 +1,4 @@
-user
+user  db.users.createIndex( { "name": 1 }, { unique: true } )
 {
     "_id" : ObjectId("5af2ee686809071e70d06a17"),
     "name" : "huuhu",
@@ -28,3 +28,16 @@ resource
     "imagePath" : "\\uploads\\d62bfa019a7a429edef1f30efeb2ef56-ckk.jpg",
     "createTime" : ISODate("2018-05-03T08:54:02.073Z")
 }
+
+--------------------------------数据库初始化语句----------------------------
+db.users.insertMany([
+{   "name" : "huangtouge1",
+    "password" : "96e79218965eb72c92a549dd5a330112",
+    "email" : "1181357616@qq.com",
+    "sex" : "Male"
+}
+]);
+
+
+
+

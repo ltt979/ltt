@@ -1,4 +1,5 @@
 var News = require("../modules/news");
+var Suggestion = require("../modules/suggestion");
 
 var index = function (req, res) {
   var msg = req.flash("msg");
@@ -51,8 +52,8 @@ var newsdetail = function (req, res) {
   var newsId = req.params.id;
   News.getById(newsId, function (err, theNews) {
     if (err) {
-      req.flash("msg","未找新闻，为您跳转到主页。");
-     return index(req,res);
+      req.flash("msg", "未找新闻，为您跳转到主页。");
+      return index(req, res);
     }
     res.render("newsdetail", {
       user: req.session.user,
@@ -77,6 +78,24 @@ var suggestion_box = function (req, res) {
     msg: msg
   });
   // console.log(JSON.stringify(req.session.user));
+}
+
+var suggestSubmit = function (req, res) {
+  var user = req.session.user;
+  var suggestion = new Suggestion({
+    userId: (user && user._id) ? user._id : null,
+    content: req.body.content,
+    createTime: new Date(),
+    username: (user && user.name) ? user.name : '未登录用户'
+  });
+  suggestion.save(function (err, suggestion) {
+    if (err) {
+      req.flash("msg", err);
+    } else {
+      req.flash("msg", "您的意见已经提交成功");
+    }
+    return index(req, res);
+  });
 }
 
 var download = function (req, res) {
@@ -157,6 +176,29 @@ var introduction = function (req, res) {
   });
   // console.log(JSON.stringify(req.session.user));
 }
+
+
+var getNewsPage = function (req, res) {
+  var pageSize = req.body.pageSize;
+  var currentPage = req.body.currentPage;
+  News.getPaginator(currentPage, pageSize, null, function (err, docs) {
+    if (err) {
+      res.json({"error": true, msg: err});
+    } else {
+      res.json({"resources": docs});
+    }
+  });
+}
+
+var getNewsTotalCount = function (req, res) {
+  var pageSize = req.body.pageSize;
+  News.getPageCount(pageSize).then(function (pageCount) {
+    res.json({"pageCount": pageCount});
+  }).catch(function (error) {
+    console.error(error);
+    res.json({"pageCount": 10});
+  });
+}
 exports.index = index;
 exports.junior = junior;
 exports.adult = adult;
@@ -167,6 +209,7 @@ exports.administrator_suggestion = administrator_suggestion;
 exports.newsdetail = newsdetail;
 exports.newslist = newslist;
 exports.suggestion_box = suggestion_box;
+exports.suggestSubmit = suggestSubmit;
 exports.download = download;
 exports.addcourse_adult = addcourse_adult;
 exports.addcourse_business = addcourse_business;
@@ -176,5 +219,7 @@ exports.administrator_suggestion = administrator_suggestion;
 exports.idea = idea;
 exports.teacher = teacher;
 exports.introduction = introduction;
+exports.getNewsPage = getNewsPage;
+exports.getNewsTotalCount = getNewsTotalCount;
 
 

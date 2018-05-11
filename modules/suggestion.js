@@ -4,41 +4,39 @@ var mongodb = require("./mongodbUtil");
 var ObjectId = require("bson").ObjectID;
 var inspect = require('util').inspect;
 
-function News(news) {
-    this.title = news.title;
-    this.content = news.content;
-    this.createTime = news.createTime || new Date();
-
+function Suggestion(suggestion) {
+    this.userId = suggestion.userId;
+    this.content = suggestion.content;
+    this.createTime = suggestion.createTime || new Date();
+    this.username = suggestion.username;
 }
-//save news
-News.prototype.save = function (callback) {
+//save suggestion
+Suggestion.prototype.save = function (callback) {
     var db = mongodb.getMongoDB();
-    var news = {
-        title: this.title,
+    var suggestion = {
+        userId: this.userId ||'未登录用户',
         content: this.content,
-        createTime: this.createTime || new Date()
+        createTime: this.createTime || new Date(),
+        username : this.username
     };
-    //打开数据库
-    //读取 users 集合
-    db.collection(settings.news, function (err, collection) {
+    db.collection(settings.suggestion, function (err, collection) {
         if (err) {
-            return callback(err);//错误，返回 err 信息
+            return callback(err);
         }
-        //将用户数据插入 users 集合
-        collection.insert(news, {
+        collection.insert(suggestion, {
             safe: true
         }, function (err, result) {
             if (err) {
                 return callback(err);//错误，返回 err 信息
             }
-            callback(null, result.ops[0]);//成功！err 为 null，并返回存储后的用户文档
+            callback(null, result.ops[0]);//成功！err 为 null
         });
     });
 };
 
-News.getPaginator = function (currentPage, pageSize, query, callback) {
+Suggestion.getPaginator = function (currentPage, pageSize, query, callback) {
     var db = mongodb.getMongoDB();
-    db.collection('news').find(query).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id": -1}).toArray(function (err, docs) {
+    db.collection(settings.suggestion).find(query).skip((currentPage - 1) * pageSize).limit(+pageSize).sort({"_id": -1}).toArray(function (err, docs) {
         if (err) {
             console.log(error);
             callback(err);
@@ -52,7 +50,7 @@ News.getPaginator = function (currentPage, pageSize, query, callback) {
 var getTotalCount = function (query) {
     var db = mongodb.getMongoDB();
     return new Promise(function (reslove, reject) {
-        db.collection(settings.news).count(query, function (err, count) {
+        db.collection(settings.suggestion).count(query, function (err, count) {
             if (err) {
                 reject(err);
             }
@@ -60,7 +58,7 @@ var getTotalCount = function (query) {
         });
     })
 }
-News.getPageCount = function (pageSize, query) {
+Suggestion.getPageCount = function (pageSize, query) {
     var db = mongodb.getMongoDB();
     return new Promise(function (resolve, reject) {
         var promise = getTotalCount(query);
@@ -70,32 +68,32 @@ News.getPageCount = function (pageSize, query) {
     });
 }
 
-News.getById = function (id, callback) {
+Suggestion.getById = function (id, callback) {
     var db = mongodb.getMongoDB();
-    db.collection(settings.news).findOne({_id: ObjectId(id)}, function (err, result) {
+    db.collection(settings.suggestion).findOne({_id: ObjectId(id)}, function (err, result) {
         if (err) {
             console.error(error);
             callback(err);
             return;
         }
         if (!result) {
-            callback(new Error("沒有找到对应的新闻"));
+            callback(new Error("沒有找到对应的意见"));
             return;
         }
         return callback(null, result);
     });
 }
 
-News.delById = function (id, callback) {
+Suggestion.delById = function (id, callback) {
     var db = mongodb.getMongoDB();
-    db.collection(settings.news).findOneAndDelete({_id: ObjectId(id)}, function (err, result) {
+    db.collection(settings.suggestion).findOneAndDelete({_id: ObjectId(id)}, function (err, result) {
         if (err) {
             console.error(error);
             callback(err);
             return;
         }
         if (!result) {
-            callback(new Error("沒有找到对应的新闻"));
+            callback(new Error("沒有找到对应的意见"));
             return;
         }
         return callback(null, result);
@@ -103,10 +101,10 @@ News.delById = function (id, callback) {
 }
 
 // setTimeout(() => {
-//     News.delById('5af45d24fabe387c80e70bae',function (err,result) {
+//     Suggestion.delById('5af45d24fabe387c80e70bae',function (err,result) {
 //        console.log(inspect(err));
 //         console.log(inspect(result));
 //     })    
 // }, 2000);
 
-module.exports = News;
+module.exports = Suggestion;

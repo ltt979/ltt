@@ -4,7 +4,12 @@
             <div id="shared_signin" class="pull-right">
                 <% if(user && user.name) { %>
                     <div>
-                        <a href="/admin/administrator_coursetoadd">欢迎：
+                        <% if(user.role){ %>
+                            <a href="/admin/administrator_coursetoadd">
+                        <% }else {%>
+                        <a href="/pc/pcenter">
+                            <%}%>
+                        欢迎：
                             <%= user.name%>
                         </a>
                         <a href="/logout">退出</a>
