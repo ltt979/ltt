@@ -97,7 +97,7 @@ var regSubmit = function (req, res) {
       }
       req.session.user = user;//用户信息存入 session
       req.flash('success', '注册成功!');
-      res.redirect('/pc/pcenter');//注册成功后返回主页
+      res.redirect('/');//注册成功后返回主页
       // pcenter(req, res);
     });
   });
@@ -107,7 +107,7 @@ var loginSubmit = function (req, res) {
   User.get(req.body.username, function (err, user) {
     if (err) {
       req.flash('error', err);
-      res.redirect('/');
+      res.redirect('/admin_index');
       return;
     }
     if (user && user.password == req.body.password) {

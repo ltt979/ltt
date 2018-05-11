@@ -53,6 +53,7 @@ module.exports = function (app) {
     app.post('/admin/addnewsAjax',adminrouter.addnewsAjax);
     app.get("/admin/administrator_suggestion",adminrouter.administrator_suggestion);
     app.post("/admin/delcourseAjax", adminrouter.delcourseAjax);
+
     
     //pc
     app.get('/pc/adult',userrouter.adult);
