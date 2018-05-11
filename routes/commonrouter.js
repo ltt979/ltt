@@ -113,15 +113,6 @@ var suggestSubmit = function (req, res) {
   });
 }
 
-var download = function (req, res) {
-  var msg = req.flash("msg");
-  res.render('download', {
-    user: req.session.user,
-    msg: msg
-  });
-  // console.log(JSON.stringify(req.session.user));
-}
-
 var addcourse_adult = function (req, res) {
   var msg = req.flash("msg");
   res.render('user/addcourse_adult', {
