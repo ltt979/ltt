@@ -22,7 +22,8 @@
 </style>
 
 <body>
-
+<!-- 顶部导航 -->
+<%- include ../top %>
   <!-- 头部导航 -->
   <%- include admin_nav%>
     <!-- 头像   -->
@@ -83,14 +84,14 @@
               <div class="form-group">
                 <div class="col-md-12">
                   <label for="count" class="control-label">课程数量</label>
-                  <input name="count" type="text" class="form-control" id="count" placeholder="私教课(45分钟) × 3节 / 小班课(45分钟) × 3节 / 讲堂课(45分钟) × 15节"
+                  <input name="count" type="text" class="form-control" id="count" placeholder="30节"
                   />
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-12">
-                  <label for="time" class="control-label">服务期限：</label>
-                  <input name="time" type="text" class="form-control" id="time" placeholder="×30天" />
+                  <label for="time" class="control-label">课程简介：</label>
+                  <input name="time" type="text" class="form-control" id="time" placeholder="本课程包含日常生活口语教学视频，每个视频时长为5分钟左右，初学者适用" />
                 </div>
               </div>
               <div class="form-group">
@@ -147,7 +148,7 @@
 
     <script type='text/javascript'>
       var type_dic = {
-        "成人英语": ["成人口语", "零基础", "蹭课卡", "旅游英语", "面试英语", "自然拼读"],
+        "成人英语": ["成人口语", "零基础", "进阶英语", "旅游英语", "面试英语", "自然拼读"],
         "青少英语": [],
         "商务英语": [],
         "海外考试": []
@@ -223,7 +224,7 @@
                   <span class="text-666">课程数量：</span> ${count}
                 </div>
                 <div>
-                  <span class="text-666">服务期限：</span>${time}
+                  <span class="text-666">课程简介：</span>${time}
                 </div>
                 <div>
                   <span class="text-666">适用级别：</span>${level}

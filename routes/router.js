@@ -37,6 +37,7 @@ module.exports = function (app) {
     app.post('/common/getNewsPage', commonrouter.getNewsPage);
     app.post('/common/getNewsTotalCount', commonrouter.getNewsTotalCount);
     app.get('/resourceDetail/:id', commonrouter.resourceDetail);
+    app.get('/online_test', commonrouter.online_test);
 
     //admin
     app.get('/admin/login', adminrouter.login);

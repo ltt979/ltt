@@ -183,6 +183,23 @@ var introduction = function (req, res) {
   // console.log(JSON.stringify(req.session.user));
 }
 
+var download = function (req, res) {
+  var msg = req.flash("msg");
+  res.render('download', {
+    user: req.session.user,
+    msg: msg
+  });
+  // console.log(JSON.stringify(req.session.user));
+}
+
+var online_test = function (req, res) {
+  var msg = req.flash("msg");
+  res.render('online_test', {
+    user: req.session.user,
+    msg: msg
+  });
+  // console.log(JSON.stringify(req.session.user));
+}
 
 var getNewsPage = function (req, res) {
   var pageSize = req.body.pageSize;
@@ -228,5 +245,6 @@ exports.introduction = introduction;
 exports.getNewsPage = getNewsPage;
 exports.getNewsTotalCount = getNewsTotalCount;
 exports.resourceDetail = resourceDetail;
+exports.online_test = online_test;
 
 
