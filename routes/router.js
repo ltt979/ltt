@@ -10,6 +10,7 @@ var multer = require("multer");
 // var upload = multer({dest: '/public/uploads/'})
 module.exports = function (app) {
     app.get('/', commonrouter.index);
+    app.get('/index', commonrouter.index);
     app.get('/reg', userrouter.reg);
     app.post('/regSubmit', userrouter.regSubmit);
     app.get('/login', userrouter.login);
@@ -21,7 +22,6 @@ module.exports = function (app) {
     app.get('/adult', commonrouter.adult);
     app.get('/business', commonrouter.business);
     app.get('/overseas', commonrouter.overseas);
-    app.get('/newsdetail', commonrouter.newsdetail);
     app.get("/newsdetail/:id", commonrouter.newsdetail);
     app.get("/download", commonrouter.download);
     app.get("/addcourse_adult", commonrouter.addcourse_adult);

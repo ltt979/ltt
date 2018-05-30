@@ -229,7 +229,6 @@ exports.business = business;
 exports.overseas = overseas;
 exports.newsdetail = newsdetail;
 exports.administrator_suggestion = administrator_suggestion;
-exports.newsdetail = newsdetail;
 exports.newslist = newslist;
 exports.suggestion_box = suggestion_box;
 exports.suggestSubmit = suggestSubmit;

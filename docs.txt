@@ -18,3 +18,129 @@ https://blog.csdn.net/doulvme/article/details/76613480
 
 jquery api
 http://jquery.cuishifeng.cn/
+
+基础网络知识部分
+get和post请求
+https://baike.baidu.com/item/HTTP%E8%AF%B7%E6%B1%82/10882159?fr=aladdin
+http://www.runoob.com/http/http-methods.html
+在项目中具体体现 D:\ltt\ltt\routes\commonrouter.js
+    var index = function (req, res) {
+    var msg = req.flash("msg");
+    res.render('index', {
+        user: req.session.user,
+        msg: msg
+    });
+    // console.log(JSON.stringify(req.session.user));
+    }
+导出方法 exports.index = index;
+当在浏览器中访问http://localhost:3000/index的时候，就是一个get请求
+在app.js中代码route(app);指定使用route.js作为应用的路由。
+在router.js文件中查找到
+    app.get('/index', commonrouter.index);
+表示将使用commonrouter.index作为接收请求处理。express框架将public/html/路径下index.ejs文件填充，返回给客户端。
+
+
+登录逻辑
+get请求访问app.get('/login', userrouter.login);获取登录页面
+输入用户名密码，点击登录，使用bootstrapValidator做表单验证，
+验证成功，密码框使用hex_md5加密，不至于在post请求中使用密码明文。
+    <form id="loginForm" class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="/loginSubmit"
+    </form>
+表单提交地址app.post('/loginSubmit', userrouter.loginSubmit);
+var loginSubmit = function (req, res) {
+  User.get(req.body.username, function (err, user) {
+    if (err) {
+      req.flash('error', err);
+      res.redirect('/admin_index');
+      return;
+    }
+    if (user && user.password == req.body.password) {
+      req.session.user = user;
+      req.flash('success', '登录成功!');
+      res.redirect('/');//登录成功后返回主页
+      return;
+    } else {
+      req.flash('error', '用户名或密码错误!');
+      res.redirect('/login');//登录失败停留login页面
+      return;
+    }
+  });
+}
+
+获取表单参数，用户名：req.body.username，密码：req.body.password。
+User为用户类，查看方法
+//读取用户信息
+User.get = function (name, callback) {
+  //打开数据库
+  var db = mongodb.getMongoDB();
+  //读取 users 集合
+  db.collection('users', function (err, collection) {
+    if (err) {
+      return callback(err);//错误，返回 err 信息
+    }
+    //查找用户名（name键）值为 name 一个文档
+    collection.findOne({
+      name: name
+    }, function (err, user) {
+      if (err) {
+        return callback(err);//失败！返回 err 信息
+      }
+      callback(null, user);//成功！返回查询的用户信息
+    });
+  });
+};
+
+登录成功，req.session.user = user;将用户信息放至session。
+
+=================================================================
+
+数据库部分
+启动数据库服务 D:\Program Files\MongoDB\Server\3.6\bin\mongod --dbpath "D:\Program Files\MongoDB\Server\3.6\data"
+数据库设计都在实体里面体现modules
+admin
+news
+resource
+suggestion
+user
+比较简单的例子news
+function News(news) {
+    this.title = news.title;
+    this.content = news.content;
+    this.createTime = news.createTime || new Date();
+}
+News.prototype.save保存实体到数据库，传入的对象{title:"标题",content:"内容",createTime:"2018/06/01 12:00:00"}
+在数据库中，这个collection就叫news.
+分页查询方法getPaginator，传入参数：当前页currentPage, 每页大小pageSize, 查询query, 回调函数callback
+News.getPaginator = function (currentPage, pageSize, query, callback)
+总条数查询函数var getTotalCount = function (query) ，参数同上，查询过虑条件。返回当前数据库有多少条符合条件的数据。
+News.getPageCount = function (pageSize, query) 参数同上，查询符合过虑条件，新闻页数。前端分页使用。
+
+================================================================================================
+
+分页查询逻辑
+newslist.ejs
+initPage()函数，使用ajax，post请求传入参数{pageSize: 10}获取分页总数，在success回调函数中，构造分页选项options。
+options中属性onPageClicked为点击分页响应函数，点击页数，传入{currentPage: page, pageSize: 10}发送ajax post请求至url: "/common/getNewsPage"。
+    success回调函数中，使用jquerytmpl模板渲染页面$("#news_detail_tmpl").tmpl(data.resources).appendTo('#detail_block_list');
+=====================================================================================================
+新闻详情页面
+模板中指定<a href="/newsdetail/{{= _id}}" style="display: block; padding : 20px; font-size: 20px;">{{= title}}</a>
+访问请求app.get("/newsdetail/:id", commonrouter.newsdetail);获取url中指定的id，并查询数据库，将这条记录查询并展示。
+
+
+===============================================================================================
+session中间件，自己去网上搜索express session
+app.use(session({
+  secret: settings.cookieSecret,
+  key: settings.db,//cookie name
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+  store: new MongoStore({
+    url: mongodbURL,
+    db: settings.db,
+    host: settings.host,
+    port: settings.port
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
+
